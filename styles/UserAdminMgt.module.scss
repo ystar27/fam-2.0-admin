@@ -1,0 +1,1642 @@
+$mobile: 600px;
+$largeScreens: 1500px;
+
+// @media screen and (min-width: $largeScreens) {
+//   justify-content: center;
+// }
+
+// @media screen and (max-width: $mobile) {
+//   width: 100%;
+// }
+
+
+.main_fam_module_control {
+    display: flex;
+    width: 230%;
+    
+        @media screen and (max-width: $mobile) {
+          display: flex;
+        }
+    
+    .fam_module_control {
+        width: 90%;
+        padding-left: 0px;
+        padding-top: 20px;
+        padding-bottom: 10px;
+        padding-right: 50px;
+        // background: yellow;
+        display: flex;
+        flex-direction: column;
+        margin-left: -250px;
+        margin-top: 60px;
+        justify-content: center;
+        
+        @media screen and (max-width: $mobile) {
+            width: 90%;
+            background: cyan;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .fam_table_top_div_1{
+            width: 100%;
+            margin-right: 0px;
+            padding: 15px;
+            background: white;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+            
+            @media screen and (max-width: $mobile) {
+                width: 100%;
+            }
+            
+            .fam_table_top_div_1_show_entry{
+                padding: 10px;
+                display: flex;
+                flex-direction: row;
+                //background:lightsalmon;
+                
+                @media screen and (max-width: 600px) {
+                    display: flex;
+                    flex-direction: row;
+                }
+                
+                // @media screen and (min-width: $largeScreens) {
+                //   justify-content: center;
+                // }
+                
+                .fam_table_top_div_1_show_entry_select{
+                    width: 80%;
+                    height: 20px;
+                    padding-right: 15px;
+                    margin-top: 2px;
+                    margin-left: 10px;
+                    margin-right: 10px;
+                    border-radius: 5px;
+                }
+                
+                .fam_table_top_div_1_show_entry_span{
+                    color: rgb(163, 161, 161);
+                }
+            }
+            
+            .fam_table_top_div_1_search_model{
+                padding: 8px;
+                //background: magenta;
+                // input[type="text"]{
+                //     background-color : #a73bd1;
+                // }
+                input[type=text]:focus{
+                    outline: none; 
+                }
+                
+                .fam_table_top_div_1_search_model_input{
+                   // width: 20%;
+                    padding: 8px;
+                    border-radius: 5px;
+                    margin-right: 10px;
+                }
+                
+                .fam_table_top_div_1_search_model_button{
+                    padding: 10px;
+                    border-radius: 5px;
+                    background-color: #a73bd1;
+                    color: white;
+                    cursor: pointer;
+                    border: none;
+                }
+                
+            }
+        }
+        
+        
+        
+        .fam_table_top_div_2{
+            width: 100%;
+            margin-right: 0px;
+            padding: 20px;
+            background: white;
+            border-bottom-right-radius: 5px;
+            border-bottom-left-radius: 5px;
+            
+            .fam_table_main{
+                width: 104.2%;
+                // display: flex;
+                // flex-direction: column;
+                // background: lightpink;
+                // justify-content: space-between;
+                margin-top: -20px;
+                margin-left: -20px;
+                margin-right: -20px;
+                
+                .fam_table_main_header{
+                    background: #e7e7e9;
+                    
+                    .fam_table_main_header_row{
+                    //    margin-top: 0px;
+                    //    padding-left: 5px;
+                            // display: flex;
+                            // flex-direction: row;
+                        
+                        .fam_table_main_header_col_1{
+                            // padding: 5px;
+                            width: 13%;
+                            font-family: 'Montserrat';
+                            font-size: 14px;
+                            margin-right: 65px;
+                            padding-left: 30px;
+                            padding-top: 10px;
+                            padding-bottom: 10px;
+                            
+                            .fam_table_main_sort_1{
+                                margin-left: 45px;
+                                 cursor: pointer;
+                            }
+                        }
+                        .fam_table_main_header_col_2{
+                            // padding-left: 1px;
+                            width: 30%;
+                            font-family: 'Montserrat';
+                            font-size: 14px;
+                            padding-left: 75px;
+                            
+                            .fam_table_main_sort_2{
+                                margin-left: 75px;
+                                cursor: pointer;
+                            }
+                        }
+                        .fam_table_main_header_col_3{
+                            // padding: 5px;
+                            font-family: 'Montserrat';
+                            font-size: 14px;
+                            padding-left: 30px;
+                            
+                            .fam_table_main_sort_3{
+                                margin-left: 25px;
+                                cursor: pointer;
+                            }
+                        }
+                        .fam_table_main_header_col_4{
+                            // padding: 5px;
+                            width: 13%;
+                            font-family: 'Montserrat';
+                            font-size: 14px;
+                        }
+                        .fam_table_main_header_col_5{
+                            // padding: 5px;
+                            width: 27%;
+                            font-family: 'Montserrat';
+                            font-size: 14px;
+                        }
+                    }
+                }
+                
+                .fam_table_main_body{
+                    // background: darkolivegreen;
+                    
+                    .fam_table_main_body_row{
+                        
+                        .fam_table_main_body_col_1{
+                            padding-top: 15px;
+                            padding-bottom: 15px;
+                            padding-left: 52px;
+                            border-bottom: 1pt solid #e7e7e9;
+                        }
+                        .fam_table_main_body_col_2{
+                            padding-left: 90px;
+                            font-family: 'Montserrat';
+                            border-bottom: 1pt solid #e7e7e9;
+                        }
+                        .fam_table_main_body_col_3{
+                            padding-left: 45px;
+                            border-bottom: 1pt solid #e7e7e9;
+                        }
+                        .fam_table_main_body_col_4{
+                            padding-left: 40px;
+                            border-bottom: 1pt solid #e7e7e9;
+                        }
+                        .fam_table_main_body_col_5{
+                            padding-left: 90px;
+                            border-bottom: 1pt solid #e7e7e9;
+                            
+                            .btn_span{
+                                margin-right: 5px;
+                            }
+                            
+                            .btn_fam_mod_1{
+                                background: #CBFEEF;
+                                font-size: 17px;
+                                border-radius: 3px;
+                                color: #3fecb8;
+                                margin: 2px;
+                                cursor: pointer;
+                                border: none;
+                            }
+                            .btn_fam_mod_2{
+                                background: #dd8991;
+                                font-size: 17px;
+                                border-radius: 3px;
+                                color: #e62437;
+                                cursor: pointer;
+                                border: none;
+                            }
+                        }
+                    }
+                }
+            }
+            
+            .story_bank_table_main{
+                width: 104.2%;
+                // display: flex;
+                // flex-direction: column;
+                // background: lightpink;
+                // justify-content: space-between;
+                margin-top: -20px;
+                margin-left: -20px;
+                margin-right: -20px;
+                
+                .story_bank_table_main_header{
+                    background: #e7e7e9;
+                    
+                    .story_bank_table_main_header_row{
+                    //    margin-top: 0px;
+                    //    padding-left: 5px;
+                            // display: flex;
+                            // flex-direction: row;
+                        
+                        .story_bank_table_main_header_col_1{
+                            // padding: 5px;
+                            width: 13%;
+                            font-family: 'Montserrat';
+                            font-size: 14px;
+                            margin-right: 65px;
+                            padding-left: 30px;
+                            padding-top: 10px;
+                            padding-bottom: 10px;
+                            
+                            .story_bank_table_main_sort_1{
+                                margin-left: 45px;
+                                 cursor: pointer;
+                            }
+                        }
+                        .story_bank_table_main_header_col_2{
+                            // padding-left: 1px;
+                            width: 17%;
+                            font-family: 'Montserrat';
+                            font-size: 14px;
+                            padding-left: 40px;
+                            
+                            .story_bank_table_main_sort_2{
+                                margin-left: 45px;
+                                cursor: pointer;
+                            }
+                        }
+                        .story_bank_table_main_header_col_3{
+                            // padding: 5px;
+                            font-family: 'Montserrat';
+                            font-size: 14px;
+                            padding-left: 30px;
+                            
+                            .story_bank_table_main_sort_3{
+                                margin-left: 195px;
+                                cursor: pointer;
+                            }
+                        }
+                        .story_bank_table_main_header_col_4{
+                            // padding: 5px;
+                            width: 13%;
+                            font-family: 'Montserrat';
+                            font-size: 14px;
+                        }
+                        .story_bank_table_main_header_col_5{
+                            // padding: 5px;
+                            width: 27%;
+                            font-family: 'Montserrat';
+                            font-size: 14px;
+                        }
+                    }
+                }
+                
+                .fam_table_main_body{
+                    // background: darkolivegreen;
+                    
+                    .fam_table_main_body_row{
+                        
+                        .fam_table_main_body_col_1{
+                            padding-top: 15px;
+                            padding-bottom: 15px;
+                            padding-left: 52px;
+                            border-bottom: 1pt solid #e7e7e9;
+                        }
+                        .fam_table_main_body_col_2{
+                            padding-left: 90px;
+                            font-family: 'Montserrat';
+                            border-bottom: 1pt solid #e7e7e9;
+                        }
+                        .fam_table_main_body_col_3{
+                            padding-left: 45px;
+                            border-bottom: 1pt solid #e7e7e9;
+                        }
+                        .fam_table_main_body_col_4{
+                            padding-left: 40px;
+                            border-bottom: 1pt solid #e7e7e9;
+                        }
+                        .fam_table_main_body_col_5{
+                            padding-left: 90px;
+                            border-bottom: 1pt solid #e7e7e9;
+                            
+                            .btn_span{
+                                margin-right: 5px;
+                            }
+                            
+                            .btn_fam_mod_1{
+                                background: #CBFEEF;
+                                font-size: 17px;
+                                border-radius: 3px;
+                                color: #3fecb8;
+                                margin: 2px;
+                                cursor: pointer;
+                                border: none;
+                            }
+                            .btn_fam_mod_2{
+                                background: #dd8991;
+                                font-size: 17px;
+                                border-radius: 3px;
+                                color: #e62437;
+                                cursor: pointer;
+                                border: none;
+                            }
+                        }
+                    }
+                }
+                
+                .story_bank_table_main_body{
+                    // background: darkolivegreen;
+                    
+                    .story_bank_table_main_body_row{
+                        
+                        .story_bank_table_main_body_col_1{
+                            padding-top: 15px;
+                            padding-bottom: 15px;
+                            padding-left: 52px;
+                            border-bottom: 1pt solid #e7e7e9;
+                        }
+                        .story_bank_table_main_body_col_2{
+                            padding-left: 30px;
+                            font-family: 'Montserrat';
+                            border-bottom: 1pt solid #e7e7e9;
+                        }
+                        .story_bank_table_main_body_col_3{
+                            padding-left: 45px;
+                            border-bottom: 1pt solid #e7e7e9;
+                        }
+                        .story_bank_table_main_body_col_4{
+                            padding-left: 40px;
+                            border-bottom: 1pt solid #e7e7e9;
+                        }
+                        .story_bank_table_main_body_col_5{
+                            padding-left: 90px;
+                            border-bottom: 1pt solid #e7e7e9;
+                            
+                            .btn_span{
+                                margin-right: 5px;
+                            }
+                            
+                            .btn_story_bank_mod_1{
+                                background: #CBFEEF;
+                                font-size: 17px;
+                                border-radius: 3px;
+                                color: #3fecb8;
+                                margin: 2px;
+                                cursor: pointer;
+                                border: none;
+                            }
+                            .btn_story_bank_mod_2{
+                                background: #dd8991;
+                                font-size: 17px;
+                                border-radius: 3px;
+                                color: #e62437;
+                                cursor: pointer;
+                                border: none;
+                            }
+                        }
+                    }
+                }
+            }
+            
+            .pagination_div{
+                margin-top: 15px;
+                .pagination_text{
+                    .pagination_text_span{
+                        color: rgb(163, 161, 161);
+                    }
+                }
+            }
+        }
+        
+        .create_module_main{
+            margin-top: 50px;
+            width: 45%;
+            background: white;
+            border-radius: 10px;
+            right: 0px;
+            position: absolute;
+            top: 80px;
+            box-shadow: 5px 3px 3px 5px rgb(250, 250, 250) inset !important;
+            
+            
+            .create_module_sub_main{
+                display: flex;
+                flex-direction: row;
+                background: #e7e7e9;
+                border-top-left-radius: 10px;
+                border-top-right-radius: 10px;
+                
+                .create_module_sub_text{
+                    margin-top: 30px;
+                    margin-right: 20px;
+                    padding-left: 40px;
+                    color: #B569D4;
+                    font-family: "Montserrat";
+                    font-size: 20px;
+                    white-space: nowrap;
+                }
+                
+                .create_module_sub_icon{
+                    margin-top: -30px;
+                    // margin-bottom: 250px;
+                    margin-left: 135px;
+                    cursor: pointer;
+                }
+            }
+            
+            .create_module_inputs{
+                    
+                display: flex;
+                flex-direction: column;
+                
+                .create_module_input_1{
+                    //padding-left: 30px;
+                    margin-bottom: 20px;
+                    margin-top: 40px;
+                    width: 85%;
+                    margin-left: 40px;
+                    padding-bottom: 20px;
+                    border-left: none;
+                    border-right: none;
+                    border-top: none;
+                    &:focus, &:active {
+                        outline: 0;
+                        border-left: none;
+                        border-right: none;
+                        border-top: none;
+                    }
+                    color: #a73bd1;
+                }
+                
+                .create_module_input_2{
+                    //padding-left: 30px;
+                    margin-bottom: 20px;
+                    width: 85%;
+                    margin-left: 40px;
+                    padding-bottom: 20px;
+                    border-left: none;
+                    border-right: none;
+                    border-top: none;
+                    &:focus, &:active {
+                        outline: 0;
+                        border-left: none;
+                        border-right: none;
+                        border-top: none;
+                    }
+                }
+                
+                .create_module_select{
+                    width: 85%;
+                    margin-left: 40px;
+                    margin-bottom: 35px;
+                    // padding-left: 30px;
+                    padding-bottom: 15px;
+                    // padding: .25em;
+                    border: 0;
+                    border-bottom: 2px solid currentcolor; 
+                    //font-weight: bold;
+                    letter-spacing: .15em;
+                    border-radius: 0;
+                    &:focus, &:active {
+                        outline: 0;
+                        border-bottom-color: #a73bd1;
+                    }
+                }
+                
+                .btn_create_module_div{
+                    
+                    .btn_create_module{
+                        background: #a73bd1;
+                        color: white;
+                        width: 85%;
+                        margin-left: 40px;
+                        padding: 10px;
+                        border-radius: 5px;
+                        margin-bottom: 20px;
+                        font-family: "Montserrat";
+                        font-size: 15px;
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+        
+        .create_module_main_show{
+            animation: show_slide 1s ease forwards;
+            
+            @keyframes show_slide {
+                0% {
+                    transform: translateX(100%);
+                } 
+                40% {
+                    transform: translateX(-10%);
+                }
+                80% {
+                    transform: translateX(0%);
+                } 
+                100% {
+                    transform: translateX(-10px);
+                }   
+            }
+        }
+        
+        .create_module_main_hide{
+            //display: none;
+            
+            animation: hide_slide 1s ease forwards;
+            
+            @keyframes hide_slide {
+                0% {
+                    transform: translateX(-10px);
+                } 
+                40% {
+                    transform: translateX(0%);
+                }
+                80% {
+                    transform: translateX(-10%);
+                } 
+                100% {
+                    transform: translateX(500px);
+                }   
+            }
+        }
+    }
+}
+
+.main_story_bank_module_control_edit{
+    display: flex;
+    width: 230%;
+    
+    .story_bank_module_control_edit{
+        width: 90%;
+        padding-left: 0px;
+        padding-top: 20px;
+        padding-bottom: 10px;
+        padding-right: 50px;
+        background: yellow;
+        display: flex;
+        flex-direction: column;
+        margin-left: -250px;
+        margin-top: 10px;
+        justify-content: center;
+        
+        .main_story_bank_module_control_edit_div{
+            display: flex;
+            flex-direction: row;
+            
+            .main_story_bank_module_control_edit_div1{
+                background-color: white;
+                width: 10%;
+                padding: 10px;
+                margin-right: 5px;
+            }
+            .main_story_bank_module_control_edit_div2{
+                background-color: white;
+                width: 10%;
+                padding: 10px;
+            }
+        }
+        
+        .story_bank_table_top_div_1_edit{
+            width: 100%;
+            margin-right: 0px;
+            padding: 10px;
+            background: white;
+            display: flex;
+            flex-direction: column;
+            //justify-content: space-between;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+            
+            .story_bank_nav_content_sub_main_nav2{
+                background: #FAFAFA;
+                padding-left: -10px;
+                padding-top: 10px;
+                padding-bottom: 50px;
+                margin-top: 20px;
+                margin-left: 25px;
+                margin-right: 25px;
+                margin-bottom: 35px;
+                display: flex;
+                flex-direction: column;
+                border-radius: 5px;
+                
+                .story_bank_nav_content_sub_main_nav2_div{
+                    background: #FAFAFA;
+                    padding-left: 65px;
+                    padding-top: 35px;
+                    // padding-bottom: 5px;
+                    margin-bottom: 35px;
+                    display: flex;
+                    flex-direction: row;
+                    border-radius: 5px;
+                    
+                    .story_bank_nav_content_sub_main_img{
+                        position: absolute;
+                        cursor: pointer;
+                        width: 10%;
+                        padding: 25px;
+                        border-radius: 50%;
+                        background: #FFFFFF;
+                        margin-right: 60px;
+                        
+                        .story_bank_nav_content_sub_main_div{
+                            position: absolute;
+                            margin-left: 48px;
+                            margin-top: -29px;
+                            background: #FFFFFF;
+                            border-radius: 50%;
+                            padding: 5px;
+                            box-shadow: 5px 3px 3px 5px rgb(250, 250, 250) inset !important;
+                        }
+                    }
+                    
+                    .story_bank_edit_inputs{
+                        margin-left: 180px;
+                        margin-top: 25px;
+                        display: flex;
+                        flex-direction: column;
+                        
+                        .story_bank_edit_select{
+                            margin-bottom: 30px;
+                            padding-top: 5px;
+                            padding-bottom: 5px;
+                            width: 130%;
+                            border-top: none;
+                            border-left: none;
+                            border-right: none;
+                        }
+                        .story_bank_edit_select:focus{
+                            outline: none;
+                        }
+                        
+                        .story_bank_edit_inp1{
+                            margin-bottom: 30px;
+                            padding-top: 5px;
+                            padding-bottom: 5px;
+                            width: 350%;
+                            border-top: none;
+                            border-left: none;
+                            border-right: none;
+                        }
+                        
+                        .story_bank_edit_inp1:focus{
+                            outline: none;
+                        }
+                        
+                        .story_bank_edit_inp2{
+                            margin-bottom: 30px;
+                            padding-top: 5px;
+                            padding-bottom: 5px;
+                            width: 350%;
+                            border-top: none;
+                            border-left: none;
+                            border-right: none;
+                        }
+                        
+                        .story_bank_edit_inp2:focus{
+                            outline: none;
+                        }
+                        
+                        .story_bank_edit_inp3{
+                            // margin-bottom: 30px;
+                            padding-top: 5px;
+                            padding-bottom: 5px;
+                            width: 350%;
+                            border-top: none;
+                            border-left: none;
+                            border-right: none;
+                        }
+                        .story_bank_edit_inp3:focus{
+                            outline: none;
+                        }
+                    }
+                }
+            }
+        }
+    } 
+}
+
+.main_story_bank_module_control {
+    display: flex;
+    width: 230%;
+    // background: yellow;
+    
+        @media screen and (max-width: $mobile) {
+          display: flex;
+        }   
+    
+    .story_bank_module_control {
+        width: 90%;
+        padding-left: 0px;
+        padding-top: 20px;
+        padding-bottom: 10px;
+        padding-right: 50px;
+        background: yellow;
+        display: flex;
+        flex-direction: column;
+        margin-left: -250px;
+        margin-top: 50px;
+        justify-content: center;
+        
+        @media screen and (max-width: $mobile) {
+            width: 90%;
+            background: cyan;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .main_story_bank_module_back_btn{
+            padding-bottom: 10px;
+            margin-left: 965px;
+            cursor: pointer;
+            
+            .main_story_bank_module_back_span_1{
+                padding-right: 5px;
+            }
+        } 
+        
+        .story_bank_table_top_div_1{
+            width: 100%;
+            margin-right: 0px;
+            padding: 10px;
+            background: white;
+            display: flex;
+            flex-direction: column;
+            //justify-content: space-between;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+            
+            .story_bank_nav_content_main_nav2{
+                //background: lightgreen;
+                padding: 5px;
+                margin-top: 25px;
+                margin-left: 15px;
+                margin-right: 15px;
+                
+                .story_bank_nav_content_sub_main_nav2{
+                    background: #FAFAFA;
+                    padding-left: 65px;
+                    padding-top: 35px;
+                    padding-bottom: 50px;
+                    margin-bottom: 35px;
+                    display: flex;
+                    flex-direction: column;
+                    border-radius: 5px;
+                    
+                    .story_bank_nav_content_nav3{
+                        display: flex;
+                        flex-direction: column;
+                        text-align: center;
+                        align-items: center;
+                        
+                        .story_bank_nav_content_nav3_btn{
+                            width: 15%;
+                            padding: 10px;
+                            color: white;
+                            background: #a73bd1;
+                            border: none;
+                            border-radius: 5px;
+                            cursor: pointer;
+                            font-family: "Montserrat";
+                        }
+                        .story_bank_nav_content_nav3_p1{
+                            font-family: "Montserrat";
+                        }
+                        
+                        .story_bank_nav_content_nav3_p2{
+                            font-family: "Montserrat";
+                            color: #a73bd1; 
+                            
+                        }
+                    }
+                    
+                    .story_bank_nav_content_nav4{
+                        
+                        margin-left: -40px;
+                        margin-top: 55px;
+                        margin-bottom: -25px;
+                        padding-bottom: 0px;
+                        
+                        .story_bank_nav_content_nav3_btn_1{
+                            margin-right: 10px;
+                            padding: 10px;
+                            width: 8%;
+                            background: #EFE3F5;
+                            color: #B569D4;
+                            border: none;
+                            border-radius: 5px;
+                            cursor: pointer;
+                            font-family: "Montserrat";
+                        }
+                        
+                        .story_bank_nav_content_nav3_btn_2{
+                            padding: 10px;
+                            width: 8%;
+                            background: #B569D4;
+                            color: white;
+                            border: none;
+                            border-radius: 5px;
+                            cursor: pointer;
+                            font-family: "Montserrat";
+                        }
+                    }
+                    
+                    .story_bank_nav_content_sub_main_nav2_div{
+                        
+                        .story_bank_nav_content_sub_main_nav2_div_header_1{
+                            font-family: "Montserrat";
+                            margin-top: 0px;
+                        }
+                        
+                        .story_bank_nav_content_sub_main_nav2_inp{
+                            padding-top: 5px;
+                            padding-bottom: 5px;
+                            padding-left: 0px;
+                            width: 90%;
+                            border-left: none;
+                            border-right: none;
+                            border-top: none;
+                        }
+                        
+                        .story_bank_nav_content_sub_main_nav2_inp{
+                            outline: none;
+                        }
+                    }
+                    
+                    .story_bank_nav_content_sub_main_nav2_div_1{
+                        margin-top: 20px;
+                        .story_bank_correct_answer{
+                            margin-top: 50px;
+                            
+                            .story_bank_correct_input{
+                                padding: 5px;
+                                width: 90%;
+                                border-left: none;
+                                border-right: none;
+                                border-top: none;
+                            }
+                            .story_bank_correct_input:focus{
+                                outline: none;
+                            }
+                        }
+                        
+                        .story_bank_challenge_question{
+                            margin-top: 50px;
+                            
+                            .story_bank_challenge_question_header{
+                                font-family: "Montserrat";
+                            }
+                            
+                            .story_bank_challenge_question_inp{
+                                padding: 5px;
+                                width: 90%;
+                                border-left: none;
+                                border-right: none;
+                                border-top: none;
+                            }
+                            .story_bank_challenge_question_inp:focus{
+                                outline: none;
+                            }
+                        }
+                        
+                        .story_bank_nav_content_sub_main_nav2_div_header_2{
+                            font-family: "Montserrat";
+                            margin-top: 20px;
+                            margin-bottom: 5px;
+                        }
+                        
+                        .story_bank_nav_content_sub_main_nav2_div_span{
+                            // margin-bottom: 25px;
+                        }
+                        
+                        .story_bank_nav_content_sub_main_nav2_div_main_inp{
+                            display: flex;
+                            flex-direction: column;
+                            
+                            .story_bank_nav_content_sub_main_nav2_div_main_input1{
+                                margin-top: 10px;
+                                margin-bottom: 10px;
+                                
+                                .story_bank_nav_content_sub_main_nav2_div_inp_1{
+                                    padding: 5px;
+                                    width: 10%;
+                                    margin-right: 70px;
+                                    border-left: none;
+                                    border-right: none;
+                                    border-top: none;
+                                }
+                                .story_bank_nav_content_sub_main_nav2_div_inp_1:focus{
+                                    outline: none;
+                                }
+                                .story_bank_nav_content_sub_main_nav2_div_inp_2{
+                                    padding: 5px;
+                                    width: 72%;
+                                    border-left: none;
+                                    border-right: none;
+                                    border-top: none;
+                                }
+                                .story_bank_nav_content_sub_main_nav2_div_inp_2:focus{
+                                    outline: none;
+                                }
+                            }
+                            
+                            .story_bank_nav_content_sub_main_nav2_div_main_input2{
+                                margin-top: 10px;
+                                margin-bottom: 10px;
+                                
+                                .story_bank_nav_content_sub_main_nav2_div_inp_3{
+                                    padding: 5px;
+                                    width: 10%;
+                                    margin-right: 70px;
+                                    border-left: none;
+                                    border-right: none;
+                                    border-top: none;
+                                }
+                                .story_bank_nav_content_sub_main_nav2_div_inp_3:focus{
+                                    outline: none;
+                                }
+                                .story_bank_nav_content_sub_main_nav2_div_inp_4{
+                                    padding: 5px;
+                                    width: 72%;
+                                    border-left: none;
+                                    border-right: none;
+                                    border-top: none;
+                                }
+                                .story_bank_nav_content_sub_main_nav2_div_inp_4:focus{
+                                    outline: none;
+                                }
+                            }
+                            
+                            .story_bank_nav_content_sub_main_nav2_div_main_input3{
+                                margin-top: 10px;
+                                margin-bottom: 10px;
+                                
+                                .story_bank_nav_content_sub_main_nav2_div_inp_5{
+                                    padding: 5px;
+                                    width: 10%;
+                                    margin-right: 70px;
+                                    border-left: none;
+                                    border-right: none;
+                                    border-top: none;
+                                }
+                                .story_bank_nav_content_sub_main_nav2_div_inp_5:focus{
+                                    outline: none;
+                                }
+                                .story_bank_nav_content_sub_main_nav2_div_inp_6{
+                                    padding: 5px;
+                                    width: 72%;
+                                    border-left: none;
+                                    border-right: none;
+                                    border-top: none;
+                                }
+                                .story_bank_nav_content_sub_main_nav2_div_inp_6:focus{
+                                    outline: none;
+                                }
+                            }
+                            
+                            .story_bank_nav_content_sub_main_nav2_div_main_input4{
+                                margin-top: 10px;
+                                
+                                .story_bank_nav_content_sub_main_nav2_div_inp_7{
+                                    padding: 5px;
+                                    width: 10%;
+                                    margin-right: 70px;
+                                    border-left: none;
+                                    border-right: none;
+                                    border-top: none;
+                                }
+                                .story_bank_nav_content_sub_main_nav2_div_inp_7:focus{
+                                    outline: none;
+                                }
+                                .story_bank_nav_content_sub_main_nav2_div_inp_8{
+                                    padding: 5px;
+                                    width: 72%;
+                                    border-left: none;
+                                    border-right: none;
+                                    border-top: none;
+                                }
+                                .story_bank_nav_content_sub_main_nav2_div_inp_8:focus{
+                                    outline: none;
+                                }
+                            }
+                        }
+                        
+                        .story_bank_decrement_btn_on{
+                            position: absolute;
+                            padding: 7px;
+                            border-radius: 50%;
+                            margin-left: 870px;
+                            margin-top: -65px;
+                            background:white;
+                            cursor: pointer;
+                            
+                            .story_bank_decrement_span{
+                                padding-top: 5px;
+                            }
+                        }
+                        
+                        .story_bank_decrement_btn_off{
+                            display: none;
+                        }
+                        
+                        
+                        .story_bank_increment_btn_on{
+                            position: absolute;
+                            padding: 5px;
+                            border-radius: 50%;
+                            margin-left: 870px;
+                            margin-top: -25px;
+                            background:white;
+                            cursor: pointer;
+                            
+                        }
+                        
+                        .story_bank_increment_btn_off{
+                            display: none;                            
+                        }
+                    }
+                }
+            }
+            
+            .story_bank_nav_content_main{
+                background: lightgreen;
+                padding: 5px;
+                margin-top: 25px;
+                margin-left: 15px;
+                margin-right: 15px;
+                
+                .story_bank_nav_content_sub_main{
+                    background: #FAFAFA;
+                    padding-left: 65px;
+                    padding-top: 35px;
+                    padding-bottom: 200px;
+                    margin-bottom: 35px;
+                    display: flex;
+                    flex-direction: row;
+                    border-radius: 5px;
+                    
+                    .story_bank_nav_content_sub_main_img{
+                        position: absolute;
+                        cursor: pointer;
+                        width: 10%;
+                        padding: 25px;
+                        border-radius: 50%;
+                        background: #FFFFFF;
+                        margin-right: 60px;
+                        
+                        .story_bank_nav_content_sub_main_div {
+                            position: absolute;
+                            margin-left: 48px;
+                            margin-top: -29px;
+                            background: #FFFFFF;
+                            border-radius: 50%;
+                            padding: 5px;
+                            box-shadow: 5px 3px 3px 5px rgb(250, 250, 250) inset !important;
+                            
+                        }
+                    }
+                    
+                    .story_bank_nav_content_sub_main_select{
+                        white-space: nowrap;
+                        margin-left: 148px;
+                        
+                        .story_bank_nav_content_sub_main_select_1{
+                            width: 70%;
+                            margin-right: 35px;
+                            padding: 5px;
+                            border-left: none;
+                            border-right: none;
+                            border-top: none;
+                        }
+                        .story_bank_nav_content_sub_main_select_2{
+                            width: 70%;
+                            margin-right: 35px;
+                            padding: 5px;
+                            border-left: none;
+                            border-right: none;
+                            border-top: none;
+                        }
+                        .story_bank_nav_content_sub_main_select_3{
+                            width: 70%;
+                            padding: 5px;
+                            border-left: none;
+                            border-right: none;
+                            border-top: none;
+                        }
+                    }
+                    
+                    .story_bank_nav_content_sub_main_div_inp{
+                        position: absolute;
+                        margin-top: 50px;
+                        margin-left: 148px;
+                        display: flex;
+                        flex-direction: column;
+                        
+                        .story_bank_nav_content_sub_main_div_inp_1{
+                            margin-bottom: 20px;
+                            width: 450%;
+                            padding: 5px;
+                            border-left: none;
+                            border-right: none;
+                            border-top: none;
+                        }
+                        
+                        .story_bank_nav_content_sub_main_div_inp_1:focus{
+                            outline: none;
+                        }
+                        
+                        .story_bank_nav_content_sub_main_div_inp_2{
+                            margin-bottom: 20px;
+                            width: 450%;
+                            padding: 5px;
+                            border-left: none;
+                            border-right: none;
+                            border-top: none;
+                        }
+                        
+                        .story_bank_nav_content_sub_main_div_inp_2:focus{
+                            outline: none;
+                        }
+                        
+                        .story_bank_nav_content_sub_main_div_inp_3{
+                            width: 450%;
+                            padding: 5px;
+                            border-left: none;
+                            border-right: none;
+                            border-top: none;
+                        }  
+                        
+                        .story_bank_nav_content_sub_main_div_inp_3:focus{
+                            outline: none;
+                        }  
+                    }
+                    
+                }
+                
+                .story_bank_nav_content_sub_profile_main{
+                    background: #FAFAFA;
+                    padding-left: 65px;
+                    padding-top: 20px;
+                    padding-bottom: 30px;
+                    margin-bottom: 35px;
+                    display: flex;
+                    flex-direction: row;
+                    border-radius: 5px;
+                    
+                    .story_bank_nav_content_sub_profile_main_header{
+                        font-family: "Montserrat";
+                    }
+                    
+                    .story_bank_nav_content_sub_profile_main_inp{
+                        display: flex;
+                        flex-direction: column;
+                        margin-top: 70px;
+                        margin-left: 80px;
+                        
+                        .story_bank_nav_content_sub_profile_inp_1{
+                            margin-bottom: 20px;
+                            padding: 5px;
+                            width: 450%;
+                            border-left: none;
+                            border-right: none;
+                            border-top: none;
+                        }
+                        .story_bank_nav_content_sub_profile_inp_1:focus{
+                            outline: none;
+                        }
+                        
+                        .story_bank_nav_content_sub_profile_inp_2{
+                            padding: 5px;
+                            width: 450%;
+                            border-left: none;
+                            border-right: none;
+                            border-top: none;
+                        }
+                        
+                        .story_bank_nav_content_sub_profile_inp_2:focus{
+                            outline: none;
+                        }
+                    }
+                }
+                
+                .story_bank_nav_content_sub_experience_main{
+                    background: #FAFAFA;
+                    padding-left: 65px;
+                    padding-top: 20px;
+                    padding-bottom: 30px;
+                    margin-bottom: 35px;
+                    display: flex;
+                    flex-direction: row;
+                    border-radius: 5px;
+                    
+                    .story_bank_nav_content_sub_experience_main_header{
+                        font-family: "Montserrat";
+                    }
+                    
+                    .story_bank_nav_content_sub_experience_main_inp{
+                        display: flex;
+                        flex-direction: column;
+                        margin-top: 70px;
+                        margin-left: 35px;
+                        
+                        .story_bank_nav_content_sub_experience_inp_1{
+                            margin-bottom: 20px;
+                            padding: 5px;
+                            width: 450%;
+                            border-left: none;
+                            border-right: none;
+                            border-top: none;
+                        }
+                        
+                        .story_bank_nav_content_sub_experience_inp_1:focus{
+                            outline: none;
+                        }
+                        
+                        .story_bank_nav_content_sub_experience_inp_2{
+                            padding: 5px;
+                            width: 450%;
+                            border-left: none;
+                            border-right: none;
+                            border-top: none;
+                        } 
+                        
+                        .story_bank_nav_content_sub_experience_inp_2:focus{
+                            outline: none;
+                        }  
+                    }
+                
+                }
+                
+                .story_bank_nav_content_sub_success_story_main{
+                    background: #FAFAFA;
+                    padding-left: 65px;
+                    padding-top: 20px;
+                    padding-bottom: 30px;
+                    margin-bottom: 35px;
+                    display: flex;
+                    flex-direction: row;
+                    border-radius: 5px;
+                    
+                    .story_bank_nav_content_sub_success_story_main_header{
+                        font-family: "Montserrat";
+                    }
+                    
+                    .story_bank_nav_content_sub_success_story_main_inp{
+                        display: flex;
+                        flex-direction: column;
+                        margin-top: 70px;
+                        margin-left: 5px;
+                        
+                        .story_bank_nav_content_sub_success_story_inp_1{
+                            margin-bottom: 20px;
+                            padding: 5px;
+                            width: 450%;
+                            border-left: none;
+                            border-right: none;
+                            border-top: none;
+                        }
+                        
+                        .story_bank_nav_content_sub_success_story_inp_1:focus{
+                            outline: none;
+                        }
+                        
+                        .story_bank_nav_content_sub_success_story_inp_2{
+                            padding: 5px;
+                            width: 450%;
+                            border-left: none;
+                            border-right: none;
+                            border-top: none;
+                        } 
+                        
+                        .story_bank_nav_content_sub_success_story_inp_2:focus{
+                            outline: none;
+                        }  
+                    }
+                
+                }
+                
+                .story_bank_btn_div{
+                    
+                    .story_bank_btn{
+                        background: #a73bd1;
+                        font-family: "Montserrat";
+                        width: 8%;
+                        padding: 5px;
+                        border-radius: 5px;
+                        border: none;
+                        color: white;
+                        margin-bottom: 5px;
+                        cursor: pointer;
+                    }
+                }
+                
+            }
+            
+            
+            .story_bank_nav_header{
+                display: flex;
+                flex-direction: row;
+                justify-content: space-around;
+                
+                .story_bank_nav_header_1_on{
+                    padding-left: 0px;
+                    padding-right: 195px;
+                    font-family: "Montserrat";
+                }
+                
+                .story_bank_nav_header_1_off{
+                    padding-left: 0px;
+                    padding-right: 195px;
+                    font-family: "Montserrat";
+                    color: #a73bd1;
+                }
+                
+                .story_bank_nav_header_2_on{
+                    //padding-left: 10px;
+                    padding-right: 195px;
+                    font-family: "Montserrat";
+                }
+                
+                .story_bank_nav_header_2_off{
+                    //padding-left: 10px;
+                    padding-right: 195px;
+                    font-family: "Montserrat";
+                    color: #a73bd1;
+                }
+                
+                .story_bank_nav_header_3_on{
+                    //padding-left: 10px;
+                    font-family: "Montserrat";
+                }
+                .story_bank_nav_header_3_off{
+                    //padding-left: 10px;
+                    font-family: "Montserrat";
+                    color: #a73bd1;
+                }
+            }
+                
+            .story_bank_nav{
+                //background: yellow;
+                display: flex;
+                flex-direction: row;
+                justify-content: space-around;
+                    
+                .story_bank_nav_1 {
+                    border-radius: 50%;
+                    width: 25px;
+                    height: 25px;
+                    padding-bottom: 15px;
+                    padding-top: 2px;
+                    padding-left: 8px;
+                    padding-right: 15px;
+                    background: #BDBDBD;
+                    color: white;
+                    text-align: center;
+                    margin-right: 375px;
+                    margin-top: 20px;
+                    margin-left: 410px;
+                    cursor: pointer;
+                }
+                
+                .story_bank_nav_2 {
+                    // border-radius: 50%;
+                    // background: #e7e7e9;
+                    // padding: 7px;
+                    
+                    border-radius: 50%;
+                    width: 25px;
+                    height: 25px;
+                    padding-bottom: 15px;
+                    padding-top: 2px;
+                    padding-left: 8px;
+                    padding-right: 8px;
+                    background: #BDBDBD;
+                    color: white;
+                    text-align: center;
+                    margin-right: 300px;
+                    margin-top: 20px;
+                    margin-left: 40px;
+                    cursor: pointer;
+                }
+                
+                .story_bank_nav_3 {
+                    // border-radius: 50%;
+                    // background: #e7e7e9;
+                    // padding: 7px;
+                    
+                    border-radius: 50%;
+                    width: 25px;
+                    height: 25px;
+                    padding-bottom: 15px;
+                    padding-top: 2px;
+                    padding-left: 8px;
+                    padding-right: 8px;
+                    background: #BDBDBD;
+                    color: white;
+                    text-align: center;
+                    margin-right: 350px;
+                    margin-top: 20px;
+                    margin-left: 45px;
+                    cursor: pointer;
+                }
+                
+                .story_bank_nav_new_1{
+                    border-radius: 50%;
+                    width: 25px;
+                    height: 25px;
+                    padding-bottom: 15px;
+                    padding-top: 2px;
+                    padding-left: 8px;
+                    padding-right: 16px;
+                    //background: #BDBDBD;
+                    background: white;
+                    text-align: center;
+                    margin-right: 395px;
+                    margin-top: 20px;
+                    margin-left: 415px;
+                    cursor: pointer;
+                    border: 1px solid #a73bd1;
+                    
+                    .story_bank_nav_div_1{
+                        //position: absolute;
+                        border-radius: 50%;
+                        width: 20px;
+                        height: 20px;
+                        padding-bottom: -2px;
+                        padding-top: 0px;
+                        background: #a73bd1;
+                        text-align: center;
+                        margin-right: 2px;
+                        margin-top: -0.6px;
+                        margin-left: -6px;
+                        cursor: pointer;
+                    }
+                    
+                    .story_bank_nav_div_1_checked{
+                        //position: absolute;
+                        border-radius: 50%;
+                        width: 20px;
+                        height: 20px;
+                        padding-bottom: -2px;
+                        padding-top: 0px;
+                        background: #a73bd1;
+                        text-align: center;
+                        margin-right: 2px;
+                        margin-top: -0.6px;
+                        margin-left: -6px;
+                        cursor: pointer;
+                    }
+                }
+                
+                .story_bank_nav_new_2{
+                    border-radius: 50%;
+                    width: 25px;
+                    height: 25px;
+                    padding-bottom: 15px;
+                    padding-top: 2px;
+                    padding-left: 8px;
+                    padding-right: 16px;
+                    background: white;
+                    text-align: center;
+                    margin-right: 299px;
+                    margin-top: 20px;
+                    margin-left: 40px;
+                    cursor: pointer;
+                    border: 1px solid #a73bd1;
+                    
+                    .story_bank_nav_div_2{
+                        position: absolute;
+                        border-radius: 50%;
+                        width: 20px;
+                        height: 20px;
+                        padding-bottom: -2px;
+                        padding-top: 0px;
+                        background: #a73bd1;
+                        text-align: center;
+                        margin-right: 2px;
+                        margin-top: 0px;
+                        margin-left: -6px;
+                        cursor: pointer;
+                    }
+                }
+                
+                .story_bank_nav_new_3{
+                    border-radius: 50%;
+                    width: 25px;
+                    height: 25px;
+                    padding-bottom: 15px;
+                    padding-top: 2px;
+                    padding-left: 8px;
+                    padding-right: 16px;
+                    background: white;
+                    text-align: center;
+                    margin-right: 350px;
+                    margin-top: 20px;
+                    margin-left: 46px;
+                    cursor: pointer;
+                    border: 1px solid #a73bd1;
+                    
+                    .story_bank_nav_div_3{
+                        position: absolute;
+                        border-radius: 50%;
+                        width: 20px;
+                        height: 20px;
+                        padding-bottom: -2px;
+                        padding-top: 0px;
+                        background: #a73bd1;
+                        text-align: center;
+                        //margin-right: 2px;
+                        margin-top: 0px;
+                        margin-left: -6px;
+                        cursor: pointer;
+                    }
+                }
+                    
+                // .story_bank_nav_2{
+                //     border-radius: 50%;
+                //     width: 25px;
+                //     height: 25px;
+                //     padding-bottom: 15px;
+                //     padding-top: 2px;
+                //     background: #BDBDBD;
+                //     color: white;
+                //     text-align: center; 
+                //     margin-right: 300px; 
+                //     margin-top: 20px; 
+                //     cursor: pointer;
+                // }
+                    
+                // .story_bank_nav_3{
+                //     border-radius: 50%;
+                //     width: 25px;
+                //     height: 25px;
+                //     padding-bottom: 15px;
+                //     padding-top: 2px;
+                //     background: #BDBDBD;
+                //     color: white;
+                //     text-align: center; 
+                //     margin-top: 20px; 
+                //     cursor: pointer;
+                // }
+            }
+            
+            .story_bank_main_btn{
+                margin-left: 20px;
+                // position: fixed;
+                // bottom: 0;
+                
+                .story_bank_main_btn_1{
+                    margin-right: 10px;
+                    padding: 10px;
+                    width: 8%;
+                    background: #EFE3F5;
+                    border: none;
+                    border-radius: 5px;
+                    cursor: pointer;
+                }
+                .story_bank_main_btn_2{
+                    padding: 10px;
+                    width: 8%;
+                    background: #B569D4;
+                    border: none;
+                    border-radius: 5px;
+                    cursor: pointer;
+                }
+            }
+    
+        }
+        
+    }
+}
