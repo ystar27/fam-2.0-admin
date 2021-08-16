@@ -38,7 +38,7 @@ export default function Cards() {
         >
           <img
             className={"h-full"}
-            src={"/img/icons/story.svg"}
+            src={"/img/icons/season.svg"}
             alt={"dashboard"}
           />
         </div>
@@ -158,7 +158,7 @@ export default function Cards() {
         >
           <img
             className={"h-full"}
-            src={"/img/icons/story.svg"}
+            src={"/img/icons/forum.svg"}
             alt={"dashboard"}
           />
         </div>
