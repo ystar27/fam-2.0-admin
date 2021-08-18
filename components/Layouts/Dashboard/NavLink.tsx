@@ -11,7 +11,6 @@ export default function NavLink({
 }: any) {
   const { pathname } = useRouter();
   const isActive = pathname === href;
-  console.log(pathname, href);
 
   return (
     <Link href={href} passHref>

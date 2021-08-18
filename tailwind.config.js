@@ -1,4 +1,4 @@
-export default {
+module.exports = {
   purge: [],
   darkMode: false,
   theme: {

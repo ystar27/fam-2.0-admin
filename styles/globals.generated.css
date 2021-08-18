@@ -31888,6 +31888,127 @@ a {
   box-sizing: border-box;
 }
 
+[data-test="table-foot"] {
+  display: none !important;
+}
+
+.dataTables_wrapper > .row:first-child {
+  padding-left: 2rem;
+  padding-right: 2rem;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+}
+
+.mdb-datatable-filter > input {
+  background: #ffffff;
+  border: 0.5px solid #e0e0e0;
+  box-sizing: border-box;
+  border-radius: 3px;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.dataTable {
+  width: 100%;
+}
+
+.dataTable > thead {
+  background-color: #f8f9fa;
+  color: #828282 !important;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+  padding-top: 1.25rem;
+  padding-bottom: 1.25rem;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  font-weight: 700;
+}
+
+.dataTable > thead > tr {
+  text-align: left;
+}
+
+.dataTable > thead > tr > th {
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+}
+
+.dataTable > thead > tr > th:first-child {
+  text-align: left;
+  padding-left: 0.75rem;
+}
+
+.dataTable > tbody > tr > td {
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+}
+
+.dataTables_wrapper > .row:last-child {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1.25rem;
+  margin-bottom: 1.25rem;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem
+}
+
+.pagination {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.pagination > li {
+  border: 0.5px solid #E0E0E0;
+  background-color: #E0E0E0;
+  padding: 0.5rem;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  --tw-text-opacity: 1;
+  color: rgba(17, 24, 39, var(--tw-text-opacity))
+}
+
+.pagination > .disabled {
+  color: #BDBDBD !important;
+  cursor: default;
+}
+
+.pagination > .active {
+  border: 0.5px solid #708DF4;
+  color: #fff;
+  background-color: #708DF4;
+}
+
+.pagination > li:first-child, .pagination > li:last-child {
+  border: 0.5px solid #BDBDBD;
+  background-color: #fff;
+  padding: 0.5rem;
+  --tw-text-opacity: 1;
+  color: rgba(17, 24, 39, var(--tw-text-opacity))
+}
+
+.custom-select {
+  border-radius: 0.25rem;
+  border-width: 1px;
+  --tw-border-opacity: 1;
+  border-color: rgba(209, 213, 219, var(--tw-border-opacity));
+  padding: 0.5rem
+}
+
+.custom-select {
+  border-radius: 0.25rem;
+  border-width: 1px;
+  --tw-border-opacity: 1;
+  border-color: rgba(209, 213, 219, var(--tw-border-opacity));
+  padding: 0.5rem
+}
+
 @media (min-width: 640px) {
   .sm\:container {
     width: 100%;

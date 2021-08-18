@@ -20,3 +20,93 @@ a {
 * {
   box-sizing: border-box;
 }
+
+[data-test="table-foot"] {
+  display: none !important;
+}
+
+.dataTables_wrapper > .row:first-child {
+  @apply px-8;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+}
+
+.mdb-datatable-filter > input {
+  background: #ffffff;
+  border: 0.5px solid #e0e0e0;
+  box-sizing: border-box;
+  border-radius: 3px;
+  @apply px-5 py-2;
+}
+
+.dataTable {
+  width: 100%;
+}
+
+.dataTable > thead {
+  background-color: #f8f9fa;
+  color: #828282 !important;
+  @apply px-5 py-5 font-bold text-lg;
+}
+
+.dataTable > thead > tr {
+  text-align: left;
+}
+
+.dataTable > thead > tr > th {
+  @apply py-3;
+}
+
+.dataTable > thead > tr > th:first-child {
+  text-align: left;
+  @apply pl-3;
+}
+
+.dataTable > tbody > tr > td {
+  @apply py-3;
+}
+
+.dataTables_wrapper > .row:last-child {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  @apply my-5 px-5
+}
+
+.pagination {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.pagination > li {
+  border: 0.5px solid #E0E0E0;
+  background-color: #E0E0E0;
+  @apply p-2 px-3 text-gray-900 text-lg
+}
+
+.pagination > .disabled {
+  color: #BDBDBD !important;
+  cursor: default;
+}
+
+.pagination > .active {
+  border: 0.5px solid #708DF4;
+  color: #fff;
+  background-color: #708DF4;
+}
+
+.pagination > li:first-child, .pagination > li:last-child {
+  border: 0.5px solid #BDBDBD;
+  background-color: #fff;
+  @apply p-2 text-gray-900
+}
+
+.custom-select {
+  @apply p-2 border border-gray-300 rounded
+}
+
+.custom-select {
+  @apply p-2 border border-gray-300 rounded
+}
