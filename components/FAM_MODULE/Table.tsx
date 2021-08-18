@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import { MDBBadge, MDBDataTable, MDBDataTableV5 } from "mdbreact";
 import { columns, rows } from "./data";
 
-export default function TopSearch() {
+export default function Table({setCreateModule}: any) {
   const [input, setInput] = useState("");
   const [datatable, setDatatable] = useState({
     rows,
@@ -56,6 +56,7 @@ export default function TopSearch() {
           </div>
           <button
             style={{ backgroundColor: "#B569D4" }}
+            onClick={() => setCreateModule(true)}
             className={"py-2 text-base font-semibold text-white px-3 rounded"}
           >
             Create Module

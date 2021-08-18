@@ -22,6 +22,7 @@
     "@fortawesome/react-fontawesome": "^0.1.15",
     "@tailwindcss/ui": "^0.7.2",
     "@tailwindui/react": "^0.1.1",
+    "@types/react-dom": "^17.0.9",
     "axios": "^0.21.1",
     "framer-motion": "^4.1.17",
     "mdbreact": "^5.1.0",
