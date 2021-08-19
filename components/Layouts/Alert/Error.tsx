@@ -1,21 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
-import { useState } from "react";
-import { useRef } from "react";
 
-export default function CreateModule({ setCreateModule }: any) {
-  const [open, setOpen] = useState(false);
-  const slideRef = useRef();
-
+export default function Error({ setCreateModule }: any) {
   return (
     <div
-      className={"w-full h-full absolute overflow-hidden"}
+      className={"w-full h-full absolute"}
       style={{ background: "rgba(54, 55, 64, 0.51)", zIndex: 50 }}
     >
       <div
-        ref={slideRef}
-        className={`max-w-lg slide-in min-w-min w-full duration-500 right-0 md:right-10 absolute top-40 bg-white flex flex-col`}
+        className={
+          "max-w-lg min-w-min w-full right-0 md:right-10 absolute top-40 bg-white flex flex-col"
+        }
       >
         <div className={"p-5 flex items-center justify-between bg-gray-50"}>
           <h2 className={"text-lg font-semibold"} style={{ color: "#B569D4" }}>
@@ -41,7 +37,7 @@ export default function CreateModule({ setCreateModule }: any) {
             </div>
             <div className={"mb-6"}>
               <input
-                type={"number"}
+                type={"text"}
                 className={
                   "pb-4 pt-2 w-full text-gray-700 border-b focus:border-b focus:outline-none text-lg focus:border-purple-500"
                 }
@@ -54,9 +50,9 @@ export default function CreateModule({ setCreateModule }: any) {
                   "pb-4 pt-2 w-full text-gray-700 border-b focus:border-b focus:outline-none text-lg focus:border-purple-500"
                 }
               >
-                <option className={"hover:bg-purple-400"}>Module Status</option>
-                <option className={"hover:bg-purple-400"}>Private</option>
-                <option className={"hover:bg-purple-400"}>Public</option>
+                <option className={'hover:bg-purple-400'}>Module Status</option>
+                <option className={'hover:bg-purple-400'}>Private</option>
+                <option className={'hover:bg-purple-400'}>Public</option>
               </select>
             </div>
             <div className={"mb-6"}>

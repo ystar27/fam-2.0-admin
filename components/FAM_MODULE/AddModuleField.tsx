@@ -4,7 +4,7 @@ import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 import { useRef } from "react";
 
-export default function CreateModule({ setCreateModule }: any) {
+export default function AddModuleField({ setCreateModule }: any) {
   const [open, setOpen] = useState(false);
   const slideRef = useRef();
 

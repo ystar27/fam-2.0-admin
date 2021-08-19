@@ -31927,8 +31927,12 @@ a {
   font-weight: 700;
 }
 
-.dataTable > thead > tr {
-  text-align: left;
+.dataTable > thead > tr > th {
+  text-align: left !important;
+}
+
+.dataTable > thead > tr > th:last-child {
+  text-align: center !important;
 }
 
 .dataTable > thead > tr > th {
@@ -32007,6 +32011,25 @@ a {
   --tw-border-opacity: 1;
   border-color: rgba(209, 213, 219, var(--tw-border-opacity));
   padding: 0.5rem
+}
+
+.slide-in {
+  transform: translateX(100%);
+  transition: all .5s;
+  -webkit-animation: slideIn  .5s forwards ease-in-out;
+          animation: slideIn  .5s forwards ease-in-out;
+}
+
+@-webkit-keyframes slideIn {
+  100%{
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideIn {
+  100%{
+    transform: translateX(0);
+  }
 }
 
 @media (min-width: 640px) {

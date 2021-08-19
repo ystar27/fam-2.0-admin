@@ -50,8 +50,12 @@ a {
   @apply px-5 py-5 font-bold text-lg;
 }
 
-.dataTable > thead > tr {
-  text-align: left;
+.dataTable > thead > tr > th {
+  text-align: left !important;
+}
+
+.dataTable > thead > tr > th:last-child {
+  text-align: center !important;
 }
 
 .dataTable > thead > tr > th {
@@ -109,4 +113,16 @@ a {
 
 .custom-select {
   @apply p-2 border border-gray-300 rounded
+}
+
+.slide-in {
+  transform: translateX(100%);
+  transition: all .5s;
+  animation: slideIn  .5s forwards ease-in-out;
+}
+
+@keyframes slideIn {
+  100%{
+    transform: translateX(0);
+  }
 }
