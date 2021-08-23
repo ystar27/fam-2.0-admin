@@ -1,7 +1,5 @@
 import React, { useState } from "react";
-import Table from "../components/FAM_MODULE/Table";
-import CreateModule from "../components/FAM_MODULE/CreateModule";
-import AddModuleField from "../components/FAM_MODULE/AddModuleField";
+import Table from "../components/Story_Bank/Table";
 import Dashboard from "../components/Layouts/Dashboard/Dashboard";
 import Head from "../components/Layouts/Header/Head";
 import Navbar from "../components/Layouts/Header/Navbar";
@@ -9,9 +7,8 @@ import Delete from "../components/Layouts/Alert/Delete";
 import Success from "../components/Layouts/Alert/Success";
 import Error from "../components/Layouts/Alert/Error";
 
-export default function FAM_MODULE() {
-  const [createModule, setCreateModule] = useState(false);
-  const [addModuleField, setAddModuleField] = useState(false);
+export default function StoryBank() {
+  const [createStory, setCreateStory] = useState(false);
   const [iDelete, setIDelete] = useState({
     delete: false,
     approveDelete: false,
@@ -21,9 +18,9 @@ export default function FAM_MODULE() {
     <div className={"flex flex-col h-screen"}>
       <Head />
       <Navbar />
-      {iDelete.delete && <Delete setIDelete={setIDelete} message="Approve delete" />}
-      {createModule && <CreateModule setCreateModule={setCreateModule} />}
-      {addModuleField && <AddModuleField setAddModuleField={setAddModuleField} />}
+      {iDelete.delete && (
+        <Delete setIDelete={setIDelete} message="Approve delete" />
+      )}
       <Dashboard>
         <div className="mx-auto container px-5 duration-300">
           <div className={"my-16"}>
@@ -34,12 +31,15 @@ export default function FAM_MODULE() {
             </div>
           </div>
           <div className={"w-full bg-white rounded py-6 mb-32"} style={{boxShadow: "0px 4px 45px rgba(0, 0, 0, 0.04)"}}>
-            <Table
-              setCreateModule={setCreateModule}
-              setAddModuleField={setAddModuleField}
-              setIDelete={setIDelete}
-              iDelete={iDelete}
-            />
+            {createStory ? (
+              <div></div>
+            ) : (
+              <Table
+                setCreateStory={setCreateStory}
+                setIDelete={setIDelete}
+                iDelete={iDelete}
+              />
+            )}
           </div>
         </div>
       </Dashboard>

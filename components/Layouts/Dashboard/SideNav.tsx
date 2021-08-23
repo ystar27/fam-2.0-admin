@@ -70,7 +70,7 @@ export default function SideNav(props: any) {
           FAM Module
         </NavLink>
         <NavLink
-          href="#"
+          href="/storybank"
           activeStyle={{
             backgroundColor: "#B569D4",
             boxShadow: "0px 4px 4px rgba(181, 105, 212, 0.33)",
@@ -84,7 +84,7 @@ export default function SideNav(props: any) {
           Story Bank
         </NavLink>
         <NavLink
-          href="#"
+          href="/collaboration"
           activeStyle={{
             backgroundColor: "#B569D4",
             boxShadow: "0px 4px 4px rgba(181, 105, 212, 0.33)",

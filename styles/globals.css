@@ -108,11 +108,7 @@ a {
 }
 
 .custom-select {
-  @apply p-2 border border-gray-300 rounded
-}
-
-.custom-select {
-  @apply p-2 border border-gray-300 rounded
+  @apply px-3 py-1 border border-gray-300 rounded
 }
 
 .slide-in {

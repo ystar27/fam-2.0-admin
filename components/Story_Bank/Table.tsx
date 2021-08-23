@@ -5,7 +5,11 @@ import { columns, rows } from "./data";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashAlt, faEdit } from "@fortawesome/free-solid-svg-icons";
 
-export default function Table({ setCreateModule, setAddModuleField, iDelete, setIDelete }: any) {
+export default function Table({
+  setCreateStory,
+  iDelete,
+  setIDelete,
+}: any) {
   const [input, setInput] = useState("");
   const [datatable, setDatatable] = useState({
     rows,
@@ -65,13 +69,18 @@ export default function Table({ setCreateModule, setAddModuleField, iDelete, set
     ],
     rows: [
       ...datatable.rows.map((row, order) => ({
-        badge: <h5 className={'pl-5'}>{order + 1}</h5>,
+        badge: <h5 className={"pl-5"}>{order + 1}</h5>,
         ...row,
+        image: (
+          <div className={"h-12 w-12 rounded-full overflow-hidden"}>
+            <img className={'w-full'} src={row.image} alt={"profile.img"} />
+          </div>
+        ),
         status: statusUI(row.status),
         actions: (
           <div className={"flex items-center justify-around"}>
             <button
-              className={"rounded py-1 px-2 flex items-center"}
+              className={"rounded py-2 px-4 flex items-center"}
               style={{ backgroundColor: "#CBFEEF", color: "#20C997" }}
             >
               <FontAwesomeIcon
@@ -82,7 +91,7 @@ export default function Table({ setCreateModule, setAddModuleField, iDelete, set
               Edit
             </button>
             <button
-              className={"rounded py-1 px-2 flex items-center"}
+              className={"rounded py-2 px-4 flex items-center"}
               style={{
                 backgroundColor: "rgba(220, 53, 69, 0.12)",
                 color: "#DC3545",
@@ -95,14 +104,6 @@ export default function Table({ setCreateModule, setAddModuleField, iDelete, set
                 style={{}}
               />
               Delete
-            </button>
-            <button
-              onClick={()=> setAddModuleField(true)}
-              className={
-                "px-2 py-1 text-lg font-bold rounded bg-gray-200 hover:bg-gray-400 text-gray-900 text-center"
-              }
-            >
-              +
             </button>
           </div>
         ),
@@ -128,10 +129,10 @@ export default function Table({ setCreateModule, setAddModuleField, iDelete, set
           </div>
           <button
             style={{ backgroundColor: "#B569D4" }}
-            onClick={() => setCreateModule(true)}
+            onClick={() => setCreateStory(true)}
             className={"py-2 text-base font-semibold text-white px-3 rounded"}
           >
-            Create Module
+            Create Story
           </button>
         </>,
         document.querySelector("[data-test=datatable-search]")
@@ -142,8 +143,8 @@ export default function Table({ setCreateModule, setAddModuleField, iDelete, set
   return (
     <MDBDataTable
       hover
-      entriesOptions={[10, 20, 30, 50]}
-      entries={10}
+      entriesOptions={[5, 10, 20]}
+      entries={5}
       pagesAmount={4}
       striped
       bordered

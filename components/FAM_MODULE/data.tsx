@@ -18,7 +18,7 @@ export const columns = [
   {
     label: "STATUS",
     field: "status",
-    width: 200,
+    width: 150,
   },
 ];
 
