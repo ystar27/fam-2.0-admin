@@ -6,6 +6,7 @@ import Navbar from "../components/Layouts/Header/Navbar";
 import Delete from "../components/Layouts/Alert/Delete";
 import Success from "../components/Layouts/Alert/Success";
 import Error from "../components/Layouts/Alert/Error";
+import CreateStory from "../components/Story_Bank/CreateStory";
 
 export default function StoryBank() {
   const [createStory, setCreateStory] = useState(false);
@@ -32,7 +33,7 @@ export default function StoryBank() {
           </div>
           <div className={"w-full bg-white rounded py-6 mb-32"} style={{boxShadow: "0px 4px 45px rgba(0, 0, 0, 0.04)"}}>
             {createStory ? (
-              <div></div>
+              <CreateStory />
             ) : (
               <Table
                 setCreateStory={setCreateStory}
