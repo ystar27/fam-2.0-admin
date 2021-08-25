@@ -1,7 +1,9 @@
-export default function StoryInfo() {
+export default function StoryInfo({ setCreateStoryIdx }: any) {
   return (
     <div className={"flex w-full flex-col mt-10"}>
-      <div className={"rounded-md bg-gray-50 mb-8 grid gap-10 grid-cols-5 py-14"}>
+      <div
+        className={"rounded-md bg-gray-50 mb-8 grid gap-10 grid-cols-5 py-14"}
+      >
         <div className="flex justify-center">
           <div
             className={
@@ -93,7 +95,7 @@ export default function StoryInfo() {
         </div>
       </div>
       <div className={"rounded-md bg-gray-50 mb-8  py-14 px-5"}>
-        <h3 className={'text-xl md:text-2xl font-semibold mb-3'}>Profile</h3>
+        <h3 className={"text-xl md:text-2xl font-semibold mb-3"}>Profile</h3>
         <form>
           <div className={"mt-5"}>
             <input
@@ -116,7 +118,7 @@ export default function StoryInfo() {
         </form>
       </div>
       <div className={"rounded-md bg-gray-50 mb-8  py-14 px-5"}>
-        <h3 className={'text-xl md:text-2xl font-semibold mb-3'}>Experience</h3>
+        <h3 className={"text-xl md:text-2xl font-semibold mb-3"}>Experience</h3>
         <form>
           <div className={"mt-5"}>
             <input
@@ -139,7 +141,9 @@ export default function StoryInfo() {
         </form>
       </div>
       <div className={"rounded-md bg-gray-50 mb-8  py-14 px-5"}>
-        <h3 className={'text-xl md:text-2xl font-semibold mb-3'}>Success Story</h3>
+        <h3 className={"text-xl md:text-2xl font-semibold mb-3"}>
+          Success Story
+        </h3>
         <form>
           <div className={"mt-5"}>
             <input
@@ -161,9 +165,17 @@ export default function StoryInfo() {
           </div>
         </form>
       </div>
-        <div>
-            <button style={{backgroundColor: "#B569D4"}} className={'px-5 py-2 text-lg rounded text-white font-semibold focus:outline-none'}>Next</button>
-        </div>
+      <div>
+        <button
+          style={{ backgroundColor: "#B569D4" }}
+          onClick={()=>setCreateStoryIdx(1)}
+          className={
+            "px-5 py-2 text-lg rounded text-white font-semibold focus:outline-none"
+          }
+        >
+          Next
+        </button>
+      </div>
     </div>
   );
 }

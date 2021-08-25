@@ -5,11 +5,7 @@ import { columns, rows } from "./data";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashAlt, faEdit } from "@fortawesome/free-solid-svg-icons";
 
-export default function Table({
-  setCreateStory,
-  iDelete,
-  setIDelete,
-}: any) {
+export default function Table({ setAction, iDelete, setIDelete }: any) {
   const [input, setInput] = useState("");
   const [datatable, setDatatable] = useState({
     rows,
@@ -73,7 +69,7 @@ export default function Table({
         ...row,
         image: (
           <div className={"h-12 w-12 rounded-full overflow-hidden"}>
-            <img className={'w-full'} src={row.image} alt={"profile.img"} />
+            <img className={"w-full"} src={row.image} alt={"profile.img"} />
           </div>
         ),
         status: statusUI(row.status),
@@ -82,6 +78,7 @@ export default function Table({
             <button
               className={"rounded py-2 px-4 flex items-center"}
               style={{ backgroundColor: "#CBFEEF", color: "#20C997" }}
+              onClick={() => setAction(3)}
             >
               <FontAwesomeIcon
                 icon={faEdit}
@@ -129,7 +126,7 @@ export default function Table({
           </div>
           <button
             style={{ backgroundColor: "#B569D4" }}
-            onClick={() => setCreateStory(true)}
+            onClick={() => setAction(2)}
             className={"py-2 text-base font-semibold text-white px-3 rounded"}
           >
             Create Story
@@ -141,17 +138,22 @@ export default function Table({
   }, 2);
 
   return (
-    <MDBDataTable
-      hover
-      entriesOptions={[5, 10, 20]}
-      entries={5}
-      pagesAmount={4}
-      striped
-      bordered
-      small
-      scrollX
-      data={badgesData}
-      searching={true}
-    />
+    <div
+      className={"w-full bg-white rounded py-6 mb-32"}
+      style={{ boxShadow: "0px 4px 45px rgba(0, 0, 0, 0.04)" }}
+    >
+      <MDBDataTable
+        hover
+        entriesOptions={[5, 10, 20]}
+        entries={5}
+        pagesAmount={4}
+        striped
+        bordered
+        small
+        scrollX
+        data={badgesData}
+        searching={true}
+      />
+    </div>
   );
 }

@@ -7,13 +7,27 @@ import Delete from "../components/Layouts/Alert/Delete";
 import Success from "../components/Layouts/Alert/Success";
 import Error from "../components/Layouts/Alert/Error";
 import CreateStory from "../components/Story_Bank/CreateStory";
+import EditStory from "../components/Story_Bank/EditStory/EditStory";
 
 export default function StoryBank() {
-  const [createStory, setCreateStory] = useState(false);
+  const [action, setAction] = useState(1);
   const [iDelete, setIDelete] = useState({
     delete: false,
     approveDelete: false,
   });
+
+  const displayAction = () => {
+    if (action == 1)
+      return (
+        <Table
+          setAction={setAction}
+          setIDelete={setIDelete}
+          iDelete={iDelete}
+        />
+      );
+    else if (action == 2) return <CreateStory setAction={setAction} />;
+    else if (3) return <EditStory />;
+  };
 
   return (
     <div className={"flex flex-col h-screen"}>
@@ -31,17 +45,7 @@ export default function StoryBank() {
               <h5 className={"ml-2"}> FAM Module</h5>
             </div>
           </div>
-          <div className={"w-full bg-white rounded py-6 mb-32"} style={{boxShadow: "0px 4px 45px rgba(0, 0, 0, 0.04)"}}>
-            {createStory ? (
-              <CreateStory />
-            ) : (
-              <Table
-                setCreateStory={setCreateStory}
-                setIDelete={setIDelete}
-                iDelete={iDelete}
-              />
-            )}
-          </div>
+          <div>{displayAction()}</div>
         </div>
       </Dashboard>
     </div>
