@@ -1,16 +1,15 @@
 import React, { useState } from "react";
-import Table from "../components/Mentors/Table";
+import Table from "../components/Coaches/Table";
 import Dashboard from "../components/Layouts/Dashboard/Dashboard";
 import Head from "../components/Layouts/Header/Head";
 import Navbar from "../components/Layouts/Header/Navbar";
 import Delete from "../components/Layouts/Alert/Delete";
 import Success from "../components/Layouts/Alert/Success";
 import Error from "../components/Layouts/Alert/Error";
-import AddMentor from "../components/Mentors/AddMentor";
-import Edit from "../components/Mentors/EditMentor/Edit";
+import CreateCoach from "../components/Coaches/CreateCoach";
 
-export default function StoryBank() {
-  const [addMentor, setAddMentor] = useState(false);
+export default function Coaches() {
+  const [createCoach, setCreateCoach] = useState(false);
   const [edit, setEdit] = useState(false);
   const [iDelete, setIDelete] = useState({
     delete: false,
@@ -24,7 +23,7 @@ export default function StoryBank() {
       {iDelete.delete && (
         <Delete setIDelete={setIDelete} message="Approve delete" />
       )}
-      {addMentor && <AddMentor setAddMentor={setAddMentor} />}
+      {createCoach && <CreateCoach setCreateCoach={setCreateCoach} />}
       <Dashboard>
         <div className="mx-auto container px-5 duration-300">
           <div className={"my-16"}>
@@ -35,16 +34,12 @@ export default function StoryBank() {
             </div>
           </div>
           <div>
-            {edit ? (
-              <Edit setEdit={setEdit} />
-            ) : (
-              <Table
-                setAddMentor={setAddMentor}
-                setIDelete={setIDelete}
-                iDelete={iDelete}
-                setEdit={setEdit}
-              />
-            )}
+            <Table
+              setCreateCoach={setCreateCoach}
+              setIDelete={setIDelete}
+              iDelete={iDelete}
+              setEdit={setEdit}
+            />
           </div>
         </div>
       </Dashboard>
