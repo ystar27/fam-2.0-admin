@@ -210,7 +210,7 @@ export default function SideNav(props: any) {
           Coaches
         </NavLink>
         <NavLink
-          href="#"
+          href="/mentors"
           activeStyle={{
             backgroundColor: "#B569D4",
             boxShadow: "0px 4px 4px rgba(181, 105, 212, 0.33)",
