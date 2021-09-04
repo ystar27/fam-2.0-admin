@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import Table from "../components/Collaboration/Table";
 import CreateModule from "../components/FAM_MODULE/CreateModule";
-import AddModuleField from "../components/FAM_MODULE/AddModuleField";
 import Dashboard from "../components/Layouts/Dashboard/Dashboard";
 import Head from "../components/Layouts/Header/Head";
 import Navbar from "../components/Layouts/Header/Navbar";
@@ -23,7 +22,6 @@ export default function COLLABORATION() {
       <Navbar />
       {iDelete.delete && <Delete setIDelete={setIDelete} message="Approve delete" />}
       {createModule && <CreateModule setCreateModule={setCreateModule} />}
-      {addModuleField && <AddModuleField setAddModuleField={setAddModuleField} />}
       <Dashboard>
         <div className="mx-auto container px-5 duration-300">
           <div className={"my-16"}>

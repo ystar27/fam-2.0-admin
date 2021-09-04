@@ -1,12 +1,40 @@
-import React from "react";
+import React, { useState, useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
-import { useState } from "react";
-import { useRef } from "react";
+import Field from "./Field";
+import axios from "../../services/axios";
 
-export default function CreateModule({ setCreateModule }: any) {
-  const [open, setOpen] = useState(false);
+export default function CreateModule({
+  mdl,
+  setmdl,
+  setCreateModule,
+  setSuccessAlert,
+  setMessage,
+}: any) {
+  const [fields, setFields] = useState([""]);
+  const [moduleName, setModuleName] = useState("");
   const slideRef = useRef();
+
+  const onChange = (idx, e) => {
+    setFields(fields.map((value, id) => (idx === id ? e.target.value : value)));
+  };
+
+  const CreateModule = () => {
+    axios.post("/module", { name: moduleName, field: fields }).then((res) => {
+      setMessage("Module created successfully");
+      setCreateModule(false);
+      setSuccessAlert(true);
+      setmdl([
+        ...mdl,
+        {
+          id: res.data.data._id,
+          name: res.data.data.name,
+          status: res.data.data.status.activeP,
+        },
+      ]);
+      console.log(mdl);
+    });
+  };
 
   return (
     <div
@@ -33,31 +61,33 @@ export default function CreateModule({ setCreateModule }: any) {
             <div className={"mb-6"}>
               <input
                 type={"text"}
+                onChange={(e) => setModuleName(e.target.value)}
                 className={
                   "pb-4 pt-2 w-full text-gray-700 border-b focus:border-b focus:outline-none text-lg focus:border-purple-500"
                 }
                 placeholder={"Module Name"}
               />
             </div>
-            <div className={"mb-6"}>
-              <input
-                type={"number"}
-                className={
-                  "pb-4 pt-2 w-full text-gray-700 border-b focus:border-b focus:outline-none text-lg focus:border-purple-500"
-                }
-                placeholder={"Duration"}
-              />
-            </div>
-            <div className={"mb-6"}>
-              <select
-                className={
-                  "pb-4 pt-2 w-full text-gray-700 border-b focus:border-b focus:outline-none text-lg focus:border-purple-500"
-                }
-              >
-                <option className={"hover:bg-purple-400"}>Module Status</option>
-                <option className={"hover:bg-purple-400"}>Private</option>
-                <option className={"hover:bg-purple-400"}>Public</option>
-              </select>
+            <div className={"flex flex-col last:mb-14 relative"}>
+              {fields.map((e, idx) => (
+                <Field
+                  value={fields[idx]}
+                  onChange={onChange}
+                  idx={idx}
+                  key={idx}
+                />
+              ))}
+              <div className={"absolute bottom-0 -right-4"}>
+                <button
+                  onClick={() => setFields([...fields, ""])}
+                  style={{ boxShadow: "0px 4px 45px rgba(0, 0, 0, 0.15)" }}
+                  className={
+                    "text-gray-600 bg-white text-2xl font-semibold rounded-full w-10 h-10 grid place-items-center mb-3"
+                  }
+                >
+                  +
+                </button>
+              </div>
             </div>
             <div className={"mb-6"}>
               <button
@@ -65,6 +95,7 @@ export default function CreateModule({ setCreateModule }: any) {
                   "w-full text-white p-3 px-5 rounded text-lg font-semibold"
                 }
                 style={{ backgroundColor: "#B569D4" }}
+                onClick={() => CreateModule()}
               >
                 Submit Module
               </button>

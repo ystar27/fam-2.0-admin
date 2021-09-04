@@ -2,8 +2,8 @@ import { MDBBtn } from "mdbreact";
 
 export const columns = [
   {
-    label: <h1 className={'text-sm font-sans'}>MODULE NAME</h1>,
-    field: "modulename",
+    label: "MODULE NAME",
+    field: "name",
     width: 270,
     attributes: {
       "aria-controls": "DataTable",
@@ -11,14 +11,9 @@ export const columns = [
     },
   },
   {
-    label: "DURATION",
-    field: "duration",
-    width: 150,
-  },
-  {
     label: "STATUS",
     field: "status",
-    width: 150,
+    width: 200,
   },
 ];
 

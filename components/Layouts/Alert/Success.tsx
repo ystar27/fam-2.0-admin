@@ -2,7 +2,7 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 
-export default function Success({ message }: any) {
+export default function Success({ message, setSuccessAlert }: any) {
   return (
     <div
       className={"w-full h-full absolute grid place-items-center"}
@@ -16,6 +16,7 @@ export default function Success({ message }: any) {
         <div className={"absolute -top-2 -right-2"}>
           <button
             className={"p-3 bg-white"}
+            onClick={() => setSuccessAlert(false)}
           >
             <FontAwesomeIcon className={"h-5 w-5"} icon={faTimes} />
           </button>
@@ -32,6 +33,7 @@ export default function Success({ message }: any) {
           <button
             className={"px-4 py-2 text-white font-semibold rounded"}
             style={{ backgroundColor: "#B569D4" }}
+            onClick={() => setSuccessAlert(false)}
           >
             Close
           </button>

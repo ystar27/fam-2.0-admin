@@ -3,17 +3,26 @@ import ReactDOM from "react-dom";
 import { MDBBadge, MDBDataTable } from "mdbreact";
 import { columns, rows } from "./data";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrashAlt, faEdit } from "@fortawesome/free-solid-svg-icons";
+import { faTrashAlt, faEdit, faEye } from "@fortawesome/free-solid-svg-icons";
 
-export default function Table({ setCreateModule, setAddModuleField, iDelete, setIDelete }: any) {
+export default function Table({
+  setCreateModule,
+  setViewModuleField,
+  setIDelete,
+  modules,
+  setModuleId,
+  DeleteModule,
+  setEditModule,
+  setMessage,
+}: any) {
   const [input, setInput] = useState("");
   const [datatable, setDatatable] = useState({
-    rows,
+    rows: modules,
     columns,
   });
 
   const statusUI = (status) => {
-    if (status == "active")
+    if (status == true)
       return (
         <p
           style={{
@@ -25,15 +34,6 @@ export default function Table({ setCreateModule, setAddModuleField, iDelete, set
           Active
         </p>
       );
-    else if (status == "inactive")
-      return (
-        <p
-          style={{ color: "#A4A6B3", backgroundColor: "#F6F6F6" }}
-          className={"w-min px-3 text-sm rounded-xl"}
-        >
-          Inactive
-        </p>
-      );
     else
       return (
         <p
@@ -43,7 +43,7 @@ export default function Table({ setCreateModule, setAddModuleField, iDelete, set
           }}
           className={"w-min px-3 text-sm rounded-xl"}
         >
-          pending
+          Pending
         </p>
       );
   };
@@ -60,49 +60,53 @@ export default function Table({ setCreateModule, setAddModuleField, iDelete, set
       {
         label: "ACTIONS",
         field: "actions",
-        width: 200,
+        width: 250,
       },
     ],
     rows: [
       ...datatable.rows.map((row, order) => ({
-        badge: <h5 className={'pl-5'}>{order + 1}</h5>,
+        badge: <h5 className={"pl-5"}>{order + 1}</h5>,
         ...row,
         status: statusUI(row.status),
         actions: (
           <div className={"flex items-center justify-around"}>
             <button
-              className={"rounded py-1 px-2 flex items-center"}
+              className={"rounded py-1 px-4 flex items-center"}
               style={{ backgroundColor: "#CBFEEF", color: "#20C997" }}
+              onClick={() => {
+                setMessage(row.name);
+                setModuleId(row.id);
+                setEditModule(true);
+              }}
             >
-              <FontAwesomeIcon
-                icon={faEdit}
-                className={"h-3 w-3 mr-1"}
-                style={{}}
-              />
+              <FontAwesomeIcon icon={faEdit} className={"h-3 w-3 mr-1"} />
               Edit
             </button>
             <button
-              className={"rounded py-1 px-2 flex items-center"}
+              className={"rounded py-1 px-4 flex items-center"}
               style={{
                 backgroundColor: "rgba(220, 53, 69, 0.12)",
                 color: "#DC3545",
               }}
-              onClick={() => setIDelete({ delete: true })}
+              onClick={() => {
+                setModuleId(row.id);
+                setIDelete({ delete: true });
+              }}
             >
-              <FontAwesomeIcon
-                icon={faTrashAlt}
-                className={"h-3 w-3 mr-1"}
-                style={{}}
-              />
+              <FontAwesomeIcon icon={faTrashAlt} className={"h-3 w-3 mr-1"} />
               Delete
             </button>
             <button
-              onClick={()=> setAddModuleField(true)}
+              onClick={() => {
+                setModuleId(row.id);
+                setViewModuleField(true);
+              }}
               className={
-                "px-2 py-1 text-lg font-bold rounded bg-gray-200 hover:bg-gray-400 text-gray-900 text-center"
+                "px-2 py-1 flex items-center text-lg font-bold rounded bg-gray-200 hover:bg-gray-400 text-gray-900 text-center"
               }
             >
-              +
+              <FontAwesomeIcon icon={faEye} className={"h-3 w-3 mr-1"} />
+              <span className={"font-normal"}>Fields</span>
             </button>
           </div>
         ),
