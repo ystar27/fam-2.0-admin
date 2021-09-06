@@ -1,6 +1,8 @@
-import React, { useState } from "react";
-import Table from "../components/FAM_MODULE/Table";
+import React, { useState, useEffect } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import CreateModule from "../components/FAM_MODULE/CreateModule";
+import CreateSubModule from "../components/FAM_MODULE/SubModule/CreateSubModule";
 import EditModule from "../components/FAM_MODULE/EditModule";
 import ViewModuleField from "../components/FAM_MODULE/ViewModuleField";
 import Dashboard from "../components/Layouts/Dashboard/Dashboard";
@@ -10,46 +12,109 @@ import Delete from "../components/Layouts/Alert/Delete";
 import Success from "../components/Layouts/Alert/Success";
 import Error from "../components/Layouts/Alert/Error";
 import axios from "../services/axios";
+import EditSubModule from "../components/FAM_MODULE/SubModule/EditSubModule";
+import SubModuleTable from "../components/FAM_MODULE/SubModule/SubModule";
 
-function FAM_MODULE({ modules }: any) {
+function FamModule() {
+  const [subModule, setSubModule] = useState(false);
   const [successAlert, setSuccessAlert] = useState(false);
   const [createModule, setCreateModule] = useState(false);
+  const [createSubModule, setCreateSubModule] = useState(false);
   const [editModule, setEditModule] = useState(false);
+  const [editSubModule, setEditSubModule] = useState(false);
   const [viewModuleField, setViewModuleField] = useState(false);
   const [moduleId, setModuleId] = useState(null);
-  const [mdl, setmdl] = useState(modules);
+  const [module, setModule] = useState([]);
+  const [activeModule, setActiveModule] = useState({});
+  const [activeSubModule, setActiveSubModule] = useState({});
+  const [subModules, setSubModules] = useState(null);
   const [message, setMessage] = useState("");
-  const [iDelete, setIDelete] = useState({
-    delete: false,
-    approveDelete: false,
-  });
+  const [deleteSubModule, setDeleteSubModule] = useState(false);
+  const [deleteModule, setDeleteModule] = useState(false);
 
-  const DeleteModule = () => {
+  useEffect(() => {
+    axios.get("/module").then((res) => {
+      setModule(res.data.data);
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const getSubModule = (e, i) => {
+    setActiveModule(e);
+    setSubModules(e.subModule);
+    setSubModule(true);
+  };
+
+  const editSubMdl = (e, i) => {
+    setActiveSubModule(e);
+    setEditSubModule(true);
+  };
+
+  const deleteModuleFunc = () => {
     axios.delete(`/module/${moduleId}`).then((res) => {
-      setIDelete({ delete: false });
+      setSubModule(false)
+      let deleted = module.filter(
+        (mdl) => mdl._id !== activeModule._id
+      );
+      setModule(deleted)
+      setDeleteModule(!deleteModule);
       setMessage("Deleted Successfully");
       setSuccessAlert(true);
     });
+  };
+
+  const deleteSubModuleFunc = () => {
+    axios
+      .delete(
+        `/module/submodule/${activeSubModule.module}/${activeSubModule._id}`
+      )
+      .then((res) => {
+        let deleted = subModules.filter(
+          (subMdl) => subMdl._id !== activeSubModule._id
+        );
+        setSubModules(deleted);
+        setDeleteSubModule(!deleteSubModule);
+        setMessage("Deleted Successfully");
+        setSuccessAlert(true);
+      });
   };
 
   return (
     <div className={"flex flex-col h-screen"}>
       <Head />
       <Navbar />
-      {iDelete.delete && (
+      {deleteModule && (
         <Delete
-          DeleteFunc={DeleteModule}
-          setIDelete={setIDelete}
-          message="Approve delete"
+          deleteFunc={deleteModuleFunc}
+          setIDelete={setDeleteModule}
+          message={message}
+        />
+      )}
+      {deleteSubModule && (
+        <Delete
+          deleteFunc={deleteSubModuleFunc}
+          setIDelete={setDeleteSubModule}
+          message={message}
         />
       )}
       {createModule && (
         <CreateModule
           setMessage={setMessage}
-          setmdl={setmdl}
-          mdl={mdl}
+          setModule={setModule}
+          module={module}
           setSuccessAlert={setSuccessAlert}
           setCreateModule={setCreateModule}
+        />
+      )}
+      {createSubModule && (
+        <CreateSubModule
+          setMessage={setMessage}
+          moduleId={moduleId}
+          module={module}
+          setSuccessAlert={setSuccessAlert}
+          setCreateSubModule={setCreateSubModule}
+          subModules={subModules}
+          setSubModules={setSubModules}
         />
       )}
       {editModule && (
@@ -57,10 +122,21 @@ function FAM_MODULE({ modules }: any) {
           setMessage={setMessage}
           message={message}
           moduleId={moduleId}
-          setmdl={setmdl}
-          mdl={mdl}
+          module={module}
+          setModule={setModule}
           setSuccessAlert={setSuccessAlert}
           setEditModule={setEditModule}
+        />
+      )}
+      {editSubModule && (
+        <EditSubModule
+          setMessage={setMessage}
+          message={message}
+          subModules={subModules}
+          setSubModules={setSubModules}
+          setSuccessAlert={setSuccessAlert}
+          setEditSubModule={setEditSubModule}
+          activeSubModule={activeSubModule}
         />
       )}
       {viewModuleField && (
@@ -82,38 +158,150 @@ function FAM_MODULE({ modules }: any) {
               <h5 className={"ml-2"}> FAM Module</h5>
             </div>
           </div>
-          <div
-            className={"w-full bg-white rounded py-6 mb-32"}
-            style={{ boxShadow: "0px 4px 45px rgba(0, 0, 0, 0.04)" }}
-          >
-            <Table
-              setCreateModule={setCreateModule}
-              setViewModuleField={setViewModuleField}
-              setIDelete={setIDelete}
-              iDelete={iDelete}
-              modules={mdl}
-              setModuleId={setModuleId}
-              DeleteModule={DeleteModule}
-              setEditModule={setEditModule}
-              setMessage={setMessage}
-            />
-          </div>
+          {!subModule ? (
+            <div>
+              <div className={"flex items-center justify-end mb-5"}>
+                <div className={"flex items-center"}>
+                  <button
+                    onClick={() => setCreateModule(true)}
+                    className={
+                      "bg-white shadow-sm py-2 px-4 font-light flex items-center"
+                    }
+                    style={{ color: "#B569D4" }}
+                  >
+                    Create Module
+                  </button>
+                </div>
+              </div>
+              <div className={"grid grid-cols-2 sm:grid-cols-4 gap-8"}>
+                {module.map((e: any, i) => (
+                  <div
+                    key={i}
+                    onClick={() => getSubModule(e, i)}
+                    className={
+                      "flex cursor-pointer flex-col shadow-md rounded-md overflow-hidden"
+                    }
+                  >
+                    <div
+                      style={{ backgroundColor: "#B569D4" }}
+                      className={
+                        "capitalize px-5 py-7 text-white font-semibold text-lg"
+                      }
+                    >
+                      {e.name}
+                    </div>
+                    <div
+                      className={"bg-white px-5 text-gray-600 flex flex-col"}
+                    >
+                      <div className={"border-b border-gray-300 py-3"}>
+                        <h4 className={"font-semibold"}>Module Fields</h4>
+                      </div>
+                      {e.field.map((e, i) => (
+                        <div
+                          key={i}
+                          className={"capitalize border-b border-gray-300 py-3"}
+                        >
+                          <h4>{e}</h4>
+                        </div>
+                      ))}
+                    </div>
+                    <div
+                      className={
+                        "bg-white px-5 pb-6 flex items-end justify-between pt-4 h-full"
+                      }
+                    >
+                      <div
+                        className={
+                          "bg-green-400 text-center rounded-sm px-8 py-1 font-mono text-white text-base"
+                        }
+                      >
+                        <h4>Active</h4>
+                      </div>
+                      <div
+                        className={
+                          "bg-blue-500 text-center rounded-sm px-8 py-1 font-mono text-white text-base"
+                        }
+                      >
+                        <h4>Public</h4>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ) : (
+            <div>
+              <div className={"flex items-center justify-between mb-5"}>
+                <button
+                  onClick={() => setSubModule(!subModule)}
+                  className={"py-2 px-4 font-light flex items-center"}
+                  style={{ color: "#B569D4" }}
+                >
+                  <FontAwesomeIcon className={"h-4 mr-2"} icon={faArrowLeft} />
+                  Back
+                </button>
+                <div className={"flex items-center"}>
+                  <button
+                    onClick={() => {
+                      setModuleId(activeModule._id);
+                      setCreateSubModule(!createSubModule);
+                    }}
+                    className={
+                      "bg-white mr-4 shadow-sm py-2 px-4 font-light flex items-center"
+                    }
+                    style={{ color: "#B569D4" }}
+                  >
+                    Create Sub-Module
+                  </button>
+                  <button
+                    onClick={() => {
+                      setMessage(activeModule.name);
+                      setModuleId(activeModule._id);
+                      setEditModule(!editModule);
+                    }}
+                    className={
+                      "bg-white mr-4 shadow-sm py-2 px-4 font-light flex items-center"
+                    }
+                    style={{ color: "#B569D4" }}
+                  >
+                    Edit Module
+                  </button>
+                  <button
+                    onClick={() => {
+                      setMessage(`Confirm delete for ${activeModule.name}`);
+                      setModuleId(activeModule._id);
+                      setDeleteModule(!deleteModule);
+                    }}
+                    className={
+                      "bg-white text-red-500 shadow-sm py-2 px-4 font-light flex items-center"
+                    }
+                  >
+                    Delete Module
+                  </button>
+                </div>
+              </div>
+              <SubModuleTable
+                setActiveModule={setActiveModule}
+                setSubModules={setSubModules}
+                setSubModule={setSubModule}
+                setActiveSubModule={setActiveSubModule}
+                setEditSubModule={setEditSubModule}
+                setDeleteSubModule={setDeleteSubModule}
+                setMessage={setMessage}
+                setSuccessAlert={setSuccessAlert}
+                activeSubModule={activeSubModule}
+                moduleId={moduleId}
+                subModules={subModules}
+                deleteSubModule={deleteSubModule}
+                activeModule={activeModule}
+                editSubMdl={editSubMdl}
+              />
+            </div>
+          )}
         </div>
       </Dashboard>
     </div>
   );
 }
 
-export async function getServerSideProps() {
-  const res = await axios.get("/module");
-
-  const modules = res.data.data.map((e: any) => ({
-    id: e._id,
-    name: e.name,
-    status: e.status.active,
-  }));
-
-  return { props: { modules } };
-}
-
-export default FAM_MODULE;
+export default FamModule;

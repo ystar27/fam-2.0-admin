@@ -5,8 +5,8 @@ import Field from "./Field";
 import axios from "../../services/axios";
 
 export default function EditModule({
-  mdl,
-  setmdl,
+  module,
+  setModule,
   setEditModule,
   setSuccessAlert,
   setMessage,
@@ -21,6 +21,14 @@ export default function EditModule({
       setMessage("Module updated");
       setEditModule(false);
       setSuccessAlert(true);
+      let updated = module.map((e) => {
+        if (e._id == res.data.data._id) {
+          return res.data.data;
+        } else {
+          return e;
+        }
+      });
+      setModule(updated)
     });
   };
 

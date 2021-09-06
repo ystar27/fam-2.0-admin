@@ -2,7 +2,7 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 
-export default function Delete({ message, setIDelete, DeleteFunc }: any) {
+export default function Delete({ message, setIDelete, deleteFunc }: any) {
   return (
     <div
       className={"w-full h-full absolute grid place-items-center"}
@@ -14,10 +14,7 @@ export default function Delete({ message, setIDelete, DeleteFunc }: any) {
         }
       >
         <div className={"absolute -top-2 -right-2"}>
-          <button
-            className={"p-3 bg-white"}
-            onClick={() => setIDelete({ delete: false })}
-          >
+          <button className={"p-3 bg-white"} onClick={() => setIDelete(false)}>
             <FontAwesomeIcon className={"h-5 w-5"} icon={faTimes} />
           </button>
         </div>
@@ -33,14 +30,14 @@ export default function Delete({ message, setIDelete, DeleteFunc }: any) {
           <button
             className={"px-4 py-2 text-white font-semibold rounded"}
             style={{ backgroundColor: "#EB5757" }}
-            onClick={() => DeleteFunc()}
+            onClick={() => deleteFunc()}
           >
             Confirm
           </button>
           <button
             className={"px-4 py-2 text-white font-semibold rounded"}
             style={{ backgroundColor: "#B569D4" }}
-            onClick={() => setIDelete({ delete: false })}
+            onClick={() => setIDelete(false)}
           >
             Cancel
           </button>

@@ -5,14 +5,15 @@ import Field from "./Field";
 import axios from "../../services/axios";
 
 export default function CreateModule({
-  mdl,
-  setmdl,
+  module,
+  setModule,
   setCreateModule,
   setSuccessAlert,
   setMessage,
 }: any) {
   const [fields, setFields] = useState([""]);
   const [moduleName, setModuleName] = useState("");
+  const [isValidated, setValidated] = useState(false);
   const slideRef = useRef();
 
   const onChange = (idx, e) => {
@@ -20,20 +21,16 @@ export default function CreateModule({
   };
 
   const CreateModule = () => {
-    axios.post("/module", { name: moduleName, field: fields }).then((res) => {
-      setMessage("Module created successfully");
-      setCreateModule(false);
-      setSuccessAlert(true);
-      setmdl([
-        ...mdl,
-        {
-          id: res.data.data._id,
-          name: res.data.data.name,
-          status: res.data.data.status.activeP,
-        },
-      ]);
-      console.log(mdl);
-    });
+    if(fields.every((value) => !!value)){
+      axios.post("/module", { name: moduleName, field: fields }).then((res) => {
+        setMessage("Module created successfully");
+        setCreateModule(false);
+        setSuccessAlert(true);
+        setModule([res.data.data, ...module]);
+      });
+    } else {
+      setValidated(true)
+    }
   };
 
   return (
@@ -57,50 +54,57 @@ export default function CreateModule({
           </button>
         </div>
         <div className={"p-5 py-10 bg-white"}>
-          <div className={"flex flex-col"}>
-            <div className={"mb-6"}>
-              <input
-                type={"text"}
-                onChange={(e) => setModuleName(e.target.value)}
-                className={
-                  "pb-4 pt-2 w-full text-gray-700 border-b focus:border-b focus:outline-none text-lg focus:border-purple-500"
-                }
-                placeholder={"Module Name"}
-              />
-            </div>
-            <div className={"flex flex-col last:mb-14 relative"}>
-              {fields.map((e, idx) => (
-                <Field
-                  value={fields[idx]}
-                  onChange={onChange}
-                  idx={idx}
-                  key={idx}
-                />
-              ))}
-              <div className={"absolute bottom-0 -right-4"}>
-                <button
-                  onClick={() => setFields([...fields, ""])}
-                  style={{ boxShadow: "0px 4px 45px rgba(0, 0, 0, 0.15)" }}
+          <form onSubmit={(e) => {
+              e.preventDefault()
+              CreateModule()
+          }}>
+            <div className={"flex flex-col"}>
+              <div className={"mb-6"}>
+                <input
+                  type={"text"}
+                  onChange={(e) => setModuleName(e.target.value)}
                   className={
-                    "text-gray-600 bg-white text-2xl font-semibold rounded-full w-10 h-10 grid place-items-center mb-3"
+                    "pb-4 pt-2 w-full text-gray-700 border-b focus:border-b focus:outline-none text-lg focus:border-purple-500"
                   }
+                  placeholder={"Module Name"}
+                />
+              </div>
+              <div className={"flex flex-col last:mb-14 relative"}>
+                {fields.map((e, idx) => (
+                  <Field
+                    value={fields[idx]}
+                    onChange={onChange}
+                    isValidated={isValidated}
+                    idx={idx}
+                    key={idx}
+                  />
+                ))}
+                <div className={"absolute bottom-0 -right-4"}>
+                  <button
+                  type="button"
+                    onClick={() => setFields([...fields, ""])}
+                    style={{ boxShadow: "0px 4px 45px rgba(0, 0, 0, 0.15)" }}
+                    className={
+                      "text-gray-600 bg-white text-2xl font-semibold rounded-full w-10 h-10 grid place-items-center mb-3"
+                    }
+                  >
+                    +
+                  </button>
+                </div>
+              </div>
+              <div className={"mb-6"}>
+                <button
+                  className={
+                    "w-full text-white p-2 px-5 rounded text-lg font-semibold"
+                  }
+                  style={{ backgroundColor: "#B569D4" }}
+                  type="submit"
                 >
-                  +
+                  Submit Module
                 </button>
               </div>
             </div>
-            <div className={"mb-6"}>
-              <button
-                className={
-                  "w-full text-white p-3 px-5 rounded text-lg font-semibold"
-                }
-                style={{ backgroundColor: "#B569D4" }}
-                onClick={() => CreateModule()}
-              >
-                Submit Module
-              </button>
-            </div>
-          </div>
+          </form>
         </div>
       </div>
     </div>
