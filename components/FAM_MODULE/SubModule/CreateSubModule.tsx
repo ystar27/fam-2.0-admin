@@ -1,6 +1,7 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useContext } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
+import { notificationsContext } from "../../../pages/_app";
 import axios from "../../../services/axios";
 
 export default function CreateSubModule({
@@ -14,6 +15,7 @@ export default function CreateSubModule({
   const [subModuleName, setSubModuleName] = useState("");
   const [isValidated, setValidated] = useState(false);
   const [duration, setDuration] = useState();
+  const notification = useContext(notificationsContext);
   const slideRef = useRef();
 
   const CreateSubModule = () => {
@@ -30,7 +32,13 @@ export default function CreateSubModule({
           subModules.length > 0
             ? setSubModules([res.data.data, ...subModules])
             : setSubModules([res.data.data]);
-        });
+        }).catch((error) => {
+          setCreateSubModule(false);
+          notification.warn({
+            message: "Sub Module Error",
+            description: "Unable to update module",
+          });
+        });;
     } else {
       setValidated(true);
     }

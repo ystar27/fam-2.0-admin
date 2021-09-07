@@ -1,7 +1,8 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useContext } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import axios from "../../../services/axios";
+import { notificationsContext } from "../../../pages/_app";
 
 export default function EditSubModule({
   setEditSubModule,
@@ -13,6 +14,7 @@ export default function EditSubModule({
 }: any) {
   const [subModuleName, setSubModuleName] = useState(activeSubModule.name);
   const [duration, setDuration] = useState(activeSubModule.duration);
+  const notification = useContext(notificationsContext);
   const slideRef = useRef();
 
   const editSubModule = () => {
@@ -33,6 +35,12 @@ export default function EditSubModule({
           }
         });
         setSubModules(edited);
+      }).catch((error) => {
+        setEditSubModule(false);
+        notification.warn({
+          message: "Sub Module Error",
+          description: "Unable to update module",
+        });
       });
   };
 

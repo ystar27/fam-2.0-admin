@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import CreateModule from "../components/FAM_MODULE/CreateModule";
@@ -14,6 +14,7 @@ import Error from "../components/Layouts/Alert/Error";
 import axios from "../services/axios";
 import EditSubModule from "../components/FAM_MODULE/SubModule/EditSubModule";
 import SubModuleTable from "../components/FAM_MODULE/SubModule/SubModule";
+import { notificationsContext } from "./_app";
 
 function FamModule() {
   const [subModule, setSubModule] = useState(false);
@@ -31,11 +32,20 @@ function FamModule() {
   const [message, setMessage] = useState("");
   const [deleteSubModule, setDeleteSubModule] = useState(false);
   const [deleteModule, setDeleteModule] = useState(false);
+  const notification = useContext(notificationsContext);
 
   useEffect(() => {
-    axios.get("/module").then((res) => {
-      setModule(res.data.data);
-    });
+    axios
+      .get("/module")
+      .then((res) => {
+        setModule(res.data.data);
+      })
+      .catch((error) => {
+        notification.error({
+          message: "Module Error",
+          description: "Unable to get modules",
+        });
+      });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -52,14 +62,18 @@ function FamModule() {
 
   const deleteModuleFunc = () => {
     axios.delete(`/module/${moduleId}`).then((res) => {
-      setSubModule(false)
-      let deleted = module.filter(
-        (mdl) => mdl._id !== activeModule._id
-      );
-      setModule(deleted)
+      setSubModule(false);
+      let deleted = module.filter((mdl) => mdl._id !== activeModule._id);
+      setModule(deleted);
       setDeleteModule(!deleteModule);
       setMessage("Deleted Successfully");
       setSuccessAlert(true);
+    }).catch((error)=> {
+      setDeleteModule(!deleteModule);
+      notification.warn({
+        message: "Module Error",
+        description: "Unable to delete module.",
+      });
     });
   };
 
@@ -76,6 +90,12 @@ function FamModule() {
         setDeleteSubModule(!deleteSubModule);
         setMessage("Deleted Successfully");
         setSuccessAlert(true);
+      }).catch((error)=> {
+        setDeleteSubModule(!deleteSubModule);
+        notification.warn({
+          message: "Sub Module Error",
+          description: "Unable to delete sub module.",
+        });
       });
   };
 
