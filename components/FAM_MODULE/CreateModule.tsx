@@ -13,6 +13,7 @@ export default function CreateModule({
 }: any) {
   const [fields, setFields] = useState([""]);
   const [moduleName, setModuleName] = useState("");
+  const [description, setDescription] = useState("");
   const [isValidated, setValidated] = useState(false);
   const slideRef = useRef();
 
@@ -21,15 +22,17 @@ export default function CreateModule({
   };
 
   const CreateModule = () => {
-    if(fields.every((value) => !!value)){
-      axios.post("/module", { name: moduleName, field: fields }).then((res) => {
-        setMessage("Module created successfully");
-        setCreateModule(false);
-        setSuccessAlert(true);
-        setModule([res.data.data, ...module]);
-      });
+    if (fields.every((value) => !!value)) {
+      axios
+        .post("/module", { name: moduleName, field: fields, description })
+        .then((res) => {
+          setMessage("Module created successfully");
+          setCreateModule(false);
+          setSuccessAlert(true);
+          setModule([res.data.data, ...module]);
+        });
     } else {
-      setValidated(true)
+      setValidated(true);
     }
   };
 
@@ -54,10 +57,12 @@ export default function CreateModule({
           </button>
         </div>
         <div className={"p-5 py-10 bg-white"}>
-          <form onSubmit={(e) => {
-              e.preventDefault()
-              CreateModule()
-          }}>
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              CreateModule();
+            }}
+          >
             <div className={"flex flex-col"}>
               <div className={"mb-6"}>
                 <input
@@ -68,6 +73,17 @@ export default function CreateModule({
                   }
                   placeholder={"Module Name"}
                 />
+              </div>
+              <div className={"mb-6"}>
+                <textarea
+                  placeholder={"Description"}
+                  rows={1}
+                  className={
+                    "pb-4 pt-2 w-full text-gray-700 border-b focus:border-b focus:outline-none text-lg focus:border-purple-500"
+                  }
+                  value={description}
+                  onChange={(e) => setDescription(e.target.value)}
+                ></textarea>
               </div>
               <div className={"flex flex-col last:mb-14 relative"}>
                 {fields.map((e, idx) => (
@@ -81,7 +97,7 @@ export default function CreateModule({
                 ))}
                 <div className={"absolute bottom-0 -right-4"}>
                   <button
-                  type="button"
+                    type="button"
                     onClick={() => setFields([...fields, ""])}
                     style={{ boxShadow: "0px 4px 45px rgba(0, 0, 0, 0.15)" }}
                     className={

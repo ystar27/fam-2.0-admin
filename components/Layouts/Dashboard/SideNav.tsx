@@ -1,5 +1,3 @@
-import Link from "next/link";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faBorderAll,
   faGavel,
@@ -21,250 +19,123 @@ import {
   faAddressBook,
   faChartBar,
 } from "@fortawesome/free-regular-svg-icons";
-import NavLink from "./NavLink";
+import NavLinkItem from "./NavLinkItem";
+
+const navLinks = [
+  {
+    name: "Dashboard",
+    link: "/",
+    icon: faBorderAll,
+    items: [],
+  },
+  {
+    name: "User Management",
+    link: "#",
+    icon: faUserCircle,
+    items: [],
+  },
+  {
+    name: "FAM Module",
+    link: "/fam_module",
+    icon: faComments,
+    items: [],
+  },
+  {
+    name: "Story Bank",
+    link: "/storybank",
+    icon: faAddressBook,
+    items: [],
+  },
+  {
+    name: "Collaboration",
+    link: "/collaboration",
+    icon: faGavel,
+    items: [],
+  },
+  {
+    name: "Seasons",
+    link: "#",
+    icon: faTicketAlt,
+    items: [],
+  },
+  {
+    name: "Certificates",
+    link: "#",
+    icon: faCertificate,
+    items: [],
+  },
+  {
+    name: "Forums",
+    link: "#",
+    icon: faAlignRight,
+    items: [],
+  },
+  {
+    name: "LeaderBoard",
+    link: "#",
+    icon: faChartBar,
+    items: [
+      { name: "General Ranking", link: "#" },
+      { name: "Referral Ranking", link: "/referral" },
+    ],
+  },
+  {
+    name: "Projects",
+    link: "#",
+    icon: faProjectDiagram,
+    items: [],
+  },
+  {
+    name: "Lessons",
+    link: "#",
+    icon: faBookOpen,
+    items: [],
+  },
+  {
+    name: "Personal Issues",
+    link: "#",
+    icon: faSpinner,
+    items: [],
+  },
+  {
+    name: "Coaches",
+    link: "/coaches",
+    icon: faChalkboardTeacher,
+    items: [],
+  },
+  {
+    name: "Mentors",
+    link: "/mentors",
+    icon: faChalkboard,
+    items: [],
+  },
+  {
+    name: "Announcements",
+    link: "#",
+    icon: faBell,
+    items: [],
+  },
+  {
+    name: "Ads Management",
+    link: "#",
+    icon: faAd,
+    items: [],
+  },
+  {
+    name: "Scoring",
+    link: "#",
+    icon: faTrophy,
+    items: [],
+  },
+];
 
 export default function SideNav(props: any) {
   return (
     <div className={"h-full overflow-y-auto"}>
       <div className={"flex flex-col items-center py-8 px-5"}>
-        <NavLink
-          href="/"
-          activeStyle={{
-            backgroundColor: "#B569D4",
-            boxShadow: "0px 4px 4px rgba(181, 105, 212, 0.33)",
-            color: "#fff",
-          }}
-          className={
-            "mb-4 flex items-center py-3 px-4 w-full text-gray-500 cursor-pointer rounded-md"
-          }
-        >
-          <FontAwesomeIcon className={"h-5 mr-3"} icon={faBorderAll} />
-          Dashboard
-        </NavLink>
-        <NavLink
-          href="#"
-          activeStyle={{
-            backgroundColor: "#B569D4",
-            boxShadow: "0px 4px 4px rgba(181, 105, 212, 0.33)",
-            color: "#fff",
-          }}
-          className={
-            "mb-3 flex items-center py-3 px-4 w-full text-gray-500 cursor-pointer rounded-md bg-white"
-          }
-        >
-          <FontAwesomeIcon className={"h-5 mr-3"} icon={faUserCircle} />
-          User Management
-        </NavLink>
-        <NavLink
-          href="/fam_module"
-          activeStyle={{
-            backgroundColor: "#B569D4",
-            boxShadow: "0px 4px 4px rgba(181, 105, 212, 0.33)",
-            color: "#fff",
-          }}
-          className={
-            "mb-3 flex items-center py-3 px-4 w-full text-gray-500 cursor-pointer rounded-md bg-white"
-          }
-        >
-          <FontAwesomeIcon className={"h-5 mr-3"} icon={faComments} />
-          FAM Module
-        </NavLink>
-        <NavLink
-          href="/storybank"
-          activeStyle={{
-            backgroundColor: "#B569D4",
-            boxShadow: "0px 4px 4px rgba(181, 105, 212, 0.33)",
-            color: "#fff",
-          }}
-          className={
-            "mb-3 flex items-center py-3 px-4 w-full text-gray-500 cursor-pointer rounded-md bg-white"
-          }
-        >
-          <FontAwesomeIcon className={"h-5 mr-3"} icon={faAddressBook} />
-          Story Bank
-        </NavLink>
-        <NavLink
-          href="/collaboration"
-          activeStyle={{
-            backgroundColor: "#B569D4",
-            boxShadow: "0px 4px 4px rgba(181, 105, 212, 0.33)",
-            color: "#fff",
-          }}
-          className={
-            "mb-3 flex items-center py-3 px-4 w-full text-gray-500 cursor-pointer rounded-md bg-white"
-          }
-        >
-          <FontAwesomeIcon className={"h-5 mr-3"} icon={faGavel} />
-          Collaboration
-        </NavLink>
-        <NavLink
-          href="#"
-          activeStyle={{
-            backgroundColor: "#B569D4",
-            boxShadow: "0px 4px 4px rgba(181, 105, 212, 0.33)",
-            color: "#fff",
-          }}
-          className={
-            "mb-3 flex items-center py-3 px-4 w-full text-gray-500 cursor-pointer rounded-md bg-white"
-          }
-        >
-          <FontAwesomeIcon className={"h-5 mr-3"} icon={faTicketAlt} />
-          Seasons
-        </NavLink>
-        <NavLink
-          href="#"
-          activeStyle={{
-            backgroundColor: "#B569D4",
-            boxShadow: "0px 4px 4px rgba(181, 105, 212, 0.33)",
-            color: "#fff",
-          }}
-          className={
-            "mb-3 flex items-center py-3 px-4 w-full text-gray-500 cursor-pointer rounded-md bg-white"
-          }
-        >
-          <FontAwesomeIcon className={"h-5 mr-3"} icon={faCertificate} />
-          Certificates
-        </NavLink>
-        <NavLink
-          href="#"
-          activeStyle={{
-            backgroundColor: "#B569D4",
-            boxShadow: "0px 4px 4px rgba(181, 105, 212, 0.33)",
-            color: "#fff",
-          }}
-          className={
-            "mb-3 flex items-center py-3 px-4 w-full text-gray-500 cursor-pointer rounded-md bg-white"
-          }
-        >
-          <FontAwesomeIcon className={"h-5 mr-3"} icon={faAlignRight} />
-          Forums
-        </NavLink>
-        <NavLink
-          href="#"
-          activeStyle={{
-            backgroundColor: "#B569D4",
-            boxShadow: "0px 4px 4px rgba(181, 105, 212, 0.33)",
-            color: "#fff",
-          }}
-          className={
-            "mb-3 flex items-center py-3 px-4 w-full text-gray-500 cursor-pointer rounded-md bg-white"
-          }
-        >
-          <FontAwesomeIcon className={"h-5 mr-3"} icon={faChartBar} />
-          LeaderBoard
-        </NavLink>
-        <NavLink
-          href="#"
-          activeStyle={{
-            backgroundColor: "#B569D4",
-            boxShadow: "0px 4px 4px rgba(181, 105, 212, 0.33)",
-            color: "#fff",
-          }}
-          className={
-            "mb-3 flex items-center py-3 px-4 w-full text-gray-500 cursor-pointer rounded-md bg-white"
-          }
-        >
-          <FontAwesomeIcon className={"h-5 mr-3"} icon={faProjectDiagram} />
-          Projects
-        </NavLink>
-        <NavLink
-          href="#"
-          activeStyle={{
-            backgroundColor: "#B569D4",
-            boxShadow: "0px 4px 4px rgba(181, 105, 212, 0.33)",
-            color: "#fff",
-          }}
-          className={
-            "mb-3 flex items-center py-3 px-4 w-full text-gray-500 cursor-pointer rounded-md bg-white"
-          }
-        >
-          <FontAwesomeIcon className={"h-5 mr-3"} icon={faBookOpen} />
-          Lessons
-        </NavLink>
-        <NavLink
-          href="#"
-          activeStyle={{
-            backgroundColor: "#B569D4",
-            boxShadow: "0px 4px 4px rgba(181, 105, 212, 0.33)",
-            color: "#fff",
-          }}
-          className={
-            "mb-3 flex items-center py-3 px-4 w-full text-gray-500 cursor-pointer rounded-md bg-white"
-          }
-        >
-          <FontAwesomeIcon className={"h-5 mr-3"} icon={faSpinner} />
-          Personal Issues
-        </NavLink>
-        <NavLink
-          href="/coaches"
-          activeStyle={{
-            backgroundColor: "#B569D4",
-            boxShadow: "0px 4px 4px rgba(181, 105, 212, 0.33)",
-            color: "#fff",
-          }}
-          className={
-            "mb-3 flex items-center py-3 px-4 w-full text-gray-500 cursor-pointer rounded-md bg-white"
-          }
-        >
-          <FontAwesomeIcon className={"h-5 mr-3"} icon={faChalkboardTeacher} />
-          Coaches
-        </NavLink>
-        <NavLink
-          href="/mentors"
-          activeStyle={{
-            backgroundColor: "#B569D4",
-            boxShadow: "0px 4px 4px rgba(181, 105, 212, 0.33)",
-            color: "#fff",
-          }}
-          className={
-            "mb-3 flex items-center py-3 px-4 w-full text-gray-500 cursor-pointer rounded-md bg-white"
-          }
-        >
-          <FontAwesomeIcon className={"h-5 mr-3"} icon={faChalkboard} />
-          Mentors
-        </NavLink>
-        <NavLink
-          href="#"
-          activeStyle={{
-            backgroundColor: "#B569D4",
-            boxShadow: "0px 4px 4px rgba(181, 105, 212, 0.33)",
-            color: "#fff",
-          }}
-          className={
-            "mb-3 flex items-center py-3 px-4 w-full text-gray-500 cursor-pointer rounded-md bg-white"
-          }
-        >
-          <FontAwesomeIcon className={"h-5 mr-3"} icon={faBell} />
-          Announcements
-        </NavLink>
-        <NavLink
-          href="#"
-          activeStyle={{
-            backgroundColor: "#B569D4",
-            boxShadow: "0px 4px 4px rgba(181, 105, 212, 0.33)",
-            color: "#fff",
-          }}
-          className={
-            "mb-3 flex items-center py-3 px-4 w-full text-gray-500 cursor-pointer rounded-md bg-white"
-          }
-        >
-          <FontAwesomeIcon className={"h-5 mr-3"} icon={faAd} />
-          Ads Management
-        </NavLink>
-        <NavLink
-          href="#"
-          activeStyle={{
-            backgroundColor: "#B569D4",
-            boxShadow: "0px 4px 4px rgba(181, 105, 212, 0.33)",
-            color: "#fff",
-          }}
-          className={
-            "mb-3 flex items-center py-3 px-4 w-full text-gray-500 cursor-pointer rounded-md bg-white"
-          }
-        >
-          <FontAwesomeIcon className={"h-5 mr-3"} icon={faTrophy} />
-          Scoring
-        </NavLink>
+        {navLinks.map((e, i) => (
+          <NavLinkItem key={i} data={e} index={i} />
+        ))}
       </div>
     </div>
   );

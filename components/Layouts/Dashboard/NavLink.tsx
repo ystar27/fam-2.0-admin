@@ -10,7 +10,7 @@ export default function NavLink({
   ...props
 }: any) {
   const { pathname } = useRouter();
-  const isActive = pathname === href;
+  const isActive = href == pathname;
 
   return (
     <Link href={href} passHref>

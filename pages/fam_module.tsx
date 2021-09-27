@@ -227,19 +227,26 @@ function FamModule() {
                     </div>
                     <div
                       className={
-                        "bg-white px-5 pb-6 flex items-end justify-between pt-4 h-full"
+                        "bg-white px-5 pb-6 flex items-end pt-4 h-full"
                       }
                     >
                       <div
                         className={
-                          "bg-green-400 text-center rounded-sm px-8 py-1 font-mono text-white text-base"
+                          "bg-green-400 text-center rounded-sm px-2 py-0 font-mono text-white text-sm mr-1"
+                        }
+                      >
+                        <h4>Sub Modules - {e.subModule.length}</h4>
+                      </div>
+                      <div
+                        className={
+                          "bg-green-400 text-center rounded-sm px-2 py-0 font-mono text-white text-sm mr-1"
                         }
                       >
                         <h4>Active</h4>
                       </div>
                       <div
                         className={
-                          "bg-blue-500 text-center rounded-sm px-8 py-1 font-mono text-white text-base"
+                          "bg-blue-500 text-center rounded-sm px-2 py-0 font-mono text-white text-sm mr-1"
                         }
                       >
                         <h4>Public</h4>

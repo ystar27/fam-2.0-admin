@@ -1,117 +1,82 @@
-export default function Question({ current, noOFQuestion }: any) {
+import OptionField from "./OptionField";
+
+export default function Question({
+  index,
+  error,
+  current,
+  questions,
+  handleOptionChange,
+  handleQCChange,
+  question: { options },
+}: any) {
   return (
     <div className={"rounded-md bg-gray-50 mb-8 relative py-14 px-5 md:px-10"}>
-      <form>
-        <div className={"mb-5"}>
-          <h3 className={"text-lg font-semibold"}>Question {current}</h3>
-          <div className={""}>
-            <input
-              className={
-                "w-full focus:outline-none text-lg border-b border-gray-300 text-gray-700 bg-gray-50 pb-4"
-              }
-              type={"text"}
-              placeholder={"Question"}
-            />
-          </div>
+      <div className={"mb-5"}>
+        <h3 className={"text-lg font-semibold"}>Question {current}</h3>
+        <div className={""}>
+          <input
+            className={
+              "w-full focus:outline-none text-lg border-b border-gray-300 text-gray-700 bg-gray-50 pb-4"
+            }
+            name={"question"}
+            type={"text"}
+            placeholder={"Question"}
+            value={questions[index]?.question}
+            onChange={(e) => handleQCChange(index, e)}
+          />
+          {!questions[index].question && error && (
+            <small className="block text-red-600">Field is required</small>
+          )}
         </div>
-        <div className={"mb-3"}>
-          <h3 className={"text-lg font-semibold"}>
-            Question {current} Options
-          </h3>
-          <div className={"grid grid-cols-10 gap-5"}>
-            <div className={"flex flex-col"}>
-              <div className={"mt-5"}>
-                <input
-                  className={
-                    "w-full focus:outline-none text-lg border-b border-dashed border-gray-300 text-gray-700 bg-gray-50 pb-4"
-                  }
-                  type={"text"}
-                  placeholder={"Label"}
-                />
-              </div>
-              <div className={"mt-5"}>
-                <input
-                  className={
-                    "w-full focus:outline-none text-lg border-b border-dashed border-gray-300 text-gray-700 bg-gray-50 pb-4"
-                  }
-                  type={"text"}
-                  placeholder={"Label"}
-                />
-              </div>
-              <div className={"mt-5"}>
-                <input
-                  className={
-                    "w-full focus:outline-none text-lg border-b border-dashed border-gray-300 text-gray-700 bg-gray-50 pb-4"
-                  }
-                  type={"text"}
-                  placeholder={"Label"}
-                />
-              </div>
-              <div className={"mt-5"}>
-                <input
-                  className={
-                    "w-full focus:outline-none text-lg border-b border-dashed border-gray-300 text-gray-700 bg-gray-50 pb-4"
-                  }
-                  type={"text"}
-                  placeholder={"Label"}
-                />
-              </div>
-            </div>
-            <div className={"col-span-9 flex flex-col"}>
-              <div className={"mt-5"}>
-                <input
-                  className={
-                    "w-full focus:outline-none text-lg border-b border-gray-300 text-gray-700 bg-gray-50 pb-4"
-                  }
-                  type={"text"}
-                  placeholder={"Answer"}
-                />
-              </div>
-              <div className={"mt-5"}>
-                <input
-                  className={
-                    "w-full focus:outline-none text-lg border-b border-gray-300 text-gray-700 bg-gray-50 pb-4"
-                  }
-                  type={"text"}
-                  placeholder={"Answer"}
-                />
-              </div>
-              <div className={"mt-5"}>
-                <input
-                  className={
-                    "w-full focus:outline-none text-lg border-b border-gray-300 text-gray-700 bg-gray-50 pb-4"
-                  }
-                  type={"text"}
-                  placeholder={"Answer"}
-                />
-              </div>
-              <div className={"mt-5"}>
-                <input
-                  className={
-                    "w-full focus:outline-none text-lg border-b border-gray-300 text-gray-700 bg-gray-50 pb-4"
-                  }
-                  type={"text"}
-                  placeholder={"Answer"}
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-        <div>
-          <h3 className={"text-lg font-semibold"}>Challenge {current}</h3>
-          <div className={"mt-3"}>
-            <textarea
-              placeholder={"Theory Question"}
-              rows={2}
-              className={
-                "w-full focus:outline-none text-lg border-b border-gray-300 text-gray-700 bg-gray-50"
-              }
-            ></textarea>
-          </div>
-        </div>
-      </form>
+      </div>
+      <div className={"mb-3"}>
+        <h3 className={"text-lg font-semibold"}>Question {current} Options</h3>
+        {options.map((option, i) => (
+          <OptionField
+            key={i}
+            index={i}
+            error={error}
+            option={option}
+            questionIdx={index}
+            onChange={handleOptionChange}
+          />
+        ))}
+      </div>
+      <div className={""}>
+        <input
+          className={
+            "w-full focus:outline-none text-lg border-b border-gray-300 text-gray-700 bg-gray-50 pb-4"
+          }
+          type={"text"}
+          name={"correct"}
+          placeholder={"Correct label"}
+          value={questions[index]?.correct}
+          onChange={(e) => handleQCChange(index, e)}
+        />
+        {!questions[index].correct && error && (
+          <small className="block text-red-600">Field is required</small>
+        )}
+      </div>
+      <div className={"mt-3"}>
+        <textarea
+          rows={2}
+          name={"theory"}
+          onChange={(e) => handleQCChange(index, e)}
+          placeholder={"Theory Question"}
+          value={questions[index]?.theory}
+          className={
+            "w-full focus:outline-none text-lg border-b border-gray-300 text-gray-700 bg-gray-50"
+          }
+        ></textarea>
+        {!questions[index].theory &&
+          !questions[index].question &&
+          !questions[index].correct &&
+          error && (
+            <small className="block text-red-600">Field is required</small>
+          )}
+      </div>
       <div className={"absolute bottom-14 -right-4"}>
-        {noOFQuestion > 1 && current !== noOFQuestion && (
+        {current !== questions.length && (
           <button
             style={{ boxShadow: "0px 4px 45px rgba(0, 0, 0, 0.15)" }}
             className={

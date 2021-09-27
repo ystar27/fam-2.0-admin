@@ -26,7 +26,7 @@ a {
 }
 
 .dataTables_wrapper > .row:first-child {
-  @apply px-8;
+  @apply px-5;
   display: flex;
   justify-content: space-between;
   margin-bottom: 2rem;
@@ -37,7 +37,7 @@ a {
   border: 0.5px solid #e0e0e0;
   box-sizing: border-box;
   border-radius: 3px;
-  @apply px-5 py-2;
+  @apply px-5 py-1 w-56;
 }
 
 .dataTable {
@@ -54,12 +54,12 @@ a {
   text-align: left !important;
 }
 
-.dataTable > thead > tr > th:last-child {
+/* .dataTable > thead > tr > th:last-child {
   text-align: center !important;
-}
+} */
 
 .dataTable > thead > tr > th {
-  @apply py-3;
+  @apply py-3 font-mono font-semibold;
 }
 
 .dataTable > thead > tr > th:first-child {
@@ -68,14 +68,18 @@ a {
 }
 
 .dataTable > tbody > tr > td {
-  @apply py-3;
+  @apply pl-3;
+}
+
+.dataTable > tbody > tr > td:first-child {
+  @apply pl-5;
 }
 
 .dataTables_wrapper > .row:last-child {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  @apply my-5 px-5
+  @apply my-5 px-5;
 }
 
 .pagination {
@@ -85,40 +89,46 @@ a {
 }
 
 .pagination > li {
-  border: 0.5px solid #E0E0E0;
-  background-color: #E0E0E0;
-  @apply p-2 px-3 text-gray-900 text-lg
+  border: 0.5px solid #e0e0e0;
+  background-color: #e0e0e0;
+  @apply p-1 px-2 text-gray-900 text-lg;
 }
 
 .pagination > .disabled {
-  color: #BDBDBD !important;
+  color: #bdbdbd !important;
   cursor: default;
 }
 
 .pagination > .active {
-  border: 0.5px solid #708DF4;
+  border: 0.5px solid #708df4;
   color: #fff;
-  background-color: #708DF4;
+  background-color: #708df4;
 }
 
-.pagination > li:first-child, .pagination > li:last-child {
-  border: 0.5px solid #BDBDBD;
+.pagination > li:first-child,
+.pagination > li:last-child {
+  border: 0.5px solid #bdbdbd;
   background-color: #fff;
-  @apply p-2 text-gray-900
+  @apply text-gray-900;
 }
 
 .custom-select {
-  @apply px-3 py-1 border border-gray-300 rounded
+  @apply px-3 py-1 border border-gray-300 rounded;
 }
 
 .slide-in {
   transform: translateX(100%);
-  transition: all .5s;
-  animation: slideIn  .5s forwards ease-in-out;
+  transition: all 0.5s;
+  animation: slideIn 0.5s forwards ease-in-out;
 }
 
 @keyframes slideIn {
-  100%{
+  100% {
     transform: translateX(0);
   }
+}
+
+.side-name-link:hover {
+  color: rgb(181, 105, 212);
+  @apply duration-150 bg-gray-100;
 }

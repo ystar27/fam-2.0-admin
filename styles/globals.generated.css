@@ -31893,8 +31893,8 @@ a {
 }
 
 .dataTables_wrapper > .row:first-child {
-  padding-left: 2rem;
-  padding-right: 2rem;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
   display: flex;
   justify-content: space-between;
   margin-bottom: 2rem;
@@ -31905,10 +31905,26 @@ a {
   border: 0.5px solid #e0e0e0;
   box-sizing: border-box;
   border-radius: 3px;
+  width: 14rem;
+  border-width: 1px;
+  border-style: none;
+}
+
+.mdb-datatable-filter > input:focus {
+  --tw-border-opacity: 1;
+  border-color: rgba(107, 114, 128, var(--tw-border-opacity));
+}
+
+.mdb-datatable-filter > input {
   padding-left: 1.25rem;
   padding-right: 1.25rem;
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+}
+
+.mdb-datatable-filter > input:focus {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
 }
 
 .dataTable {
@@ -31931,13 +31947,15 @@ a {
   text-align: left !important;
 }
 
-.dataTable > thead > tr > th:last-child {
+/* .dataTable > thead > tr > th:last-child {
   text-align: center !important;
-}
+} */
 
 .dataTable > thead > tr > th {
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-weight: 600;
 }
 
 .dataTable > thead > tr > th:first-child {
@@ -31946,8 +31964,11 @@ a {
 }
 
 .dataTable > tbody > tr > td {
-  padding-top: 0.75rem;
-  padding-bottom: 0.75rem;
+  padding-left: 0.75rem;
+}
+
+.dataTable > tbody > tr > td:first-child {
+  padding-left: 1.25rem;
 }
 
 .dataTables_wrapper > .row:last-child {
@@ -31957,7 +31978,7 @@ a {
   margin-top: 1.25rem;
   margin-bottom: 1.25rem;
   padding-left: 1.25rem;
-  padding-right: 1.25rem
+  padding-right: 1.25rem;
 }
 
 .pagination {
@@ -31967,34 +31988,37 @@ a {
 }
 
 .pagination > li {
-  border: 0.5px solid #E0E0E0;
-  background-color: #E0E0E0;
-  padding: 0.5rem;
-  padding-left: 0.75rem;
-  padding-right: 0.75rem;
+  border: 0.5px solid #e0e0e0;
+  background-color: #e0e0e0;
+  padding: 0.25rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
   font-size: 1.125rem;
   line-height: 1.75rem;
   --tw-text-opacity: 1;
-  color: rgba(17, 24, 39, var(--tw-text-opacity))
+  color: rgba(17, 24, 39, var(--tw-text-opacity));
 }
 
 .pagination > .disabled {
-  color: #BDBDBD !important;
+  color: #bdbdbd !important;
   cursor: default;
 }
 
 .pagination > .active {
-  border: 0.5px solid #708DF4;
+  border: 0.5px solid #708df4;
   color: #fff;
-  background-color: #708DF4;
+  background-color: #708df4;
+}
+
+.pagination > li:first-child,
+.pagination > li:last-child {
+  border: 0.5px solid #bdbdbd;
+  background-color: #fff;
 }
 
 .pagination > li:first-child, .pagination > li:last-child {
-  border: 0.5px solid #BDBDBD;
-  background-color: #fff;
-  padding: 0.5rem;
   --tw-text-opacity: 1;
-  color: rgba(17, 24, 39, var(--tw-text-opacity))
+  color: rgba(17, 24, 39, var(--tw-text-opacity));
 }
 
 .custom-select {
@@ -32005,26 +32029,33 @@ a {
   padding-left: 0.75rem;
   padding-right: 0.75rem;
   padding-top: 0.25rem;
-  padding-bottom: 0.25rem
+  padding-bottom: 0.25rem;
 }
 
 .slide-in {
   transform: translateX(100%);
-  transition: all .5s;
-  -webkit-animation: slideIn  .5s forwards ease-in-out;
-          animation: slideIn  .5s forwards ease-in-out;
+  transition: all 0.5s;
+  -webkit-animation: slideIn 0.5s forwards ease-in-out;
+          animation: slideIn 0.5s forwards ease-in-out;
 }
 
 @-webkit-keyframes slideIn {
-  100%{
+  100% {
     transform: translateX(0);
   }
 }
 
 @keyframes slideIn {
-  100%{
+  100% {
     transform: translateX(0);
   }
+}
+
+.side-name-link:hover {
+  color: rgb(181, 105, 212);
+  --tw-bg-opacity: 1;
+  background-color: rgba(243, 244, 246, var(--tw-bg-opacity));
+  transition-duration: 150ms;
 }
 
 @media (min-width: 640px) {

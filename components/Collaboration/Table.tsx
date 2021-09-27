@@ -1,17 +1,8 @@
 import React, { useState } from "react";
-import ReactDOM from "react-dom";
-import { MDBBadge, MDBDataTable } from "mdbreact";
+import { MDBDataTable } from "mdbreact";
 import { columns, rows } from "./data";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrashAlt, faEdit } from "@fortawesome/free-solid-svg-icons";
 
-export default function Table({
-  setCreateModule,
-  setAddModuleField,
-  iDelete,
-  setIDelete,
-}: any) {
-  const [input, setInput] = useState("");
+export default function Table() {
   const [datatable, setDatatable] = useState({
     rows,
     columns,
@@ -65,7 +56,7 @@ export default function Table({
     ],
     rows: [
       ...datatable.rows.map((row, order) => ({
-        badge: <h5 className={'pl-5'}>{order + 1}</h5>,
+        badge: <h5 className={"pl-5"}>{order + 1}</h5>,
         ...row,
         status: statusUI(row.status),
       })),

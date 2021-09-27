@@ -1,22 +1,91 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, createContext, useContext } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+import { useRouter } from "next/router";
 import StoryFinish from "./StoryFinish";
 import StoryInfo from "./StoryInfo";
 import StoryQuestion from "./StoryQuestion";
+import { notificationsContext } from "../../pages/_app";
+import axios from "../../services/axios";
+
+const initialQuestion = {
+  question: "",
+  options: [
+    {
+      label: "",
+      answer: "",
+    },
+    {
+      label: "",
+      answer: "",
+    },
+    {
+      label: "",
+      answer: "",
+    },
+    {
+      label: "",
+      answer: "",
+    },
+  ],
+  correct: "",
+  theory: "",
+};
+
+export const ModuleContext = createContext();
 
 export default function CreateStory({ setAction }: any) {
+  const [questions, setQuestions] = useState([initialQuestion]);
   const [createStoryIdx, setCreateStoryIdx] = useState(0);
+  const [storyInfo, setStoryInfo] = useState({});
+  const [infoModule, setInfoModule] = useState({});
+  const [modules, setModules] = useState([]);
+  const [storyImg, setStoryImg] = useState({});
+  const notification = useContext(notificationsContext);
+  const router = useRouter();
+
+  useEffect(() => {
+    axios
+      .get("/module")
+      .then((res) => {
+        setModules(res.data.data);
+      })
+      .catch((error) => {
+        notification.warn({
+          message: "Unable to get module",
+          description: "Check network connection",
+        });
+      });
+  }, []);
 
   const createDisplay = () => {
     if (createStoryIdx == 0)
-      return <StoryInfo setCreateStoryIdx={setCreateStoryIdx} />;
+      return (
+        <StoryInfo
+          infoModule={infoModule}
+          setStoryImg={setStoryImg}
+          setStoryInfo={setStoryInfo}
+          setInfoModule={setInfoModule}
+          setCreateStoryIdx={setCreateStoryIdx}
+        />
+      );
     else if (createStoryIdx == 1)
-      return <StoryQuestion setCreateStoryIdx={setCreateStoryIdx} />;
+      return (
+        <StoryQuestion
+          questions={questions}
+          setQuestions={setQuestions}
+          initialQuestion={initialQuestion}
+          setCreateStoryIdx={setCreateStoryIdx}
+        />
+      );
     else
       return (
         <StoryFinish
+          storyImg={storyImg}
           setAction={setAction}
+          infoModule={infoModule}
+          storyInfos={storyInfo}
+          storyQuestions={questions}
           setCreateStoryIdx={setCreateStoryIdx}
         />
       );
@@ -41,11 +110,11 @@ export default function CreateStory({ setAction }: any) {
   );
 
   return (
-    <div>
+    <ModuleContext.Provider value={{ modules: modules }}>
       <div className={"flex items-center justify-end mb-3"}>
         <button
-          onClick={() => setAction(1)}
-          className={"py-2 px-4 font-light flex items-center"}
+          onClick={() => router.back()}
+          className={"py-2 px-4 font-light flex items-center cursor-pointer"}
           style={{ color: "#B569D4" }}
         >
           <FontAwesomeIcon className={"h-4 mr-2"} icon={faArrowLeft} /> Back
@@ -119,6 +188,6 @@ export default function CreateStory({ setAction }: any) {
           <div>{createDisplay()}</div>
         </div>
       </div>
-    </div>
+    </ModuleContext.Provider>
   );
 }

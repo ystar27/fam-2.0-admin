@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import Field from "./Field";
@@ -11,13 +11,20 @@ export default function EditModule({
   setSuccessAlert,
   setMessage,
   message,
-  moduleId
+  moduleId,
 }: any) {
   const [moduleName, setModuleName] = useState(message);
+  const [description, setDescription] = useState("");
+  const [currentMdl, setCurrentMdl] = useState({});
   const slideRef = useRef();
 
+  useEffect(() => {
+    setCurrentMdl(module.filter((e) => e._id == moduleId)[0]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const UpdateModule = () => {
-    axios.patch(`/module/${moduleId}`, { name: moduleName }).then((res) => {
+    axios.patch(`/module/${moduleId}`, { ...currentMdl }).then((res) => {
       setMessage("Module updated");
       setEditModule(false);
       setSuccessAlert(true);
@@ -28,7 +35,7 @@ export default function EditModule({
           return e;
         }
       });
-      setModule(updated)
+      setModule(updated);
     });
   };
 
@@ -58,12 +65,27 @@ export default function EditModule({
               <input
                 type={"text"}
                 className={
-                    "pb-4 pt-2 w-full text-gray-700 border-b focus:border-b focus:outline-none text-lg focus:border-purple-500"
+                  "pb-4 pt-2 w-full text-gray-700 border-b focus:border-b focus:outline-none text-lg focus:border-purple-500"
                 }
                 placeholder={"Module Name"}
-                value={moduleName}
-                onChange={(e) => setModuleName(e.target.value)}
+                value={currentMdl?.name}
+                onChange={(e) =>
+                  setCurrentMdl({ ...currentMdl, name: e.target.value })
+                }
               />
+            </div>
+            <div className={"mb-6"}>
+              <textarea
+                placeholder={"Description"}
+                rows={1}
+                className={
+                  "pb-4 pt-2 w-full text-gray-700 border-b focus:border-b focus:outline-none text-lg focus:border-purple-500"
+                }
+                value={currentMdl?.description}
+                onChange={(e) =>
+                  setCurrentMdl({ ...currentMdl, description: e.target.value })
+                }
+              ></textarea>
             </div>
             <div className={"mb-6"}>
               <button

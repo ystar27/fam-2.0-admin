@@ -1,22 +1,16 @@
-import React, { useState, useEffect } from "react";
-import axios from "../../../services/axios";
+import React from "react";
+import { useRouter } from "next/router";
 
 const SubModuleTable = ({
-  setSubModule,
-  setActiveModule,
-  setSubModules,
-  setEditSubModule,
   setActiveSubModule,
-  setSuccessAlert,
   setMessage,
   setDeleteSubModule,
-  activeSubModule,
-  moduleId,
   subModules,
   activeModule,
   deleteSubModule,
-  editSubMdl
+  editSubMdl,
 }: any) => {
+  const router = useRouter();
 
   return (
     <>
@@ -30,35 +24,46 @@ const SubModuleTable = ({
               <th className={"pl-5"}>S/N</th>
               <th>Sub-Modules</th>
               <th>Duration</th>
+              <th>Stories</th>
               <th>Action</th>
             </tr>
             {subModules.map((e: any, i) => (
-              <tr key={i}>
+              <tr key={i} className={'hover:bg-gray-50 duration-150'}>
                 <td className={"pl-5"}>{i + 1}</td>
                 <td className={""}>{e.name}</td>
                 <td>{e.duration} days</td>
+                <td>{e.story.length} stories</td>
                 <td>
                   <div className={"flex items-center mb-2"}>
                     <button
-                      className={"rounded mr-5 py-1 px-4 flex items-center"}
-                      style={{
-                        backgroundColor: "#CBFEEF",
-                        color: "#20C997",
+                      className={
+                        "bg-gray-300 hover:bg-gray-400 text-white duration-150 rounded mr-5 py-1 px-4 flex items-center"
+                      }
+                      onClick={() => {
+                        router.push({
+                          pathname: "/storybank",
+                          query: { subModule: e._id },
+                        });
                       }}
+                    >
+                      Stories
+                    </button>
+                    <button
+                      className={
+                        "rounded mr-5 py-1 px-4 flex items-center bg-green-100 hover:bg-green-200 duration-150 text-green-500"
+                      }
                       onClick={() => editSubMdl(e, i)}
                     >
                       Edit
                     </button>
                     <button
-                      className={"rounded py-1 px-4 flex items-center"}
+                      className={
+                        "rounded py-1 px-4 flex items-center bg-red-100 hover:bg-red-200 duration-150 text-red-500"
+                      }
                       onClick={() => {
                         setMessage(`Confirm delete for ${activeModule.name}`);
                         setActiveSubModule(e);
                         setDeleteSubModule(!deleteSubModule);
-                      }}
-                      style={{
-                        backgroundColor: "rgba(220, 53, 69, 0.12)",
-                        color: "#DC3545",
                       }}
                     >
                       Delete

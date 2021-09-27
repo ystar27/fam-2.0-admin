@@ -38,7 +38,7 @@ const NotificationCard = ({ message, description, id, type }: any) => {
   useEffect(() => {
     const timeoutId = setTimeout(() => {
       handleClose();
-    }, 15000);
+    }, 6000);
 
     return () => {
       clearTimeout(timeoutId);

@@ -1,8 +1,25 @@
-import React, { useState, useRef, useContext } from "react";
+import React, { useState, useRef, useContext, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { notificationsContext } from "../../../pages/_app";
 import axios from "../../../services/axios";
+
+function convertDate(date) {
+  var yyyy = date.getFullYear().toString();
+  var mm = (date.getMonth() + 1).toString();
+  var dd = date.getDate().toString();
+
+  var mmChars = mm.split("");
+  var ddChars = dd.split("");
+
+  return (
+    yyyy +
+    "-" +
+    (mmChars[1] ? mm : "0" + mmChars[0]) +
+    "-" +
+    (ddChars[1] ? dd : "0" + ddChars[0])
+  );
+}
 
 export default function CreateSubModule({
   subModules,
@@ -13,17 +30,35 @@ export default function CreateSubModule({
   moduleId,
 }: any) {
   const [subModuleName, setSubModuleName] = useState("");
+  const [description, setDescription] = useState("");
   const [isValidated, setValidated] = useState(false);
   const [duration, setDuration] = useState();
   const notification = useContext(notificationsContext);
   const slideRef = useRef();
+  const [date, setSubModuleDate] = useState({
+    start: "",
+    end: "",
+  });
+
+  useEffect(() => {
+    if (date.start && date.end) {
+      let startDate = new Date(date.start);
+      let endDate = new Date(date.end);
+
+      let difference = Math.abs(endDate - startDate);
+      let days = difference / (1000 * 3600 * 24);
+      setDuration(parseInt(days));
+    }
+  }, [date.end, date.start]);
 
   const CreateSubModule = () => {
-    if (duration && subModuleName) {
+    if (subModuleName && date.start && date.end) {
       axios
         .post(`/module/submodule/${moduleId}`, {
           name: subModuleName,
-          duration: Number(duration),
+          duration: Number(duration) + 1,
+          description: description || "",
+          date: date,
         })
         .then((res) => {
           setMessage("Module created successfully");
@@ -32,13 +67,14 @@ export default function CreateSubModule({
           subModules.length > 0
             ? setSubModules([res.data.data, ...subModules])
             : setSubModules([res.data.data]);
-        }).catch((error) => {
+        })
+        .catch((error) => {
           setCreateSubModule(false);
           notification.warn({
             message: "Sub Module Error",
-            description: "Unable to update module",
+            description: "Unable to create sub-module",
           });
-        });;
+        });
     } else {
       setValidated(true);
     }
@@ -81,12 +117,58 @@ export default function CreateSubModule({
                 />
               </div>
               <div className={"mb-6"}>
+                <textarea
+                  placeholder={"Description"}
+                  rows={1}
+                  className={
+                    "pb-4 pt-2 w-full text-gray-700 border-b focus:border-b focus:outline-none text-lg focus:border-purple-500"
+                  }
+                  value={description}
+                  onChange={(e) => setDescription(e.target.value)}
+                ></textarea>
+              </div>
+              {/* <div className={"mb-6"}>
                 <input
                   type={"number"}
+                  value={duration}
                   onChange={(e) => setDuration(e.target.value)}
                   className="pb-4 pt-2 w-full text-gray-700 border-b focus:border-b focus:outline-none text-lg focus:border-purple-500"
                   placeholder={"15 - days"}
                 />
+              </div> */}
+              <div className={"grid grid-cols-2 gap-5"}>
+                <div className={"mb-6"}>
+                  <label
+                    htmlFor={"start"}
+                    className={"text-xs font-mono text-gray-700"}
+                  >
+                    Start date
+                  </label>
+                  <input
+                    name={"start"}
+                    type={"date"}
+                    onChange={(e) =>
+                      setSubModuleDate({ ...date, start: e.target.value })
+                    }
+                    className="pb-4 pt-2 w-full font-mono text-gray-500 border-b focus:border-b focus:outline-none text-lg focus:border-purple-500"
+                    placeholder={"15 - days"}
+                  />
+                </div>
+                <div className={"mb-6"}>
+                  <label htmlFor={"end"} className={"text-xs text-gray-700"}>
+                    End date
+                  </label>
+                  <input
+                    name={"end"}
+                    type={"date"}
+                    value={date.end}
+                    onChange={(e) =>
+                      setSubModuleDate({ ...date, end: e.target.value })
+                    }
+                    className="pb-4 pt-2 w-full font-mono text-gray-500 border-b focus:border-b focus:outline-none text-lg focus:border-purple-500"
+                    placeholder={"15 - days"}
+                  />
+                </div>
               </div>
               <div className={"mb-6"}>
                 <button

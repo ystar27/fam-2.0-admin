@@ -1,4 +1,4 @@
-import React, { useState, useRef, useContext } from "react";
+import React, { useState, useRef, useContext, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import axios from "../../../services/axios";
@@ -15,11 +15,33 @@ export default function EditSubModule({
   const [subModuleName, setSubModuleName] = useState(activeSubModule.name);
   const [duration, setDuration] = useState(activeSubModule.duration);
   const notification = useContext(notificationsContext);
+  const [description, setDescription] = useState(
+    activeSubModule.description || ""
+  );
+  const [date, setSubModuleDate] = useState({
+    start: activeSubModule.date?.start,
+    end: activeSubModule.date?.end,
+  });
   const slideRef = useRef();
+
+  console.log(activeSubModule);
+
+  useEffect(() => {
+    if (date.start && date.end) {
+      let startDate = new Date(date.start);
+      let endDate = new Date(date.end);
+
+      let difference = Math.abs(endDate - startDate);
+      let days = difference / (1000 * 3600 * 24);
+      setDuration(parseInt(days));
+    }
+  }, [date.end, date.start]);
 
   const editSubModule = () => {
     axios
       .patch(`/module/submodule/${activeSubModule._id}`, {
+        date,
+        description,
         name: subModuleName,
         duration: Number(duration),
       })
@@ -35,7 +57,8 @@ export default function EditSubModule({
           }
         });
         setSubModules(edited);
-      }).catch((error) => {
+      })
+      .catch((error) => {
         setEditSubModule(false);
         notification.warn({
           message: "Sub Module Error",
@@ -78,6 +101,17 @@ export default function EditSubModule({
             </div>
             <div className={"mb-6"}>
               <input
+                type={"text"}
+                className={
+                  "pb-4 pt-2 w-full text-gray-700 border-b focus:border-b focus:outline-none text-lg focus:border-purple-500"
+                }
+                placeholder={"Description"}
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+              />
+            </div>
+            {/* <div className={"mb-6"}>
+              <input
                 required
                 type={"number"}
                 onChange={(e) => setDuration(e.target.value)}
@@ -85,8 +119,42 @@ export default function EditSubModule({
                 placeholder={"15 - days"}
                 value={duration}
               />
+            </div> */}
+            <div className={"grid grid-cols-2 gap-5"}>
+              <div className={"mb-6"}>
+                <label
+                  htmlFor={"start"}
+                  className={"text-xs font-mono text-gray-700"}
+                >
+                  Start date
+                </label>
+                <input
+                  name={"start"}
+                  type={"date"}
+                  value={date.start}
+                  onChange={(e) =>
+                    setSubModuleDate({ ...date, start: e.target.value })
+                  }
+                  className="pb-4 pt-2 w-full font-mono text-gray-500 border-b focus:border-b focus:outline-none text-lg focus:border-purple-500"
+                  placeholder={"15 - days"}
+                />
+              </div>
+              <div className={"mb-6"}>
+                <label htmlFor={"end"} className={"text-xs text-gray-700"}>
+                  End date
+                </label>
+                <input
+                  name={"end"}
+                  type={"date"}
+                  value={date.end}
+                  onChange={(e) =>
+                    setSubModuleDate({ ...date, end: e.target.value })
+                  }
+                  className="pb-4 pt-2 w-full font-mono text-gray-500 border-b focus:border-b focus:outline-none text-lg focus:border-purple-500"
+                  placeholder={"15 - days"}
+                />
+              </div>
             </div>
-
             <div className={"mb-6"}>
               <button
                 className={

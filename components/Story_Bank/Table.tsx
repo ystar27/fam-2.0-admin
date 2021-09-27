@@ -4,6 +4,7 @@ import { MDBBadge, MDBDataTable } from "mdbreact";
 import { columns, rows } from "./data";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashAlt, faEdit } from "@fortawesome/free-solid-svg-icons";
+import Link from 'next/link'
 
 export default function Table({ setAction, iDelete, setIDelete }: any) {
   const [input, setInput] = useState("");
@@ -124,13 +125,15 @@ export default function Table({ setAction, iDelete, setIDelete }: any) {
               value={input}
             />
           </div>
-          <button
+          {/* <Link href={"/storybank/new"} passHref> */}
+          <a
+            href={"/storybank/new"}
             style={{ backgroundColor: "#B569D4" }}
-            onClick={() => setAction(2)}
             className={"py-2 text-base font-semibold text-white px-3 rounded"}
           >
-            Create Story
-          </button>
+            <p>Create Story</p>
+          </a>
+          {/* </Link> */}
         </>,
         document.querySelector("[data-test=datatable-search]")
       );

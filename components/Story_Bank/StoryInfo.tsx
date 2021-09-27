@@ -1,181 +1,56 @@
-export default function StoryInfo({ setCreateStoryIdx }: any) {
+import { Formik, Form } from "formik";
+import * as Yup from "yup";
+import StoryFields from "./StoryFields";
+
+const StorySchema = Yup.object().shape({
+  title: Yup.string().required("Title is required"),
+  subTitle: Yup.string().required("Sub title is required"),
+  quote: Yup.string().required("Quote is required"),
+  profileTitle: Yup.string().required("Profile title is required"),
+  profileSubTitle: Yup.string().required("Profile sub title is required"),
+  experienceTitle: Yup.string().required("Experience title is required"),
+  experienceDescription: Yup.string().required(
+    "Experience description is required"
+  ),
+  successStoryTitle: Yup.string().required("Success story title is required"),
+  successStoryDescription: Yup.string().required(
+    "Success story description is required"
+  ),
+});
+
+export default function StoryInfo({
+  setCreateStoryIdx,
+  setInfoModule,
+  setStoryInfo,
+  setStoryImg,
+  infoModule,
+}: any) {
   return (
-    <div className={"flex w-full flex-col mt-10"}>
-      <div
-        className={"rounded-md bg-gray-50 mb-8 grid gap-10 grid-cols-5 py-14"}
-      >
-        <div className="flex justify-center">
-          <div
-            className={
-              "grid relative place-items-center rounded-full bg-white w-36 h-36"
-            }
-            style={{
-              border: "0.5px solid #E0E0E0",
-              boxShadow: "0px 4px 45px rgba(0, 0, 0, 0.04)",
-            }}
-          >
-            <img
-              className={"w-14"}
-              src={"/img/story-bank/photo_size.svg"}
-              alt={"photo"}
-            />
-            <div
-              className={
-                "w-max rounded-full bg-white grid place-items-center p-2 absolute top-0 right-0"
-              }
-              style={{ boxShadow: "0px 4px 45px rgba(0, 0, 0, 0.15)" }}
-            >
-              <img
-                className={"w-6"}
-                src={"/img/story-bank/photo_camera.svg"}
-                alt={"photo"}
-              />
-            </div>
-          </div>
-        </div>
-        <div className="col-span-4 px-5">
-          <form>
-            <div className={"flex items-center justify-between"}>
-              <div>
-                <select
-                  className={
-                    "w-60 focus:outline-none text-base border-b border-gray-300 text-gray-700 bg-gray-50 pb-4"
-                  }
-                >
-                  <option>Module</option>
-                </select>
-              </div>
-              <div>
-                <select
-                  className={
-                    "w-60 focus:outline-none text-base border-b border-gray-300 text-gray-700 bg-gray-50 pb-4"
-                  }
-                >
-                  <option>Level</option>
-                </select>
-              </div>
-              <div>
-                <select
-                  className={
-                    "w-60 focus:outline-none text-base border-b border-gray-300 text-gray-700 bg-gray-50 pb-4"
-                  }
-                >
-                  <option>Duration</option>
-                </select>
-              </div>
-            </div>
-            <div className={"mt-5"}>
-              <input
-                className={
-                  "w-full focus:outline-none text-lg border-b border-gray-300 text-gray-700 bg-gray-50 pb-4"
-                }
-                type={"text"}
-                placeholder={"Title"}
-              />
-            </div>
-            <div className={"mt-5"}>
-              <textarea
-                placeholder={"Sub Title"}
-                rows={2}
-                className={
-                  "w-full focus:outline-none text-lg border-b border-gray-300 text-gray-700 bg-gray-50"
-                }
-              ></textarea>
-            </div>
-            <div className={"mt-5"}>
-              <textarea
-                placeholder={"Quote"}
-                rows={2}
-                className={
-                  "w-full focus:outline-none text-lg border-b border-gray-300 text-gray-700 bg-gray-50"
-                }
-              ></textarea>
-            </div>
-          </form>
-        </div>
-      </div>
-      <div className={"rounded-md bg-gray-50 mb-8  py-14 px-5"}>
-        <h3 className={"text-xl md:text-2xl font-semibold mb-3"}>Profile</h3>
-        <form>
-          <div className={"mt-5"}>
-            <input
-              className={
-                "w-full focus:outline-none text-lg border-b border-gray-300 text-gray-700 bg-gray-50 pb-4"
-              }
-              type={"text"}
-              placeholder={"Title"}
-            />
-          </div>
-          <div className={"mt-5"}>
-            <textarea
-              placeholder={"Sub Title"}
-              rows={2}
-              className={
-                "w-full focus:outline-none text-lg border-b border-gray-300 text-gray-700 bg-gray-50"
-              }
-            ></textarea>
-          </div>
-        </form>
-      </div>
-      <div className={"rounded-md bg-gray-50 mb-8  py-14 px-5"}>
-        <h3 className={"text-xl md:text-2xl font-semibold mb-3"}>Experience</h3>
-        <form>
-          <div className={"mt-5"}>
-            <input
-              className={
-                "w-full focus:outline-none text-lg border-b border-gray-300 text-gray-700 bg-gray-50 pb-4"
-              }
-              type={"text"}
-              placeholder={"Title"}
-            />
-          </div>
-          <div className={"mt-5"}>
-            <textarea
-              placeholder={"Description"}
-              rows={2}
-              className={
-                "w-full focus:outline-none text-lg border-b border-gray-300 text-gray-700 bg-gray-50"
-              }
-            ></textarea>
-          </div>
-        </form>
-      </div>
-      <div className={"rounded-md bg-gray-50 mb-8  py-14 px-5"}>
-        <h3 className={"text-xl md:text-2xl font-semibold mb-3"}>
-          Success Story
-        </h3>
-        <form>
-          <div className={"mt-5"}>
-            <input
-              className={
-                "w-full focus:outline-none text-lg border-b border-gray-300 text-gray-700 bg-gray-50 pb-4"
-              }
-              type={"text"}
-              placeholder={"Title"}
-            />
-          </div>
-          <div className={"mt-5"}>
-            <textarea
-              placeholder={"Description"}
-              rows={2}
-              className={
-                "w-full focus:outline-none text-lg border-b border-gray-300 text-gray-700 bg-gray-50"
-              }
-            ></textarea>
-          </div>
-        </form>
-      </div>
-      <div>
-        <button
-          style={{ backgroundColor: "#B569D4" }}
-          onClick={()=>setCreateStoryIdx(1)}
-          className={
-            "px-5 py-2 text-lg rounded text-white font-semibold focus:outline-none"
-          }
-        >
-          Next
-        </button>
-      </div>
-    </div>
+    <Formik
+      validationSchema={StorySchema}
+      initialValues={{
+        title: "",
+        subTitle: "",
+        quote: "",
+        profileTitle: "",
+        profileSubTitle: "",
+        experienceTitle: "",
+        experienceDescription: "",
+        successStoryTitle: "",
+        successStoryDescription: "",
+      }}
+      onSubmit={(values) => {
+        setStoryInfo(values);
+        setCreateStoryIdx(1);
+      }}
+    >
+      <Form>
+        <StoryFields
+          setStoryImg={setStoryImg}
+          infoModule={infoModule}
+          setInfoModule={setInfoModule}
+        />
+      </Form>
+    </Formik>
   );
 }
