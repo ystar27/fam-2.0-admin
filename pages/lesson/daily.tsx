@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import _ from 'lodash'
+import _ from "lodash";
 import Dashboard from "../../components/Layouts/Dashboard/Dashboard";
 import Head from "../../components/Layouts/Header/Head";
 import Navbar from "../../components/Layouts/Header/Navbar";
@@ -217,46 +217,48 @@ const Daily = ({ modules, issues }: any) => {
                 </div>
               </div>
             </div>
-            <div>
-              {inputedLessons.length > 0 && (
-                <div
-                  className={"w-full bg-white rounded py-6 mb-20 px-6 "}
-                  style={{
-                    border: "0.5px solid #E0E0E0",
-                    boxShadow: "0px 4px 45px rgba(0, 0, 0, 0.04)",
-                  }}
-                >
-                  <h3
-                    className={
-                      "mb-5 text-lg text-gray-600 font-semibold font-mono"
-                    }
+            <form onSubmit={submitLessons}>
+              <div>
+                {inputedLessons.length > 0 && (
+                  <div
+                    className={"w-full bg-white rounded py-6 mb-20 px-6 "}
+                    style={{
+                      border: "0.5px solid #E0E0E0",
+                      boxShadow: "0px 4px 45px rgba(0, 0, 0, 0.04)",
+                    }}
                   >
-                    Available Daily Lessons
-                  </h3>
-                  <div className={"grid grid-cols-3 gap-5 md:gap-8"}>
-                    {inputedLessons.map((e: any, i: number) => (
-                      <InputedLessonItem
-                        key={i}
-                        item={e}
-                        index={i}
-                        lessons={data.lessons}
-                        updateDayLessons={updateDayLessons}
-                      />
-                    ))}
-                  </div>
-                  <div className={"flex justify-end mt-8"}>
-                    <button
+                    <h3
                       className={
-                        "px-10 py-2 rounded-md text-white font-semibold"
+                        "mb-5 text-lg text-gray-600 font-semibold font-mono"
                       }
-                      style={{ backgroundColor: "#b569d4" }}
                     >
-                      Save
-                    </button>
+                      Available Daily Lessons
+                    </h3>
+                    <div className={"grid grid-cols-3 gap-5 md:gap-8"}>
+                      {inputedLessons.map((e: any, i: number) => (
+                        <InputedLessonItem
+                          key={i}
+                          item={e}
+                          index={i}
+                          lessons={data.lessons}
+                          updateDayLessons={updateDayLessons}
+                        />
+                      ))}
+                    </div>
+                    <div className={"flex justify-end mt-8"}>
+                      <button
+                        className={
+                          "px-10 py-2 rounded-md text-white font-semibold"
+                        }
+                        style={{ backgroundColor: "#b569d4" }}
+                      >
+                        Save
+                      </button>
+                    </div>
                   </div>
-                </div>
-              )}
-            </div>
+                )}
+              </div>
+            </form>
             {data.subModule && data.subModule?.duration && (
               <form onSubmit={submitLessons}>
                 <div>
