@@ -9,21 +9,26 @@ function StoryFields({ setInfoModule, infoModule, setStoryImg }: any) {
   const [subModule, setSubModule] = useState([]);
   const [duration, setDuration] = useState(0);
   const [previewImg, setPreviewImg] = useState("");
+  const [previewImgErr, setPreviewImgErr] = useState(false);
 
   const onModuleChange = (e) => {
-    setInfoModule({ ...infoModule, module: e.target.value });
-    let selectedMdl: any = modules.filter(
-      (module: { _id: any }) => module._id == e.target.value
-    );
-    setSubModule(selectedMdl[0]?.subModule);
+    if (e.target.value) {
+      setInfoModule({ ...infoModule, module: e.target.value });
+      let selectedMdl: any = modules.filter(
+        (module: { _id: any }) => module._id == e.target.value
+      );
+      setSubModule(selectedMdl[0]?.subModule);
+    }
   };
 
   const onSubModuleChange = (e, moduleId) => {
     if (e.target.value) {
       setInfoModule({ ...infoModule, subModule: e.target.value });
-      const mdl = modules.filter((module) => module._id == moduleId);
+      const mdl = modules.filter(
+        (module: { _id: any }) => module._id == moduleId
+      );
       const subMdl = mdl[0]?.subModule.filter(
-        (subMdl) => subMdl._id == e.target.value
+        (subMdl: { _id: any }) => subMdl._id == e.target.value
       );
       setDuration(subMdl[0]?.duration || 0);
     }
@@ -31,10 +36,17 @@ function StoryFields({ setInfoModule, infoModule, setStoryImg }: any) {
 
   const uploadImg = (e) => {
     let file = e.target.files[0];
-    setStoryImg(file);
-    // render image
-    const objectUrl = URL.createObjectURL(file);
-    setPreviewImg(objectUrl);
+
+    if (file && file.size < 5500000) {
+      setPreviewImgErr(false);
+      setStoryImg(file);
+      const objectUrl = URL.createObjectURL(file);
+      setPreviewImg(objectUrl);
+    } else if (file.size > 5500000) {
+      setPreviewImgErr(true);
+    } else {
+      setPreviewImgErr(false);
+    }
   };
 
   const onDurationChange = (e) => {
@@ -47,49 +59,56 @@ function StoryFields({ setInfoModule, infoModule, setStoryImg }: any) {
         <div
           className={"rounded-md bg-gray-50 mb-8 grid gap-10 grid-cols-5 py-14"}
         >
-          <div className="flex justify-center px-4">
-            <div
-              className={
-                "grid relative place-items-center rounded-full bg-white w-28 h-28"
-              }
-              style={{
-                border: "0.5px solid #E0E0E0",
-                boxShadow: "0px 4px 45px rgba(0, 0, 0, 0.04)",
-              }}
-            >
-              {previewImg ? (
-                <div className={"overflow-hidden w-28 h-28 rounded-full"}>
-                  <img className={"w-full"} src={previewImg} alt={"photo"} />
-                </div>
-              ) : (
-                <img
-                  className={""}
-                  src={"/img/story-bank/photo_size.svg"}
-                  alt={"photo"}
-                />
-              )}
-              <input
-                accept="image/png, image/gif, image/jpeg"
-                onChange={uploadImg}
-                type="file"
-                className="hidden"
-                name="image"
-                id="image"
-              />
-              <label
-                htmlFor="image"
+          <div className="flex flex-col justify-start">
+            <div className="flex justify-center px-4">
+              <div
                 className={
-                  "w-max rounded-full bg-white grid place-items-center p-2 absolute top-0 right-0"
+                  "grid relative place-items-center rounded-full bg-white w-28 h-28"
                 }
-                style={{ boxShadow: "0px 4px 45px rgba(0, 0, 0, 0.15)" }}
+                style={{
+                  border: "0.5px solid #E0E0E0",
+                  boxShadow: "0px 4px 45px rgba(0, 0, 0, 0.04)",
+                }}
               >
-                <img
-                  className={"w-6"}
-                  src={"/img/story-bank/photo_camera.svg"}
-                  alt={"photo"}
+                {previewImg ? (
+                  <div className={"overflow-hidden w-28 h-28 rounded-full"}>
+                    <img className={"w-full"} src={previewImg} alt={"photo"} />
+                  </div>
+                ) : (
+                  <img
+                    className={""}
+                    src={"/img/story-bank/photo_size.svg"}
+                    alt={"photo"}
+                  />
+                )}
+                <input
+                  accept="image/png, image/gif, image/jpeg"
+                  onChange={uploadImg}
+                  type="file"
+                  className="hidden"
+                  name="image"
+                  id="image"
                 />
-              </label>
+                <label
+                  htmlFor="image"
+                  className={
+                    "w-max rounded-full bg-white grid place-items-center p-2 absolute top-0 right-0"
+                  }
+                  style={{ boxShadow: "0px 4px 45px rgba(0, 0, 0, 0.15)" }}
+                >
+                  <img
+                    className={"w-6"}
+                    src={"/img/story-bank/photo_camera.svg"}
+                    alt={"photo"}
+                  />
+                </label>
+              </div>
             </div>
+            {previewImgErr && (
+              <small className="block text-red-600 text-center mt-1">
+                Image size should be less than 5mb
+              </small>
+            )}
           </div>
           <div className="col-span-4 px-5">
             <div className={"grid grid-cols-3 gap-8"}>
@@ -101,7 +120,7 @@ function StoryFields({ setInfoModule, infoModule, setStoryImg }: any) {
                   onChange={onModuleChange}
                   name={"module"}
                 >
-                  <option>Module</option>
+                  <option value="">Module</option>
                   {modules.map((module, i) => (
                     <option key={i} value={module._id}>
                       {module.name}

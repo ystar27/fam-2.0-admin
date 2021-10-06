@@ -16,7 +16,7 @@ import EditSubModule from "../components/FAM_MODULE/SubModule/EditSubModule";
 import SubModuleTable from "../components/FAM_MODULE/SubModule/SubModule";
 import { notificationsContext } from "./_app";
 
-function FamModule() {
+function FamModule({ mdl }: any) {
   const [subModule, setSubModule] = useState(false);
   const [successAlert, setSuccessAlert] = useState(false);
   const [createModule, setCreateModule] = useState(false);
@@ -25,7 +25,7 @@ function FamModule() {
   const [editSubModule, setEditSubModule] = useState(false);
   const [viewModuleField, setViewModuleField] = useState(false);
   const [moduleId, setModuleId] = useState(null);
-  const [module, setModule] = useState([]);
+  const [module, setModule] = useState(mdl);
   const [activeModule, setActiveModule] = useState({});
   const [activeSubModule, setActiveSubModule] = useState({});
   const [subModules, setSubModules] = useState(null);
@@ -33,21 +33,6 @@ function FamModule() {
   const [deleteSubModule, setDeleteSubModule] = useState(false);
   const [deleteModule, setDeleteModule] = useState(false);
   const notification = useContext(notificationsContext);
-
-  useEffect(() => {
-    axios
-      .get("/module")
-      .then((res) => {
-        setModule(res.data.data);
-      })
-      .catch((error) => {
-        notification.error({
-          message: "Module Error",
-          description: "Unable to get modules",
-        });
-      });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   const getSubModule = (e, i) => {
     setActiveModule(e);
@@ -61,20 +46,23 @@ function FamModule() {
   };
 
   const deleteModuleFunc = () => {
-    axios.delete(`/module/${moduleId}`).then((res) => {
-      setSubModule(false);
-      let deleted = module.filter((mdl) => mdl._id !== activeModule._id);
-      setModule(deleted);
-      setDeleteModule(!deleteModule);
-      setMessage("Deleted Successfully");
-      setSuccessAlert(true);
-    }).catch((error)=> {
-      setDeleteModule(!deleteModule);
-      notification.warn({
-        message: "Module Error",
-        description: "Unable to delete module.",
+    axios
+      .delete(`/module/${moduleId}`)
+      .then((res) => {
+        setSubModule(false);
+        let deleted = module.filter((mdl) => mdl._id !== activeModule._id);
+        setModule(deleted);
+        setDeleteModule(!deleteModule);
+        setMessage("Deleted Successfully");
+        setSuccessAlert(true);
+      })
+      .catch((error) => {
+        setDeleteModule(!deleteModule);
+        notification.warn({
+          message: "Module Error",
+          description: "Unable to delete module.",
+        });
       });
-    });
   };
 
   const deleteSubModuleFunc = () => {
@@ -90,7 +78,8 @@ function FamModule() {
         setDeleteSubModule(!deleteSubModule);
         setMessage("Deleted Successfully");
         setSuccessAlert(true);
-      }).catch((error)=> {
+      })
+      .catch((error) => {
         setDeleteSubModule(!deleteSubModule);
         notification.warn({
           message: "Sub Module Error",
@@ -329,6 +318,20 @@ function FamModule() {
       </Dashboard>
     </div>
   );
+}
+
+export async function getServerSideProps() {
+  try {
+    let res = await axios.get("/module");
+
+    return {
+      props: { mdl: res.data.data },
+    };
+  } catch (error) {
+    return {
+      props: { mdl: [] },
+    };
+  }
 }
 
 export default FamModule;

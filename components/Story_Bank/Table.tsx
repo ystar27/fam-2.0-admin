@@ -4,7 +4,7 @@ import { MDBBadge, MDBDataTable } from "mdbreact";
 import { columns, rows } from "./data";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashAlt, faEdit } from "@fortawesome/free-solid-svg-icons";
-import Link from 'next/link'
+import Link from "next/link";
 
 export default function Table({ setAction, iDelete, setIDelete }: any) {
   const [input, setInput] = useState("");
@@ -70,7 +70,11 @@ export default function Table({ setAction, iDelete, setIDelete }: any) {
         ...row,
         image: (
           <div className={"h-12 w-12 rounded-full overflow-hidden"}>
-            <img className={"w-full"} src={row.image} alt={"profile.img"} />
+            <img
+              className={"w-full"}
+              src={row.image || "/img/dashboard/user.svg"}
+              alt={"profile.img"}
+            />
           </div>
         ),
         status: statusUI(row.status),

@@ -32,9 +32,9 @@ a {
   margin-bottom: 2rem;
 }
 
-.mdb-datatable-filter > input {
+.mdb-datatable-filter > input, .form-control-sm  {
   background: #ffffff;
-  border: 0.5px solid #e0e0e0;
+  border: 0.5px solid #c0c0c0;
   box-sizing: border-box;
   border-radius: 3px;
   @apply px-5 py-1 w-56;

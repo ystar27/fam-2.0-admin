@@ -1,47 +1,29 @@
 import React, { useState } from "react";
-import ReactDOM from "react-dom";
 import { MDBDataTable } from "mdbreact";
 import { columns, rows } from "./data";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashAlt, faEdit } from "@fortawesome/free-solid-svg-icons";
 
-export default function Table({
-  setActiveCoach,
-  setCreateCoach,
-  setIDelete,
-  setEditCoach,
-  coaches,
-}: any) {
+const Table = ({ lessons, setIDelete, setEditLesson, setActiveLesson, setCreateLesson }: any) => {
   const [datatable, setDatatable] = useState({
-    rows: coaches,
+    rows: lessons,
     columns,
   });
 
   const badgesData = {
-    columns: [...datatable.columns,],
+    columns: [...datatable.columns],
     rows: [
-      ...coaches.map((row, idx) => ({
+      ...lessons.map((row, idx) => ({
         ...row,
         no: idx + 1,
-        name: (
-          <div className={"flex items-center"}>
-            <img
-              className={"rounded-full h-12 w-12 object-cover mr-4 bg-gray-500"}
-              src={row.image || "/img/dashboard/user.svg"}
-              alt={"profile.img"}
-            />
-            <p className={"text-base font-medium"}>{row.name}</p>
-          </div>
-        ),
-        issue: row.issue.title,
         actions: (
           <div className={"flex items-center justify-start"}>
             <button
               className={"rounded py-1 mr-2 px-4 flex items-center"}
               style={{ backgroundColor: "#CBFEEF", color: "#20C997" }}
               onClick={() => {
-                setActiveCoach(row);
-                setEditCoach(true);
+                setActiveLesson(row);
+                setEditLesson(true);
               }}
             >
               <FontAwesomeIcon
@@ -58,7 +40,7 @@ export default function Table({
                 color: "#DC3545",
               }}
               onClick={() => {
-                setActiveCoach(row);
+                setActiveLesson(row);
                 setIDelete(true);
               }}
             >
@@ -75,23 +57,6 @@ export default function Table({
     ],
   };
 
-  setTimeout(() => {
-    if (typeof window !== "undefined") {
-      ReactDOM.render(
-        <>
-          <button
-            style={{ backgroundColor: "#B569D4" }}
-            onClick={() => setCreateCoach(true)}
-            className={"py-2 text-base font-semibold text-white px-3 rounded"}
-          >
-            Create Coach
-          </button>
-        </>,
-        document.querySelector("[data-test=datatable-search]")
-      );
-    }
-  }, 2);
-
   return (
     <div
       className={"w-full bg-white rounded py-6 mb-32"}
@@ -100,6 +65,15 @@ export default function Table({
         boxShadow: "0px 4px 45px rgba(0, 0, 0, 0.04)",
       }}
     >
+      <div className={"flex justify-end px-6"}>
+        <button
+          onClick={() => setCreateLesson(true)}
+          className={"py-1 px-3 text-base text-white rounded-md w-52"}
+          style={{ backgroundColor: "#b569d4" }}
+        >
+          Create Lesson
+        </button>
+      </div>
       <MDBDataTable
         hover
         entriesOptions={[5, 10, 20]}
@@ -114,4 +88,6 @@ export default function Table({
       />
     </div>
   );
-}
+};
+
+export default Table;

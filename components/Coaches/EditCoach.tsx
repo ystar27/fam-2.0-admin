@@ -14,10 +14,12 @@ const initialCoachState = {
   image: "",
 };
 
-export default function CreateCoach({
+export default function EditCoach({
   coaches,
   setCoaches,
-  setCreateCoach,
+  activeCoach,
+  setEditCoach,
+  setActiveCoach,
 }: any) {
   const [previewImg, setPreviewImg] = useState("");
   const [imgFile, setImgFile] = useState({});
@@ -32,7 +34,6 @@ export default function CreateCoach({
     axios
       .get("/issue")
       .then((res) => {
-        console.log(res.data.data);
         setIssues(res.data.data);
       })
       .catch((error) => {
@@ -59,13 +60,13 @@ export default function CreateCoach({
   };
 
   const onChange = (e) => {
-    setData({ ...data, [e.target.name]: e.target.value });
+    setActiveCoach({ ...activeCoach, [e.target.name]: e.target.value });
   };
 
   const onSubmit = async (e) => {
     e.preventDefault();
     try {
-      if (data.name && data.issue) {
+      if (activeCoach.name && activeCoach.issue) {
         setError(false);
         if (imgFile.name && imgFile.size) {
           let image64 = await Utils.getBase64(imgFile);
@@ -78,20 +79,30 @@ export default function CreateCoach({
               folder: "fam",
             }
           );
-          data.image = uploadedImg.data.secure_url;
+          activeCoach.image = uploadedImg.secure_url;
         }
 
-        let createdIssue = await axios.post("/coach", data);
-        setCoaches([createdIssue.data.data, ...coaches]);
-        setCreateCoach(false);
+        const updatedIssue = await axios.patch(
+          `/coach/:${activeCoach._id}`,
+          activeCoach
+        );
+
+        const uCoaches = coaches.map((e, i) =>
+          e._id == updatedIssue.data.data._id ? updatedIssue.data.data : e
+        );
+
+        setCoaches(uCoaches);
+        setEditCoach(false);
+        setActiveCoach({});
         notification.success({
           message: "Successful",
-          description: "Coach created successfully",
+          description: "Coach updated successfully",
         });
       } else {
         setError(true);
       }
     } catch (error) {
+      console.log(error);
       notification.warn({
         message: "Request not sent",
         description: "Check network connection",
@@ -114,11 +125,11 @@ export default function CreateCoach({
               className={"text-lg font-semibold"}
               style={{ color: "#B569D4" }}
             >
-              Create New Coach
+              Update coach
             </h2>
             <button
               className={"p-2 bg-white"}
-              onClick={() => setCreateCoach(false)}
+              onClick={() => setEditCoach(false)}
             >
               <FontAwesomeIcon className={"h-5 w-5"} icon={faTimes} />
             </button>
@@ -145,11 +156,20 @@ export default function CreateCoach({
                         />
                       </div>
                     ) : (
-                      <img
-                        className={""}
-                        src={"/img/story-bank/photo_size.svg"}
-                        alt={"photo"}
-                      />
+                      <div
+                        className={
+                          "overflow-hidden w-28 h-28 rounded-full grid place-content-center"
+                        }
+                      >
+                        <img
+                          className={activeCoach.image ? "w-full" : ""}
+                          src={
+                            activeCoach.image ||
+                            "/img/story-bank/photo_size.svg"
+                          }
+                          alt={"photo"}
+                        />
+                      </div>
                     )}
                     <input
                       accept="image/png, image/gif, image/jpeg"
@@ -184,23 +204,18 @@ export default function CreateCoach({
                 <input
                   type={"text"}
                   name={"name"}
-                  value={data.name}
+                  value={activeCoach.name}
                   placeholder={"Full Name"}
                   onChange={(e) => onChange(e)}
                   className={
                     "pb-4 pt-2 w-full text-gray-700 border-b focus:border-b focus:outline-none text-lg focus:border-purple-500"
                   }
                 />
-                {error && !data.name && (
-                  <small className="block text-red-600 mt-1">
-                    Name is required
-                  </small>
-                )}
               </div>
               <div className={"mb-4"}>
                 <textarea
                   name={"description"}
-                  value={data.description}
+                  value={activeCoach.description}
                   onChange={(e) => onChange(e)}
                   className={
                     "pb-4 pt-2 w-full text-gray-700 border-b focus:border-b focus:outline-none text-lg focus:border-purple-500"
@@ -212,7 +227,7 @@ export default function CreateCoach({
               <div className={"mb-4"}>
                 <select
                   name={"issue"}
-                  value={data.issue}
+                  value={activeCoach.issue?.issueName}
                   onChange={(e) => onChange(e)}
                   className={
                     "pb-4 pt-2 w-full text-gray-700 border-b focus:border-b focus:outline-none text-lg focus:border-purple-500"
@@ -229,11 +244,6 @@ export default function CreateCoach({
                     </option>
                   ))}
                 </select>
-                {error && !data.issue && (
-                  <small className="block text-red-600 mt-1">
-                    Select coach related issue
-                  </small>
-                )}
               </div>
               <div className={"mb-4"}>
                 <button

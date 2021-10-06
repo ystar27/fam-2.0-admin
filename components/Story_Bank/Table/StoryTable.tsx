@@ -8,7 +8,7 @@ const StoryTable = ({
   setEditStory,
   setDeleteStory,
 }: any) => {
-  const [datatable, setDatatable] = React.useState({
+  const [datatable, setDatatable] = useState({
     columns: storyTableColumns,
     rows,
   });

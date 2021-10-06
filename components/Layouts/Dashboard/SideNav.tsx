@@ -89,7 +89,10 @@ const navLinks = [
     name: "Lessons",
     link: "#",
     icon: faBookOpen,
-    items: [],
+    items: [
+      { name: "Lesson Bank", link: "/lesson" },
+      { name: "Daily Lesson", link: "/lesson/daily" },
+    ],
   },
   {
     name: "Personal Issues",

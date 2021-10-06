@@ -5,17 +5,12 @@ export const columns = [
     width: 50,
   },
   {
-    label: "Coach",
-    field: "name",
-    width: 200,
-  },
-  {
-    label: "Issue",
-    field: "issue",
+    label: "Lesson",
+    field: "title",
     width: 220,
   },
   {
-    label: "ACTIONS",
+    label: "Action",
     field: "actions",
     width: 200,
   },
