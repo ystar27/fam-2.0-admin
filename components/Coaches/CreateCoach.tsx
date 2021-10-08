@@ -25,7 +25,7 @@ export default function CreateCoach({
   const [previewImgErr, setPreviewImgErr] = useState(false);
   const [error, setError] = useState(false);
   const [data, setData] = useState(initialCoachState);
-  const notification = useContext(notificationsContext);
+  const notification = useContext(notificationsContext) as any;
   const slideRef = useRef();
 
   useEffect(() => {
@@ -43,7 +43,7 @@ export default function CreateCoach({
       });
   }, []);
 
-  const uploadImg = (e) => {
+  const uploadImg = (e: { target: { files: any[] } }) => {
     let file = e.target.files[0];
 
     if (file && file.size < 5500000) {
@@ -58,11 +58,16 @@ export default function CreateCoach({
     }
   };
 
-  const onChange = (e) => {
+  const onChange = (
+    e:
+      | React.ChangeEvent<HTMLInputElement>
+      | React.ChangeEvent<HTMLTextAreaElement>
+      | React.ChangeEvent<HTMLSelectElement>
+  ) => {
     setData({ ...data, [e.target.name]: e.target.value });
   };
 
-  const onSubmit = async (e) => {
+  const onSubmit = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
     try {
       if (data.name && data.issue) {

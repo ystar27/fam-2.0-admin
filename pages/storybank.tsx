@@ -1,6 +1,9 @@
 import React, { useState, useEffect, useContext } from "react";
 import Link from "next/link";
-import Dashboard from "../components/Layouts/Dashboard/Dashboard";
+import dynamic from "next/dynamic";
+const Dashboard = dynamic(
+  () => import("../components/Layouts/Dashboard/Dashboard")
+);
 import Head from "../components/Layouts/Header/Head";
 import Navbar from "../components/Layouts/Header/Navbar";
 import Delete from "../components/Layouts/Alert/Delete";
