@@ -1,7 +1,10 @@
 import React, { useState } from "react";
+import dynamic from "next/dynamic";
 import Table from "../components/Collaboration/Table";
 import CreateModule from "../components/FAM_MODULE/CreateModule";
-import Dashboard from "../components/Layouts/Dashboard/Dashboard";
+const Dashboard = dynamic(
+  () => import("../components/Layouts/Dashboard/Dashboard")
+);
 import Head from "../components/Layouts/Header/Head";
 import Navbar from "../components/Layouts/Header/Navbar";
 import Delete from "../components/Layouts/Alert/Delete";
@@ -20,7 +23,9 @@ export default function COLLABORATION() {
     <div className={"flex flex-col h-screen"}>
       <Head />
       <Navbar />
-      {iDelete.delete && <Delete setIDelete={setIDelete} message="Approve delete" />}
+      {iDelete.delete && (
+        <Delete setIDelete={setIDelete} message="Approve delete" />
+      )}
       {createModule && <CreateModule setCreateModule={setCreateModule} />}
       <Dashboard>
         <div className="mx-auto container px-5 duration-300">
@@ -31,7 +36,10 @@ export default function COLLABORATION() {
               <h5 className={"ml-2"}> Collaborations</h5>
             </div>
           </div>
-          <div className={"w-full bg-white rounded py-6 mb-32"} style={{boxShadow: "0px 4px 45px rgba(0, 0, 0, 0.04)"}}>
+          <div
+            className={"w-full bg-white rounded py-6 mb-32"}
+            style={{ boxShadow: "0px 4px 45px rgba(0, 0, 0, 0.04)" }}
+          >
             <Table
               setCreateModule={setCreateModule}
               setAddModuleField={setAddModuleField}
