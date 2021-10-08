@@ -72,20 +72,24 @@ export default function EditCoach({
           let image64 = await Utils.getBase64(imgFile);
 
           let uploadedImg = await axios.post(
-            "https://api.cloudinary.com/v1_1/collinspro/image/upload",
+            "https://api.cloudinary.com/v1_1/young-development-initiative/image/upload",
             {
               file: image64,
-              upload_preset: "mnj1wcl2",
+              upload_preset: "mesotej3",
               folder: "fam",
             }
           );
-          activeCoach.image = uploadedImg.secure_url;
+          activeCoach.image = uploadedImg.data.secure_url;
         }
 
+        console.log(activeCoach, "activeCoach activeCoach");
+
         const updatedIssue = await axios.patch(
-          `/coach/:${activeCoach._id}`,
+          `/coach/${activeCoach._id}`,
           activeCoach
         );
+
+        console.log(updatedIssue.data);
 
         const uCoaches = coaches.map((e, i) =>
           e._id == updatedIssue.data.data._id ? updatedIssue.data.data : e

@@ -8,41 +8,51 @@ export const columns = [
       "aria-controls": "DataTable",
       "aria-label": "Module Name",
     },
-    width: 150,
+    width: 100,
   },
   {
     label: "Name",
     field: "user",
+    width: 200,
+  },
+  {
+    label: "Phone",
+    field: "phone",
+    width: 150,
+  },
+  {
+    label: "Email",
+    field: "email",
     width: 220,
   },
   {
     label: "Facebook",
     field: "facebook",
-    width: 150,
+    width: 100,
   },
   {
     label: "Telegram",
     field: "telegram",
-    width: 150,
+    width: 100,
   },
   {
     label: "WhatsApp",
     field: "whatsapp",
-    width: 150,
+    width: 100,
   },
   {
     label: "Instagram",
     field: "instagram",
-    width: 150,
+    width: 100,
   },
   {
     label: "Twitter",
     field: "twitter",
-    width: 150,
+    width: 100,
   },
   {
     label: "Total",
     field: "total",
-    width: 150,
+    width: 100,
   },
 ];

@@ -23,10 +23,10 @@ function StoryBank({ subMod, relatedSubModule }: any) {
     if (storyImg?.name && storyImg?.size) {
       let newImg = await Utils.getBase64(storyImg);
       let uploadedImg = await axios.post(
-        "https://api.cloudinary.com/v1_1/collinspro/image/upload",
+        "https://api.cloudinary.com/v1_1/young-development-initiative/image/upload",
         {
           file: newImg,
-          upload_preset: "mnj1wcl2",
+          upload_preset: "mesotej3",
           folder: "fam",
         }
       );

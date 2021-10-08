@@ -4,7 +4,6 @@ import { MDBDataTable } from "mdbreact";
 import { columns } from "./data";
 
 export default function Table({ referrals }: any) {
-  const [input, setInput] = useState("");
   const [datatable, setDatatable] = useState({
     rows: referrals,
     columns,

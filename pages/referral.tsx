@@ -6,6 +6,8 @@ import Navbar from "../components/Layouts/Header/Navbar";
 import axios from "../services/axios";
 
 function Referral({ referrals }: any) {
+  console.log(referrals, "referrals referrals referrals referrals referrals ");
+
   return (
     <div className={"flex flex-col h-screen"}>
       <Head />
@@ -32,20 +34,27 @@ export async function getServerSideProps() {
   try {
     const referrals = await axios.get("/referrals");
 
-    const res = referrals.data.data.map((e, i) => ({
-      id: i + 1,
-      user: `${e.user?.firstName.toUpperCase()} ${e.user?.lastName.toUpperCase()}`,
-      facebook: e.people.filter((peps) => peps.channelUsed == "Facebook")
-        .length,
-      twitter: e.people.filter((peps) => peps.channelUsed == "Twitter").length,
-      whatsapp: e.people.filter((peps) => peps.channelUsed == "WhatsApp")
-        .length,
-      telegram: e.people.filter((peps) => peps.channelUsed == "Telegram")
-        .length,
-      instagram: e.people.filter((peps) => peps.channelUsed == "Instagram")
-        .length,
-      total: e.people.length,
-    }));
+    const res = referrals.data.data.map((e: any, i: number) => {
+      return {
+        id: i + 1,
+        user: `${e.user?.firstName.toUpperCase()} ${e.user?.lastName.toUpperCase()}`,
+        facebook: e.people.filter((peps: any) => peps.channelUsed == "Facebook")
+          .length,
+        twitter: e.people.filter((peps: any) => peps.channelUsed == "Twitter")
+          .length,
+        whatsapp: e.people.filter((peps: any) => peps.channelUsed == "WhatsApp")
+          .length,
+        telegram: e.people.filter((peps: any) => peps.channelUsed == "Telegram")
+          .length,
+        instagram: e.people.filter(
+          (peps: any) => peps.channelUsed == "Instagram"
+        ).length,
+        total: e.people.length,
+        email: e?.user?.email || "email",
+        phone:
+          e?.user?.phoneNumber || e?.user?.personalInfo?.phoneNumber || "phone",
+      };
+    });
 
     return {
       props: {

@@ -71,10 +71,10 @@ export default function CreateCoach({
           let image64 = await Utils.getBase64(imgFile);
 
           let uploadedImg = await axios.post(
-            "https://api.cloudinary.com/v1_1/collinspro/image/upload",
+            "https://api.cloudinary.com/v1_1/young-development-initiative/image/upload",
             {
               file: image64,
-              upload_preset: "mnj1wcl2",
+              upload_preset: "mesotej3",
               folder: "fam",
             }
           );
