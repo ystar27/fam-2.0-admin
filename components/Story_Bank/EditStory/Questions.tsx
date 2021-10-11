@@ -90,7 +90,7 @@ export default function Questions({
               });
             }}
           >
-            Remove Story -
+            Remove Question -
           </button>
           <button
             className={
@@ -103,7 +103,7 @@ export default function Questions({
               });
             }}
           >
-            Add Story +
+            Add Question +
           </button>
         </div>
       </div>
