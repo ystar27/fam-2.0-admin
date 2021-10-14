@@ -1,9 +1,22 @@
 import "../styles/globals.generated.css";
 import React, { useState, createContext } from "react";
+import ProgressBar from "@badrap/bar-of-progress";
+import { Router } from "next/router";
 import type { AppProps } from "next/app";
 import Notifications from "../components/Layouts/Alert/Notifications";
 
 export const notificationsContext = createContext();
+const progress = new ProgressBar({
+  size: 2.5,
+  color: "rgb(181 105 219)",
+  className: "bar-of-progress",
+  delay: 100,
+});
+
+Router.events.on("routeChangeStart", progress.start);
+Router.events.on("routeChangeComplete", progress.finish);
+Router.events.on("routeChangeError", progress.finish);
+
 function MyApp({ Component, pageProps }: AppProps) {
   const [notifications, setNotifications] = useState([]);
 
