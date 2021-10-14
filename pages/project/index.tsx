@@ -111,7 +111,7 @@ function Idea({ project }: any) {
             <h1 className={"text-2xl mb-1"}>Welcome Admin!</h1>
             <div style={{ color: "#B569D4" }} className={"flex items-center"}>
               <h5 className={"mr-2"}>Dashboard</h5> &gt;{" "}
-              <h5 className={"ml-2"}> Project</h5>
+              <h5 className={"ml-2"}> Project Ideas</h5>
             </div>
           </div>
           <div>
