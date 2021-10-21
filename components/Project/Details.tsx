@@ -2,7 +2,7 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 
-export default function CreateCoach({ activeProject, setDetails }: any) {
+export default function Detail({ activeProject, setDetails }: any) {
   let date = new Date(activeProject.createdAt);
 
   return (

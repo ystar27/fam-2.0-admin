@@ -76,7 +76,7 @@ export default function Questions({
             />
           ))}
         </div>
-        <div className={"grid grid-cols-2 gap-5"}>
+        {/* <div className={"grid grid-cols-2 gap-5"}>
           <button
             className={
               "px-4 py-3 w-full bg-gray-50 text-lg rounded text-gray-600 font-mono font-semibold focus:outline-none"
@@ -105,7 +105,7 @@ export default function Questions({
           >
             Add Question +
           </button>
-        </div>
+        </div> */}
       </div>
     </div>
   );

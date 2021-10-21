@@ -6,7 +6,10 @@ import Navbar from "../../components/Layouts/Header/Navbar";
 import ProjectDetails from "../../components/Project/Details";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashAlt, faEdit } from "@fortawesome/free-solid-svg-icons";
-import { deleteProjectIdea, getProjectIdeas } from "../../services/projectRequest";
+import {
+  deleteProjectIdea,
+  getProjectIdeas,
+} from "../../services/projectRequest";
 import Delete from "../../components/Layouts/Alert/Delete";
 import { notificationsContext } from "../../pages/_app";
 
@@ -31,7 +34,7 @@ function Idea({ project }: any) {
           actions: (
             <div className={"flex items-center justify-start"}>
               <button
-                className={"rounded py-1 mr-2 px-4 flex items-center"}
+                className={"rounded py-1 mr-2 px-4 flex items-center text-sm"}
                 style={{ backgroundColor: "#CBFEEF", color: "#20C997" }}
                 onClick={() => {
                   setActiveProject(p);
@@ -46,7 +49,7 @@ function Idea({ project }: any) {
                 Details
               </button>
               <button
-                className={"rounded py-1 mr-2 px-4 flex items-center"}
+                className={"rounded py-1 mr-2 px-4 flex items-center text-sm"}
                 style={{
                   backgroundColor: "rgba(220, 53, 69, 0.12)",
                   color: "#DC3545",
@@ -84,6 +87,7 @@ function Idea({ project }: any) {
         description: "Project idea deleted successfully",
       });
     } catch (error) {
+      setIDelete(false);
       notification.warn({
         message: "Network error",
         description: "Check network connection",
@@ -99,7 +103,7 @@ function Idea({ project }: any) {
         <Delete
           deleteFunc={deleteIProject}
           setIDelete={setIDelete}
-          message="Remove coach"
+          message="Delete project idea"
         />
       )}
       {details && (
