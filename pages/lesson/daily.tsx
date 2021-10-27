@@ -76,14 +76,14 @@ const Daily = ({ modules, issues }: any) => {
   };
 
   const onSelectChange = (e: any) => {
-    if (e.target.value && e.target.name === "module") {
+    if (e.target.value !== "" && e.target.name === "module") {
       let selectedMdl: any = modules.filter(
         (module: { _id: any }) => module._id == e.target.value
       );
       setData({ ...data, [e.target.name]: selectedMdl[0] });
       setDailyLesson({ ...dailyLessons, [e.target.name]: selectedMdl[0]._id });
       setSubModule(selectedMdl[0]?.subModule);
-    } else if (e.target.value && e.target.name === "subModule") {
+    } else if (e.target.value !== "" && e.target.name === "subModule") {
       let selectedSubMdl: any = subModule.filter(
         (submodule: { _id: any }) => submodule._id == e.target.value
       );
@@ -201,7 +201,7 @@ const Daily = ({ modules, issues }: any) => {
                       "pb-4 pt-2 w-full text-gray-700 border-b focus:border-b focus:outline-none text-lg focus:border-purple-500"
                     }
                   >
-                    <option className={"hover:bg-purple-400"}>
+                    <option value={""} className={"hover:bg-purple-400"}>
                       Select Issue
                     </option>
                     {issue.map((e: any, idx: number) => (

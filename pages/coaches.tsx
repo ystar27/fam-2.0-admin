@@ -8,6 +8,7 @@ import CreateCoach from "../components/Coaches/CreateCoach";
 import EditCoach from "../components/Coaches/EditCoach";
 import { notificationsContext } from "./_app";
 import axios from "../services/axios";
+
 export default function Coaches() {
   const [coaches, setCoaches] = useState([]);
   const [createCoach, setCreateCoach] = useState(false);
