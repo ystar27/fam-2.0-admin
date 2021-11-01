@@ -23,13 +23,13 @@ const initialDailyLesson = {
 };
 
 const Daily = ({ modules, issues }: any) => {
-  const [displayUnsetDailyLesson, setDisplayUnsetDailyLesson] = useState(true);
   const [subModule, setSubModule] = useState([]);
   const [issue, setIssue] = useState(issues);
   const [inputedLessons, setInputedLessons] = useState([]);
   const [data, setData] = useState(initialData);
   const [dailyLessons, setDailyLesson] = useState(initialDailyLesson);
   const notification = useContext(notificationsContext);
+  const [displaySelectIssue, setDisplaySelectIssue] = useState(false);
 
   useEffect(() => {
     getDailyLesson();
@@ -38,6 +38,17 @@ const Daily = ({ modules, issues }: any) => {
   useEffect(() => {
     issueLesson();
   }, [data.issue]);
+
+  useEffect(() => {
+    if (dailyLessons.module.length > 0 && dailyLessons.subModule.length > 0) {
+      setDisplaySelectIssue(true);
+    }
+  }, [
+    dailyLessons.module,
+    dailyLessons.subModule,
+    data.module,
+    data.subModule,
+  ]);
 
   const issueLesson = async () => {
     if (data.issue) {
@@ -76,14 +87,14 @@ const Daily = ({ modules, issues }: any) => {
   };
 
   const onSelectChange = (e: any) => {
-    if (e.target.value && e.target.name === "module") {
+    if (e.target.value !== "" && e.target.name === "module") {
       let selectedMdl: any = modules.filter(
         (module: { _id: any }) => module._id == e.target.value
       );
       setData({ ...data, [e.target.name]: selectedMdl[0] });
       setDailyLesson({ ...dailyLessons, [e.target.name]: selectedMdl[0]._id });
       setSubModule(selectedMdl[0]?.subModule);
-    } else if (e.target.value && e.target.name === "subModule") {
+    } else if (e.target.value !== "" && e.target.name === "subModule") {
       let selectedSubMdl: any = subModule.filter(
         (submodule: { _id: any }) => submodule._id == e.target.value
       );
@@ -193,28 +204,30 @@ const Daily = ({ modules, issues }: any) => {
                     ))}
                   </select>
                 </div>
-                <div className={"mb-4 w-full"}>
-                  <select
-                    name={"issue"}
-                    onChange={onSelectChange}
-                    className={
-                      "pb-4 pt-2 w-full text-gray-700 border-b focus:border-b focus:outline-none text-lg focus:border-purple-500"
-                    }
-                  >
-                    <option className={"hover:bg-purple-400"}>
-                      Select Issue
-                    </option>
-                    {issue.map((e: any, idx: number) => (
-                      <option
-                        key={idx}
-                        value={e._id}
-                        className={"hover:bg-purple-400"}
-                      >
-                        {e.title}
+                {displaySelectIssue && (
+                  <div className={"mb-4 w-full"}>
+                    <select
+                      name={"issue"}
+                      onChange={onSelectChange}
+                      className={
+                        "pb-4 pt-2 w-full text-gray-700 border-b focus:border-b focus:outline-none text-lg focus:border-purple-500"
+                      }
+                    >
+                      <option value={""} className={"hover:bg-purple-400"}>
+                        Select Issue
                       </option>
-                    ))}
-                  </select>
-                </div>
+                      {issue.map((e: any, idx: number) => (
+                        <option
+                          key={idx}
+                          value={e._id}
+                          className={"hover:bg-purple-400"}
+                        >
+                          {e.title}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                )}
               </div>
             </div>
             <form onSubmit={submitLessons}>

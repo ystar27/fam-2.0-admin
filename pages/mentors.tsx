@@ -1,20 +1,12 @@
 import React, { useState } from "react";
-import Table from "../components/Mentors/Table";
-import dynamic from "next/dynamic";
-const Dashboard = dynamic(
-  () => import("../components/Layouts/Dashboard/Dashboard")
-);
+import Dashboard from "../components/Layouts/Dashboard/Dashboard";
 import Head from "../components/Layouts/Header/Head";
 import Navbar from "../components/Layouts/Header/Navbar";
 import Delete from "../components/Layouts/Alert/Delete";
-import Success from "../components/Layouts/Alert/Success";
-import Error from "../components/Layouts/Alert/Error";
 import AddMentor from "../components/Mentors/AddMentor";
-import Edit from "../components/Mentors/EditMentor/Edit";
 
 export default function StoryBank() {
   const [addMentor, setAddMentor] = useState(false);
-  const [edit, setEdit] = useState(false);
   const [iDelete, setIDelete] = useState({
     delete: false,
     approveDelete: false,
@@ -38,16 +30,7 @@ export default function StoryBank() {
             </div>
           </div>
           <div>
-            {edit ? (
-              <Edit setEdit={setEdit} />
-            ) : (
-              <Table
-                setAddMentor={setAddMentor}
-                setIDelete={setIDelete}
-                iDelete={iDelete}
-                setEdit={setEdit}
-              />
-            )}
+            
           </div>
         </div>
       </Dashboard>

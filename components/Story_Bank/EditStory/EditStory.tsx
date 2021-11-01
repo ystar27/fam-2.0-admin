@@ -101,10 +101,10 @@ export default function EditStory({
           </div>
           {idx < 1 ? (
             <Profile
+              setIdx={setIdx}
               setStoryImg={setStoryImg}
               activeStory={activeStory}
               setActiveStory={setActiveStory}
-              setIdx={setIdx}
             />
           ) : (
             <Questions

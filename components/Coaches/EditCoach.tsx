@@ -82,15 +82,10 @@ export default function EditCoach({
           activeCoach.image = uploadedImg.data.secure_url;
         }
 
-        console.log(activeCoach, "activeCoach activeCoach");
-
         const updatedIssue = await axios.patch(
           `/coach/${activeCoach._id}`,
           activeCoach
         );
-
-        console.log(updatedIssue.data);
-
         const uCoaches = coaches.map((e, i) =>
           e._id == updatedIssue.data.data._id ? updatedIssue.data.data : e
         );

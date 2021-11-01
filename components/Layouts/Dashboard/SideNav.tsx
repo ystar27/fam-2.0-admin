@@ -83,7 +83,10 @@ const navLinks = [
     name: "Projects",
     link: "#",
     icon: faProjectDiagram,
-    items: [],
+    items: [
+      { name: "Project Ideas", link: "/project" },
+      { name: "Project Report", link: "/project/report" },
+    ],
   },
   {
     name: "Lessons",
