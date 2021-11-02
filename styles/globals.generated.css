@@ -31892,6 +31892,18 @@ a {
   display: none !important;
 }
 
+.text-primary {
+  color: #b569d4;
+}
+
+.bg-primary {
+  background-color: #b569d4;
+}
+
+.border-primary {
+  border-color: #b569d4;
+}
+
 .dataTables_wrapper > .row:first-child {
   padding-left: 1.25rem;
   padding-right: 1.25rem;
@@ -31900,31 +31912,16 @@ a {
   margin-bottom: 2rem;
 }
 
-.mdb-datatable-filter > input {
+.mdb-datatable-filter > input, .form-control-sm  {
   background: #ffffff;
-  border: 0.5px solid #e0e0e0;
+  border: 0.5px solid #c0c0c0;
   box-sizing: border-box;
   border-radius: 3px;
   width: 14rem;
-  border-width: 1px;
-  border-style: none;
-}
-
-.mdb-datatable-filter > input:focus {
-  --tw-border-opacity: 1;
-  border-color: rgba(107, 114, 128, var(--tw-border-opacity));
-}
-
-.mdb-datatable-filter > input {
   padding-left: 1.25rem;
   padding-right: 1.25rem;
   padding-top: 0.25rem;
   padding-bottom: 0.25rem;
-}
-
-.mdb-datatable-filter > input:focus {
-  outline: 2px solid transparent;
-  outline-offset: 2px;
 }
 
 .dataTable {
