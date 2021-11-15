@@ -7,5 +7,5 @@ const getBase64 = (file) => {
   });
 };
 
-const returnMthd = {getBase64}
+const returnMthd = { getBase64 };
 export default returnMthd;
