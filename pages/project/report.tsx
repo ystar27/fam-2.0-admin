@@ -22,15 +22,14 @@ function Idea({ project }: any) {
 
   useEffect(() => {
     if (project.length > 0) {
-      console.log(project);
       let res = project.map((p: any, i: number) => {
         let date = new Date(p.createdAt);
         return {
           ...p,
           no: i + 1,
-          project: p.idea.ideaDetails.projectName,
-          location: p.location,
-          number: p.peopleImpacted,
+          project: p.idea?.projectName,
+          location: p?.location,
+          number: p?.peopleImpacted,
           actions: (
             <div className={"flex items-center justify-start"}>
               <button

@@ -35,7 +35,7 @@ export default function Detail({ activeProject, setDetails }: any) {
               </div>
               <div className={"col-span-3"}>
                 <h3>
-                  {activeProject.ideaDetails.projectName || "Project Name"}
+                  {activeProject?.ideaDetails?.projectName || "Project Name"}
                 </h3>
               </div>
             </div>
@@ -49,7 +49,7 @@ export default function Detail({ activeProject, setDetails }: any) {
               </div>
               <div className={"col-span-3"}>
                 <h3>
-                  {activeProject.ideaDetails.problemToSolve ||
+                  {activeProject?.ideaDetails?.problemToSolve ||
                     "Problem to solve"}
                 </h3>
               </div>
@@ -64,7 +64,7 @@ export default function Detail({ activeProject, setDetails }: any) {
               </div>
               <div className={"col-span-3"}>
                 <h3>
-                  {activeProject.ideaDetails.projectCategory || "Category"}
+                  {activeProject?.ideaDetails?.projectCategory || "Category"}
                 </h3>
               </div>
             </div>
@@ -78,7 +78,7 @@ export default function Detail({ activeProject, setDetails }: any) {
               </div>
               <div className={"col-span-3"}>
                 <h3>
-                  {activeProject.ideaDetails.willYouWorkWithPartners ||
+                  {activeProject?.ideaDetails?.willYouWorkWithPartners ||
                     "Will you work with partners"}
                 </h3>
               </div>
@@ -93,7 +93,7 @@ export default function Detail({ activeProject, setDetails }: any) {
               </div>
               <div className={"col-span-3"}>
                 <h3>
-                  {activeProject.ideaDetails.reasonForSolvingProblem ||
+                  {activeProject?.ideaDetails?.reasonForSolvingProblem ||
                     "Reason for project"}
                 </h3>
               </div>
@@ -108,7 +108,7 @@ export default function Detail({ activeProject, setDetails }: any) {
               </div>
               <div className={"col-span-3"}>
                 <h3>
-                  {activeProject.ideaDetails.explainSolutionToProblem ||
+                  {activeProject?.ideaDetails?.explainSolutionToProblem ||
                     "Solution to problem"}
                 </h3>
               </div>
@@ -123,7 +123,7 @@ export default function Detail({ activeProject, setDetails }: any) {
               </div>
               <div className={"col-span-3"}>
                 <h3>
-                  {activeProject.ideaDetails.projectImplementation ||
+                  {activeProject?.ideaDetails?.projectImplementation ||
                     "Project implementation"}
                 </h3>
               </div>
@@ -138,7 +138,7 @@ export default function Detail({ activeProject, setDetails }: any) {
               </div>
               <div className={"col-span-3"}>
                 <h3>
-                  {activeProject.ideaDetails.projectImplementationLocation ||
+                  {activeProject?.ideaDetails?.projectImplementationLocation ||
                     "Project implementation location"}
                 </h3>
               </div>
@@ -153,7 +153,7 @@ export default function Detail({ activeProject, setDetails }: any) {
               </div>
               <div className={"col-span-3"}>
                 <h3>
-                  {`${activeProject.user?.firstName} ${activeProject.user?.lastName} ` ||
+                  {`${activeProject?.user?.firstName} ${activeProject?.user?.lastName} ` ||
                     "Full Name"}
                 </h3>
               </div>

@@ -22,14 +22,15 @@ function Idea({ project }: any) {
 
   useEffect(() => {
     if (project.length > 0) {
+      console.log(project);
       let res = project.map((p: any, i: number) => {
         let date = new Date(p.createdAt);
         return {
           ...p,
           no: i + 1,
-          email: p.user.email,
-          username: `${p.user.firstName} ${p.user.lastName}`,
-          project: p.ideaDetails.projectName || "Project",
+          email: p?.user?.email || "Email",
+          username: `${p?.user?.firstName} ${p?.user?.lastName}` || "Full Name",
+          project: p?.ideaDetails?.projectName || "Project",
           dayCreated: date.toDateString(),
           actions: (
             <div className={"flex items-center justify-start"}>

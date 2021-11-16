@@ -9,6 +9,7 @@ export default function ProjectReportDetails({
   setDetails,
 }: any) {
   const [report, setReport] = useState(true);
+  console.log(activeProject);
 
   return (
     <div
@@ -53,7 +54,7 @@ export default function ProjectReportDetails({
               <div>
                 <DetailItem
                   title={"Project Name"}
-                  detail={activeProject?.idea?.ideaDetails?.projectName}
+                  detail={activeProject?.idea?.projectName}
                 />
                 <DetailItem
                   title={"Location"}
@@ -92,23 +93,39 @@ export default function ProjectReportDetails({
               <div>
                 <DetailItem
                   title={"Project Name"}
-                  detail={activeProject?.idea?.ideaDetails?.projectName}
+                  detail={activeProject?.idea?.projectName}
                 />
                 <DetailItem
-                  title={"Project Category"}
-                  detail={activeProject?.idea?.ideaDetails?.problemToSolve}
+                  title={"Category"}
+                  detail={activeProject?.idea?.projectCategory}
                 />
                 <DetailItem
-                  title={"Publicity Plan"}
-                  detail={activeProject?.idea?.ideaDetails?.publicityPlan}
+                  title={"Problem to solve"}
+                  detail={activeProject?.idea?.problemToAddress}
                 />
                 <DetailItem
-                  title={"Expectation"}
-                  detail={activeProject?.idea?.ideaDetails?.resultsExpected}
+                  title={"Solution"}
+                  detail={activeProject?.idea?.solution}
                 />
                 <DetailItem
-                  title={"Individual or Group"}
-                  detail={activeProject?.idea?.ideaDetails?.individualOrGroup}
+                  title={"Expectations"}
+                  detail={activeProject?.idea?.expectFromProject}
+                />
+                <DetailItem
+                  title={"Benefits"}
+                  detail={activeProject?.idea?.benefitFromProject}
+                />
+                <DetailItem
+                  title={"Reason for Problem"}
+                  detail={activeProject?.idea?.reasonForProblem}
+                />
+                <DetailItem
+                  title={"Publicity"}
+                  detail={activeProject?.idea?.publicizeProject}
+                />
+                <DetailItem
+                  title={"Partners"}
+                  detail={activeProject?.idea?.partners}
                 />
                 <DetailItem
                   title={"Created At"}
