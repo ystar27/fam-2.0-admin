@@ -19,12 +19,10 @@ export default function EditSubModule({
     activeSubModule.description || ""
   );
   const [date, setSubModuleDate] = useState({
-    start: activeSubModule.date?.start,
-    end: activeSubModule.date?.end,
+    start: activeSubModule?.date?.start,
+    end: activeSubModule?.date?.end,
   });
   const slideRef = useRef();
-
-  console.log(activeSubModule);
 
   useEffect(() => {
     if (date.start && date.end) {

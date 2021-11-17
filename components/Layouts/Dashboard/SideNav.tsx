@@ -68,7 +68,11 @@ const navLinks = [
     name: "Forums",
     link: "#",
     icon: faAlignRight,
-    items: [],
+    items: [
+      { name: "All Forums", link: "#" },
+      { name: "Blog", link: "#" },
+      { name: "Opportunities", link: "/forums/opportunities"}
+    ],
   },
   {
     name: "LeaderBoard",
