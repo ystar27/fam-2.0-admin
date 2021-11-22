@@ -54,7 +54,7 @@ export default function ProjectReportDetails({
               <div>
                 <DetailItem
                   title={"Project Name"}
-                  detail={activeProject?.idea?.projectName}
+                  detail={activeProject?.idea?.ideaDetails?.projectName}
                 />
                 <DetailItem
                   title={"Location"}
@@ -93,43 +93,43 @@ export default function ProjectReportDetails({
               <div>
                 <DetailItem
                   title={"Project Name"}
-                  detail={activeProject?.idea?.projectName}
+                  detail={activeProject?.idea?.ideaDetails?.projectName}
                 />
                 <DetailItem
                   title={"Category"}
-                  detail={activeProject?.idea?.projectCategory}
+                  detail={activeProject?.idea?.ideaDetails?.projectCategory}
                 />
                 <DetailItem
                   title={"Problem to solve"}
-                  detail={activeProject?.idea?.problemToAddress}
+                  detail={activeProject?.idea?.ideaDetails?.problemToSolve}
                 />
                 <DetailItem
                   title={"Solution"}
-                  detail={activeProject?.idea?.solution}
+                  detail={activeProject?.idea?.ideaDetails?.explainSolutionToProblem}
                 />
                 <DetailItem
                   title={"Expectations"}
-                  detail={activeProject?.idea?.expectFromProject}
+                  detail={activeProject?.idea?.ideaDetails?.resultsExpected}
                 />
                 <DetailItem
                   title={"Benefits"}
-                  detail={activeProject?.idea?.benefitFromProject}
+                  detail={activeProject?.idea?.ideaDetails?.targetBeneficiaries}
                 />
                 <DetailItem
                   title={"Reason for Problem"}
-                  detail={activeProject?.idea?.reasonForProblem}
+                  detail={activeProject?.idea?.ideaDetails?.reasonForSolvingProblem}
                 />
                 <DetailItem
                   title={"Publicity"}
-                  detail={activeProject?.idea?.publicizeProject}
+                  detail={activeProject?.idea?.ideaDetails?.publicityPlan}
                 />
                 <DetailItem
                   title={"Partners"}
-                  detail={activeProject?.idea?.partners}
+                  detail={activeProject?.idea?.ideaDetails?.individualOrGroup}
                 />
                 <DetailItem
                   title={"Created At"}
-                  detail={moment(activeProject?.idea?.createdAt).format(
+                  detail={moment(activeProject?.idea?.ideaDetails?.createdAt).format(
                     "MMM Do YYYY"
                   )}
                 />

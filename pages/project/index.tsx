@@ -20,6 +20,8 @@ function Idea({ project }: any) {
   const [details, setDetails] = useState(false);
   const notification = useContext(notificationsContext);
 
+  console.log(project);
+
   useEffect(() => {
     if (project.length > 0) {
       console.log(project);

@@ -20,6 +20,8 @@ function Idea({ project }: any) {
   const [activeProject, setActiveProject] = useState({});
   const notification = useContext(notificationsContext);
 
+  console.log(project, "project project project project");
+
   useEffect(() => {
     if (project.length > 0) {
       let res = project.map((p: any, i: number) => {
@@ -27,7 +29,7 @@ function Idea({ project }: any) {
         return {
           ...p,
           no: i + 1,
-          project: p.idea?.projectName,
+          project: p.idea?.ideaDetails?.projectName,
           location: p?.location,
           number: p?.peopleImpacted,
           actions: (
