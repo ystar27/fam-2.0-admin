@@ -20,6 +20,7 @@ import {
   faChartBar,
 } from "@fortawesome/free-regular-svg-icons";
 import NavLinkItem from "./NavLinkItem";
+import { faWeibo, faYoast } from "@fortawesome/free-brands-svg-icons";
 
 const navLinks = [
   {
@@ -62,6 +63,12 @@ const navLinks = [
     name: "Certificates",
     link: "#",
     icon: faCertificate,
+    items: [],
+  },
+  {
+    name: "Showcase",
+    link: "/showcase",
+    icon: faWeibo,
     items: [],
   },
   {

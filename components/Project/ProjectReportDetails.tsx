@@ -9,7 +9,6 @@ export default function ProjectReportDetails({
   setDetails,
 }: any) {
   const [report, setReport] = useState(true);
-  console.log(activeProject);
 
   return (
     <div
