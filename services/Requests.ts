@@ -20,3 +20,23 @@ export function getShowcase(data: any) {
 export function deleteShowcase(showcaseId: string) {
 	return axios.delete(`/showcase/${showcaseId}`);
 }
+
+export function adminLogin(data: any) {
+	return axios({ method: "post", url: "/auth/login/admin", data });
+}
+
+export function registerAdmin(data: any) {
+	return axios({ method: "post", url: "/auth/register/admin", data });
+}
+
+export function getAuthAdmin() {
+	return axios.get("/auth/user/admin");
+}
+
+export function getAdmins() {
+	return axios.get("/auth/user/admins");
+}
+
+export function removeAdmin(id: string) {
+	return axios.delete(`/auth/${id}/admin`);
+}

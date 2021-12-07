@@ -1,10 +1,10 @@
 import axios from "axios";
 
 const instance = axios.create({
-  baseURL: "http://localhost:4000/api/v2",
-  headers: {
-    "Content-Type": "application/json",
-  },
+	baseURL: "http://localhost:4000/api/v2",
+	headers: {
+		"Content-Type": "application/json",
+	},
 });
 
 // const instance = axios.create({
@@ -14,15 +14,26 @@ const instance = axios.create({
 //   },
 // });
 
-export const setAuthToken = (token: any) => {
-  token
-    ? (axios.defaults.headers["x-access-token"] = token)
-    : (axios.defaults.headers["x-access-token"] = "");
+export const setAuthToken = (token: string) => {
+	if (typeof window !== "undefined") {
+		instance.defaults.headers.common["Authorization"] = token;
+		window.localStorage.setItem("authorization", token);
+	}
 };
 
 export const DeleteAuthToken = () => {
-  window.localStorage.removeItem("accessToken");
-  axios.defaults.headers["x-access-token"] = "";
+	if (typeof window !== "undefined") {
+		window.localStorage.removeItem("authorization");
+		axios.defaults.headers["Authorization"] = "";
+	}
 };
+
+instance.interceptors.request.use(function (config) {
+	if (typeof window !== "undefined") {
+		const token = window.localStorage.getItem("authorization");
+		config.headers.Authorization = token || null;
+		return config;
+	}
+});
 
 export default instance;

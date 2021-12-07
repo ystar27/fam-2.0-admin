@@ -101,7 +101,6 @@ export default function EditCoach({
         setError(true);
       }
     } catch (error) {
-      console.log(error);
       notification.warn({
         message: "Request not sent",
         description: "Check network connection",

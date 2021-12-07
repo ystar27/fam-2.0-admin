@@ -51,7 +51,6 @@ export default function Edit({ setEdit, categories, rOpportunity, setROpportunit
 				description: "Opportunity successfully updated",
 			});
 		} catch (error) {
-			console.log(error);
 			notification.warn({
 				message: "Network error",
 				description: "Check network connection",

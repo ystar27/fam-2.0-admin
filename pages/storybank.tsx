@@ -55,7 +55,6 @@ function StoryBank({ subMod, relatedSubModule }: any) {
         description: "Story have been updated",
       });
     } catch (error) {
-      console.log(error);
       notification.warn({
         message: "Unable to get stories",
         description: "Check network connection",
@@ -192,7 +191,6 @@ export async function getServerSideProps(context) {
       props: { subMod: subModules, relatedSubModule },
     };
   } catch (error) {
-    console.log(error);
     return {
       props: { subMod: subModules, relatedSubModule },
     };

@@ -7,8 +7,6 @@ import moment from "moment";
 export default function ProjectReportDetails({ activeProject, setDetails }: any) {
 	const [report, setReport] = useState(true);
 
-	console.log(activeProject, "activeProject activeProject activeProject activeProject");
-
 	return (
 		<div className={"w-full h-full absolute overflow-hidden"} style={{ background: "rgba(54, 55, 64, 0.51)", zIndex: 50 }}>
 			<div

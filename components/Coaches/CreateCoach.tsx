@@ -32,7 +32,6 @@ export default function CreateCoach({
     axios
       .get("/issue")
       .then((res) => {
-        console.log(res.data.data);
         setIssues(res.data.data);
       })
       .catch((error) => {

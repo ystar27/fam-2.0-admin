@@ -56,7 +56,6 @@ export default function Create({ setCreate, categories, rOpportunity, setROpport
 				description: "Opportunity successfully created",
 			});
 		} catch (error) {
-			console.log(error);
 			notification.warn({
 				message: "Network error",
 				description: "Check network connection",

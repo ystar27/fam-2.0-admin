@@ -12,7 +12,6 @@ const NavListChild = ({
   activeStyle,
   ...props
 }: any) => {
-  console.log(item);
   const { pathname } = useRouter();
   const isActive = href == pathname;
 

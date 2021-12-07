@@ -75,8 +75,6 @@ const Daily = ({ modules, issues }: any) => {
 
         let res = _.sortBy(dl.data.data[0].lessons, "day");
 
-        console.log(res);
-
         setInputedLessons(res);
       } else {
         setInputedLessons([]);
