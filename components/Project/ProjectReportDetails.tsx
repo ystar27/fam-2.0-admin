@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import DetailItem from "./Report/DetailItem";
@@ -6,6 +6,10 @@ import moment from "moment";
 
 export default function ProjectReportDetails({ activeProject, setDetails }: any) {
 	const [report, setReport] = useState(true);
+	const vidRef = useRef(null);
+	const handlePlayVideo = () => {
+		vidRef.current.play();
+	};
 
 	return (
 		<div className={"w-full h-full absolute overflow-hidden"} style={{ background: "rgba(54, 55, 64, 0.51)", zIndex: 50 }}>
@@ -15,7 +19,7 @@ export default function ProjectReportDetails({ activeProject, setDetails }: any)
 			>
 				<div className={"p-5 flex items-center justify-between bg-gray-50"}>
 					<h2 className={"text-lg font-semibold"} style={{ color: "#B569D4" }}>
-						Project Idea Details
+						Project Report Details
 					</h2>
 					<button className={"p-2 bg-white"} onClick={() => setDetails(false)}>
 						<FontAwesomeIcon className={"h-5 w-5"} icon={faTimes} />
@@ -40,11 +44,17 @@ export default function ProjectReportDetails({ activeProject, setDetails }: any)
 								<DetailItem title={"Project Name"} detail={activeProject?.idea?.ideaDetails?.projectName} />
 								<DetailItem title={"Location"} detail={activeProject?.location} />
 								<DetailItem title={"Implementation"} detail={activeProject?.howImplemented} />
+								<DetailItem title={"Result"} detail={activeProject?.result} />
 								<DetailItem title={"Number Impacted"} detail={activeProject?.peopleImpacted} />
-								<DetailItem title={"Personal Achievement"} detail={activeProject?.projectSelfImprovement} />
-								<DetailItem title={"Challenges"} detail={activeProject?.challenges} />
 								<DetailItem title={"Lessons"} detail={activeProject?.lessons} />
+								<DetailItem title={"Mode Of Submission"} detail={activeProject?.modeOfSubmission} />
+								<DetailItem title={"Personal Achievement"} detail={activeProject?.projectSelfImprovement} />
+								<DetailItem title={"Fund Raising Details"} detail={activeProject?.fundRaisingDetail} />
+								<DetailItem title={"Factors For Better Implementation"} detail={activeProject?.factorsForBetterImplementaation} />
 								<DetailItem title={"Amount Spent"} detail={activeProject?.amountSpent} />
+								<DetailItem title={"Challenges"} detail={activeProject?.challenges} />
+								<DetailItem title={"Extending"} detail={activeProject?.extending} />
+								<DetailItem title={"Comment"} detail={activeProject?.comment} />
 								<DetailItem
 									title={"Date Completed"}
 									detail={
@@ -52,10 +62,31 @@ export default function ProjectReportDetails({ activeProject, setDetails }: any)
 										moment(activeProject.createdAt).format("MMM Do YYYY")
 									}
 								/>
+								{/* <iframe width="100%" src={activeProject?.video + "?autoplay=1&mute=1"}></iframe> */}
+								{activeProject?.video && (
+									<div>
+										<div className="mb-5">
+											<a href={activeProject?.video} target={"_blank"} className={"bg-blue-800 text-white px-5 py-2 shadow hover:opacity-90"}>
+												Link To Project
+											</a>
+										</div>
+										<div>
+											<iframe
+												width="100%"
+												height="315"
+												src={activeProject?.video}
+												title="Video player"
+												frameborder="0"
+												allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+												allowfullscreen
+											></iframe>
+										</div>
+									</div>
+								)}
 								{activeProject?.projectPictures &&
 									activeProject?.projectPictures.length > 0 &&
 									activeProject?.projectPictures.map((e, i) => (
-										<div key={i} className={'py-5 w-full'}>
+										<div key={i} className={"py-5 w-full"}>
 											<img src={e?.url} alt={"Project Image"} className={"w-full"} />
 										</div>
 									))}
