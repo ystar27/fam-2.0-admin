@@ -22,6 +22,14 @@ function Showcase({ shows }: Interface) {
 	const [loading, setLoading] = useState(false);
 	const notification = useContext(notificationsContext);
 
+	useEffect(() => {
+		getShowcase({ page: 1 })
+			.then((res) => {
+				setShowcase(res.data.data);
+			})
+			.catch((error) => {});
+	}, []);
+
 	let updateShowcase = () => {
 		setLoading(true);
 		getShowcase({ page: page + 1 })

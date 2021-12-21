@@ -59,7 +59,7 @@ export default function ProjectReportDetails({ activeProject, setDetails }: any)
 									title={"Date Completed"}
 									detail={
 										// moment(activeProject?.date).format("MMM Do YYYY") ||
-										moment(activeProject.createdAt).format("MMM Do YYYY")
+										moment(activeProject.updatedAt).format("MMM Do YYYY")
 									}
 								/>
 								{/* <iframe width="100%" src={activeProject?.video + "?autoplay=1&mute=1"}></iframe> */}
@@ -102,7 +102,7 @@ export default function ProjectReportDetails({ activeProject, setDetails }: any)
 								<DetailItem title={"Reason for Problem"} detail={activeProject?.idea?.ideaDetails?.reasonForSolvingProblem} />
 								<DetailItem title={"Publicity"} detail={activeProject?.idea?.ideaDetails?.publicityPlan} />
 								<DetailItem title={"Partners"} detail={activeProject?.idea?.ideaDetails?.individualOrGroup} />
-								<DetailItem title={"Created At"} detail={moment(activeProject?.idea?.ideaDetails?.createdAt).format("MMM Do YYYY")} />
+								<DetailItem title={"Created At"} detail={moment(activeProject?.idea?.createdAt).format("MMM Do YYYY")} />
 							</div>
 						)}
 					</div>

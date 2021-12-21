@@ -23,12 +23,21 @@ function Idea({ opportunities, oppCategory }: any) {
 	const notification = useContext(notificationsContext);
 
 	useEffect(() => {
-		if (opportunities.length > 0) {
-			let res = resetOpportunity(opportunities);
-			setOpportunity(res);
-		}
+		loadData();
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
+
+	const loadData = async () => {
+		try {
+			const opportunities = await getOpportunity();
+			const oppCategory = await getOpportunityCategory();
+			setROpportunity(opportunities.data.data);
+			setCategory(oppCategory.data.data);
+			if (opportunities.data?.data?.length > 0) {
+				resetOpportunity(opportunities.data.data);
+			}
+		} catch (error) {}
+	};
 
 	useEffect(() => {
 		resetOpportunity(rOpportunity);
