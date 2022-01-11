@@ -41,6 +41,10 @@ export default function ProjectReportDetails({ activeProject, setDetails }: any)
 					<div className={"px-5"}>
 						{report ? (
 							<div>
+								<DetailItem title={"Full Name"} detail={`${activeProject?.user?.lastName} ${activeProject?.user?.firstName}`} />
+								<DetailItem title={"Email"} detail={activeProject?.user?.email || activeProject?.user?.personalInfo?.email} />
+								<DetailItem title={"Phone"} detail={ activeProject?.user?.personalInfo?.phoneNumber || activeProject?.user?.phoneNumber } />
+								<DetailItem title={"Location"} detail={activeProject?.location} />
 								<DetailItem title={"Project Name"} detail={activeProject?.idea?.ideaDetails?.projectName} />
 								<DetailItem title={"Location"} detail={activeProject?.location} />
 								<DetailItem title={"Implementation"} detail={activeProject?.howImplemented} />
@@ -64,13 +68,13 @@ export default function ProjectReportDetails({ activeProject, setDetails }: any)
 								/>
 								{/* <iframe width="100%" src={activeProject?.video + "?autoplay=1&mute=1"}></iframe> */}
 								{activeProject?.video && (
-									<div>
+									<div className="mb-5">
 										<div className="mb-5">
 											<a href={activeProject?.video} target={"_blank"} className={"bg-blue-800 text-white px-5 py-2 shadow hover:opacity-90"}>
 												Link To Project
 											</a>
 										</div>
-										<div>
+										{/* <div>
 											<iframe
 												width="100%"
 												height="315"
@@ -80,7 +84,7 @@ export default function ProjectReportDetails({ activeProject, setDetails }: any)
 												allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
 												allowfullscreen
 											></iframe>
-										</div>
+										</div> */}
 									</div>
 								)}
 								{activeProject?.projectPictures &&

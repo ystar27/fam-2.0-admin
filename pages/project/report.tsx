@@ -70,6 +70,7 @@ function Idea() {
 
 	const getProjects = async () => {
 		const res = await getProjectReport();
+		console.log(res.data, "res.data")
 		setProject(res.data.data);
 	};
 
@@ -116,22 +117,22 @@ function Idea() {
 	);
 }
 
-export async function getServerSideProps() {
-	try {
-		const project = await getProjectReport();
+// export async function getServerSideProps() {
+// 	try {
+// 		const project = await getProjectReport();
 
-		return {
-			props: {
-				project: project.data.data,
-			},
-		};
-	} catch (error) {
-		return {
-			props: {
-				project: [],
-			},
-		};
-	}
-}
+// 		return {
+// 			props: {
+// 				project: project.data.data,
+// 			},
+// 		};
+// 	} catch (error) {
+// 		return {
+// 			props: {
+// 				project: [],
+// 			},
+// 		};
+// 	}
+// }
 
 export default Idea;
