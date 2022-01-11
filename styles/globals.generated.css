@@ -31971,6 +31971,18 @@ a {
   display: none !important;
 }
 
+.text-primary {
+  color: #b569d4;
+}
+
+.bg-primary {
+  background-color: #b569d4;
+}
+
+.border-primary {
+  border-color: #b569d4;
+}
+
 .dataTables_wrapper > .row:first-child {
   padding-left: 1.25rem;
   padding-right: 1.25rem;
