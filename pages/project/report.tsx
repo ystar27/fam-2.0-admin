@@ -70,7 +70,6 @@ function Idea() {
 
 	const getProjects = async () => {
 		const res = await getProjectReport();
-		console.log(res.data, "res.data")
 		setProject(res.data.data);
 	};
 
