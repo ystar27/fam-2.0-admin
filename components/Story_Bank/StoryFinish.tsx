@@ -19,22 +19,13 @@ export default function StoryFinish({
   const [spin, setSpin] = useState(false);
 
   const submitStory = async () => {
-    let image = "";
+    let image;
     setSpin(true);
 
     try {
       if (storyImg.name && storyImg.size) {
         let image64 = await Utils.getBase64(storyImg);
-
-        let uploadedImg = await axios.post(
-          "https://api.cloudinary.com/v1_1/young-development-initiative/image/upload",
-          {
-            file: image64,
-            upload_preset: "mesotej3",
-            folder: "fam",
-          }
-        );
-        image = uploadedImg.data.secure_url;
+        image = image64;
       }
 
       await axios.post("/story", {

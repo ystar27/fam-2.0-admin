@@ -61,12 +61,7 @@ function StoryBank({ subMod }: any) {
 	const saveEdit = async () => {
 		if (storyImg?.name && storyImg?.size) {
 			let newImg = await Utils.getBase64(storyImg);
-			let uploadedImg = await axios.post("https://api.cloudinary.com/v1_1/young-development-initiative/image/upload", {
-				file: newImg,
-				upload_preset: "mesotej3",
-				folder: "fam",
-			});
-			activeStory.image = uploadedImg.data.secure_url;
+			activeStory.image = newImg;
 			updateStory();
 		} else {
 			updateStory();

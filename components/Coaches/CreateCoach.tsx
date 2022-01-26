@@ -73,16 +73,7 @@ export default function CreateCoach({
         setError(false);
         if (imgFile.name && imgFile.size) {
           let image64 = await Utils.getBase64(imgFile);
-
-          let uploadedImg = await axios.post(
-            "https://api.cloudinary.com/v1_1/young-development-initiative/image/upload",
-            {
-              file: image64,
-              upload_preset: "mesotej3",
-              folder: "fam",
-            }
-          );
-          data.image = uploadedImg.data.secure_url;
+          data.image = image64;
         }
 
         let createdIssue = await axios.post("/coach", data);
