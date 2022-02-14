@@ -44,6 +44,12 @@ const navLinks = [
 		items: [],
 	},
 	{
+		name: "Daily Content",
+		link: "/daily-content",
+		icon: faComments,
+		items: [],
+	},
+	{
 		name: "Story Bank",
 		link: "/storybank",
 		icon: faAddressBook,
