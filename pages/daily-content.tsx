@@ -27,7 +27,7 @@ function FamModule() {
 
   const deleteContent = (id: string) => {
     // no code here on backend
-    setDeleteModalOpen(false)
+    setDeleteModalOpen(false);
   };
 
   useEffect(() => {
@@ -44,6 +44,27 @@ function FamModule() {
     <div className={"flex flex-col h-screen"}>
       <Head />
       <Navbar />
+      {isCreateModalOpen && (
+        <CreateDailyContent
+          setContents={setContents}
+          setCreateModalOpen={setCreateModalOpen}
+        />
+      )}
+      {isEditModalOpen && (
+        <CreateDailyContent
+          setContents={setContents}
+          isEdit={true}
+          content={activeEditContent}
+          setCreateModalOpen={setEditModalOpen}
+        />
+      )}
+      {isDeleteModalOpen && (
+        <Delete
+          message={`Confirm delete for ${activeContent?.title}`}
+          setIDelete={setDeleteModalOpen}
+          deleteFunc={deleteContent}
+        />
+      )}
       <Dashboard>
         <div className="mx-auto container px-5 duration-300">
           <div className={"my-16"}>
@@ -53,27 +74,6 @@ function FamModule() {
               <h5 className={"ml-2"}> Daily Contents</h5>
             </div>
           </div>
-          {isCreateModalOpen && (
-            <CreateDailyContent
-              setContents={setContents}
-              setCreateModalOpen={setCreateModalOpen}
-            />
-          )}
-          {isEditModalOpen && (
-            <CreateDailyContent
-              setContents={setContents}
-              isEdit={true}
-              content={activeEditContent}
-              setCreateModalOpen={setEditModalOpen}
-            />
-          )}
-          {isDeleteModalOpen && (
-            <Delete
-              message={`Confirm delete for ${activeContent?.title}`}
-              setIDelete={setDeleteModalOpen}
-              deleteFunc={deleteContent}
-            />
-          )}
           <div className={"flex items-center justify-end mb-5"}>
             <div className={"flex items-center"}>
               <button
@@ -118,7 +118,11 @@ function FamModule() {
                   </div>
                 </div>
                 {contents.map((content: any, index) => (
-                  <div className={`grid grid-cols-12 gap-x-10 px-5 bg py-3 ${index % 2 === 0 && 'bg-gray-50'}`}>
+                  <div
+                    className={`grid grid-cols-12 gap-x-10 px-5 bg py-3 ${
+                      index % 2 === 0 && "bg-gray-50"
+                    }`}
+                  >
                     <div
                       className={
                         "col-span-1 text-left text-lg font-light font-mono text-gray-800 whitespace-nowrap overflow-hidden truncate"

@@ -88,7 +88,7 @@ const FormMain = () => {
           id="link"
           onChange={formik.handleChange}
           className="pb-4 pt-2 w-full text-gray-700 border-b focus:border-b focus:outline-none text-lg focus:border-purple-500"
-          placeholder={"Link"}
+          placeholder={"Link (optional)"}
         />
         {formik.errors.link && (
           <small className="text-red-600">{formik.errors.link}</small>
@@ -156,7 +156,7 @@ export default function CreateDailyContent({
     >
       <div
         ref={slideRef}
-        className={`max-w-lg slide-in min-w-min w-full duration-500 right-0 md:right-10 absolute top-40 bg-white flex flex-col`}
+        className={`max-w-lg slide-in min-w-min w-full duration-500 right-0 md:right-10 absolute top-20 bg-white flex flex-col`}
       >
         <div className={"p-5 flex items-center justify-between bg-gray-50"}>
           <h2 className={"text-lg font-semibold"} style={{ color: "#B569D4" }}>
