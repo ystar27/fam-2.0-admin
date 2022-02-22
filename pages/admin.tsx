@@ -36,9 +36,6 @@ export default function Admin({ admin }: Interface) {
 	const getUser = async () => {
 		try {
 			let res = await getAuthAdmin();
-			if (res.data.data._id !== "61af7811b864682357071f67") {
-				router.push("/");
-			}
 		} catch (error) {
 			router.push("/");
 			notification.info({
