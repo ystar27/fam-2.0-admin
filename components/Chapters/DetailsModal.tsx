@@ -16,6 +16,8 @@ export default function DetailsModal({
 }: any) {
   const [isListActionSubmitting, setListActionSubmitting] = useState(false);
   const [isTopActionSubmitting, setTopActionSubmitting] = useState(false);
+  const [isApproveActionSubmitting, setApproveActionSubmitting] =
+    useState(false);
   const [isDeleting, setDeleting] = useState(false);
   const notification: any = useContext(notificationsContext);
   const slideRef: any = useRef();
@@ -107,6 +109,30 @@ export default function DetailsModal({
     }
   };
 
+  const toggleApprove = async () => {
+    setApproveActionSubmitting(true);
+    try {
+      const res = await axiosInstance.post(
+        `/chapter/toggle/${chapter?._id}/approve`
+      );
+      setChapters((prev: any) => ({
+        loading: false,
+        data: prev.data.map((chap: any) =>
+          chapter._id === chap._id ? res.data.data : chap
+        ),
+      }));
+      setChapter(res.data.data);
+      notification.success({ message: "FAM chapter approve status toggled" });
+      setApproveActionSubmitting(false);
+    } catch (error: any) {
+      setApproveActionSubmitting(false);
+      notification.error({
+        message: error.response ? error.response.data.message : error.message,
+      });
+      console.log("error______", error.response || error.message);
+    }
+  };
+
   return (
     <div
       className={"w-full h-full absolute overflow-hidden overflow-y-auto"}
@@ -139,62 +165,93 @@ export default function DetailsModal({
               Details
             </h4>
             <div className="flex items-center">
-              {chapter.top ? (
-                <button
-                  className={
-                    "rounded mr-5 py-1 px-4 flex items-center bg-yellow-100 hover:bg-yellow-200 duration-150 text-yellow-500"
-                  }
-                  onClick={toggleTop}
-                >
-                  {isTopActionSubmitting ? (
-                    <i className="fa fa-spin fa-spinner mr-3"></i>
+              {chapter.approved ? (
+                <>
+                  {chapter.top ? (
+                    <button
+                      className={
+                        "rounded mr-5 py-1 px-4 flex items-center bg-yellow-100 hover:bg-yellow-200 duration-150 text-yellow-500"
+                      }
+                      onClick={toggleTop}
+                    >
+                      {isTopActionSubmitting ? (
+                        <i className="fa fa-spin fa-spinner mr-3"></i>
+                      ) : (
+                        <i className="fa fa-times mr-2"></i>
+                      )}
+                      Remove from Top
+                    </button>
                   ) : (
-                    <i className="fa fa-times mr-2"></i>
+                    <button
+                      className={
+                        "rounded mr-5 py-1 px-4 flex items-center bg-green-100 hover:bg-green-200 duration-150 text-green-500"
+                      }
+                      onClick={toggleTop}
+                    >
+                      {isTopActionSubmitting ? (
+                        <i className="fa fa-spin fa-spinner mr-3"></i>
+                      ) : (
+                        <i className="fa fa-check mr-2"></i>
+                      )}
+                      Add to top
+                    </button>
                   )}
-                  Remove from Top
-                </button>
+                  {chapter.status === "LISTED" ? (
+                    <button
+                      className={
+                        "rounded mr-5 py-1 px-4 flex items-center bg-yellow-100 hover:bg-yellow-200 duration-150 text-yellow-500"
+                      }
+                      onClick={removeFromList}
+                    >
+                      {isListActionSubmitting ? (
+                        <i className="fa fa-spin fa-spinner mr-3"></i>
+                      ) : (
+                        <i className="fa fa-times mr-2"></i>
+                      )}
+                      Delist
+                    </button>
+                  ) : (
+                    <button
+                      className={
+                        "rounded mr-5 py-1 px-4 flex items-center bg-green-100 hover:bg-green-200 duration-150 text-green-500"
+                      }
+                      onClick={addToList}
+                    >
+                      {isListActionSubmitting ? (
+                        <i className="fa fa-spin fa-spinner mr-3"></i>
+                      ) : (
+                        <i className="fa fa-check mr-2"></i>
+                      )}
+                      List
+                    </button>
+                  )}
+                  <button
+                    className={
+                      "rounded mr-5 py-1 px-4 flex items-center bg-red-100 hover:bg-red-200 duration-150 text-red-500"
+                    }
+                    onClick={toggleApprove}
+                  >
+                    {isApproveActionSubmitting ? (
+                      <i className="fa fa-spin fa-spinner mr-3"></i>
+                    ) : (
+                      <i className="fa fa-times mr-2"></i>
+                    )}
+                    Disapprove
+                  </button>
+                </>
               ) : (
                 <button
                   className={
                     "rounded mr-5 py-1 px-4 flex items-center bg-green-100 hover:bg-green-200 duration-150 text-green-500"
                   }
-                  onClick={toggleTop}
+                  onClick={toggleApprove}
                 >
-                  {isTopActionSubmitting ? (
+                  {isApproveActionSubmitting ? (
                     <i className="fa fa-spin fa-spinner mr-3"></i>
                   ) : (
                     <i className="fa fa-check mr-2"></i>
                   )}
-                  Add to top
-                </button>
-              )}
-              {chapter.status === "LISTED" ? (
-                <button
-                  className={
-                    "rounded mr-5 py-1 px-4 flex items-center bg-yellow-100 hover:bg-yellow-200 duration-150 text-yellow-500"
-                  }
-                  onClick={removeFromList}
-                >
-                  {isListActionSubmitting ? (
-                    <i className="fa fa-spin fa-spinner mr-3"></i>
-                  ) : (
-                    <i className="fa fa-times mr-2"></i>
-                  )}
-                  Delist
-                </button>
-              ) : (
-                <button
-                  className={
-                    "rounded mr-5 py-1 px-4 flex items-center bg-green-100 hover:bg-green-200 duration-150 text-green-500"
-                  }
-                  onClick={addToList}
-                >
-                  {isListActionSubmitting ? (
-                    <i className="fa fa-spin fa-spinner mr-3"></i>
-                  ) : (
-                    <i className="fa fa-check mr-2"></i>
-                  )}
-                  List
+                  Approve
                 </button>
               )}
               <button

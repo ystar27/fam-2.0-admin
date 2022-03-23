@@ -5,7 +5,6 @@ import Head from "../components/Layouts/Header/Head";
 import Navbar from "../components/Layouts/Header/Navbar";
 import Delete from "../components/Layouts/Alert/Delete";
 import axios from "../services/axios";
-import CreateDailyContent from "../components/DailyContent/CreateDailyContent";
 import axiosInstance from "../services/axios";
 import DetailsModal from "../components/Chapters/DetailsModal";
 
@@ -118,6 +117,11 @@ function Chapters() {
                       sort: "asc",
                     },
                     {
+                      label: "Approved",
+                      field: "approveText",
+                      sort: "asc",
+                    },
+                    {
                       label: "Status",
                       field: "status",
                       sort: "asc",
@@ -137,6 +141,7 @@ function Chapters() {
                       </div>
                     ),
                     location: `${row.state}, ${row.country}`,
+                    approveText: row.approved ? 'Yes' : 'No',
                     actions: (
                       <div className="flex items-center">
                         <button
