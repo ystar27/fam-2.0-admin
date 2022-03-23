@@ -1,20 +1,9 @@
 import React, { useState, useEffect, useContext } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
-import CreateModule from "../components/FAM_MODULE/CreateModule";
-import CreateSubModule from "../components/FAM_MODULE/SubModule/CreateSubModule";
-import EditModule from "../components/FAM_MODULE/EditModule";
-import ViewModuleField from "../components/FAM_MODULE/ViewModuleField";
 import Dashboard from "../components/Layouts/Dashboard/Dashboard";
 import Head from "../components/Layouts/Header/Head";
 import Navbar from "../components/Layouts/Header/Navbar";
 import Delete from "../components/Layouts/Alert/Delete";
-import Success from "../components/Layouts/Alert/Success";
-import Error from "../components/Layouts/Alert/Error";
 import axios from "../services/axios";
-import EditSubModule from "../components/FAM_MODULE/SubModule/EditSubModule";
-import SubModuleTable from "../components/FAM_MODULE/SubModule/SubModule";
-import { notificationsContext } from "./_app";
 import CreateDailyContent from "../components/DailyContent/CreateDailyContent";
 
 function FamModule() {
