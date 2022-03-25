@@ -40,7 +40,9 @@ const Display = ({ tabs, setTabs, image, upload, uploadLoad, setUploadFile }: an
 				{previewImg ? (
 					<img className={"bg-contain"} src={previewImg} alt="certificate" />
 				) : (
-					<img className={"bg-contain"} src={image || "/img/certificate/photo_size.svg"} alt="certificate" />
+					<div className="grid place-content-center h-full">
+						<img className={"bg-contain"} src={image || "/img/certificate/photo_size.svg"} alt="certificate" />
+					</div>
 				)}
 				<div className={"absolute top-0 bottom-0 w-full bg-transparent"}></div>
 				{previewImgErr && <small className={"text-center text-red-400"}>file size should less than 5mb</small>}

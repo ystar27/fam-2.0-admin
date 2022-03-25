@@ -7,21 +7,34 @@ import { notificationsContext } from "../../pages/_app";
 import Display from "../../components/Certificate/Display";
 import axios from "../../services/axios";
 
-function Certificate({ modules }: any) {
+function Certificate() {
 	const [tabs, setTabs] = useState(0);
 	const [tabDisplay, setTabDisplay] = useState(false);
 	const [loading, setLoading] = useState(false);
 	const [uploadLoad, setUploadLoad] = useState(false);
-	const [module, setModule] = useState(modules);
+	const [module, setModule] = useState([]);
 	const [subModules, setSubModules] = useState([]);
 	const [subModule, setSubModule] = useState("");
 	const [uploadFile, setUploadFile] = useState({ name: "", type: "" });
 	const [certificates, setCertificates] = useState({ original: "", white: "", preseason: "" });
 	const notification = useContext(notificationsContext);
 
+	useEffect(() => {
+		getModules();
+	}, []);
+
+	useEffect(() => {
+		setTabDisplay(false);
+	}, [subModules]);
+
+	const getModules = async () => {
+		const modules = await axios.get("/module");
+		setModule(modules.data.data);
+	};
+
 	const selectModule = (e: any) => {
 		if (e.target.value) {
-			let selectedMdl: any = modules.filter((module: { _id: any }) => module._id == e.target.value);
+			const selectedMdl: any = module.filter((module: { _id: any }) => module._id == e.target.value);
 			setSubModules(selectedMdl[0]?.subModule);
 		}
 	};
@@ -112,38 +125,11 @@ function Certificate({ modules }: any) {
 
 	const loadDisplay = () => {
 		if (tabs === 0) {
-			return (
-				<Display
-					tabs={tabs}
-					setTabs={setTabs}
-					uploadLoad={uploadLoad}
-					image={certificates.white}
-					upload={uploadWhite}
-					setUploadFile={setUploadFile}
-				/>
-			);
+			return <Display tabs={tabs} setTabs={setTabs} uploadLoad={uploadLoad} image={certificates.white} upload={uploadWhite} setUploadFile={setUploadFile} />;
 		} else if (tabs === 1) {
-			return (
-				<Display
-					tabs={tabs}
-					setTabs={setTabs}
-					uploadLoad={uploadLoad}
-					image={certificates.original}
-					upload={uploadOriginal}
-					setUploadFile={setUploadFile}
-				/>
-			);
+			return <Display tabs={tabs} setTabs={setTabs} uploadLoad={uploadLoad} image={certificates.original} upload={uploadOriginal} setUploadFile={setUploadFile} />;
 		} else if (tabs === 2) {
-			return (
-				<Display
-					tabs={tabs}
-					setTabs={setTabs}
-					uploadLoad={uploadLoad}
-					image={certificates.preseason}
-					upload={uploadPreseason}
-					setUploadFile={setUploadFile}
-				/>
-			);
+			return <Display tabs={tabs} setTabs={setTabs} uploadLoad={uploadLoad} image={certificates.preseason} upload={uploadPreseason} setUploadFile={setUploadFile} />;
 		} else {
 			return "";
 		}
@@ -171,11 +157,7 @@ function Certificate({ modules }: any) {
 						>
 							<div className={"grid grid-cols-2 md:grid-cols-3 gap-5 md:gap-10 justify-between"}>
 								<div className={"mb-4"}>
-									<select
-										name={"subModule"}
-										onChange={selectModule}
-										className={"pb-4 pt-2 w-full text-gray-700 border-b focus:border-b focus:outline-none text-lg focus:border-purple-500"}
-									>
+									<select name={"subModule"} onChange={selectModule} className={"pb-4 pt-2 w-full text-gray-700 border-b focus:border-b focus:outline-none text-lg focus:border-purple-500"}>
 										<option value={""} className={"hover:bg-purple-400"}>
 											Select Module
 										</option>
@@ -187,11 +169,7 @@ function Certificate({ modules }: any) {
 									</select>
 								</div>
 								<div className={"mb-4"}>
-									<select
-										onChange={selectSubModule}
-										name={"subModule"}
-										className={"pb-4 pt-2 w-full text-gray-700 border-b focus:border-b focus:outline-none text-lg focus:border-purple-500"}
-									>
+									<select onChange={selectSubModule} name={"subModule"} className={"pb-4 pt-2 w-full text-gray-700 border-b focus:border-b focus:outline-none text-lg focus:border-purple-500"}>
 										<option value={""} className={"hover:bg-purple-400"}>
 											Select Sub-Module
 										</option>
@@ -214,34 +192,13 @@ function Certificate({ modules }: any) {
 						{tabDisplay && !loading && (
 							<div>
 								<div className={"flex items-center justify-start"}>
-									<button
-										onClick={() => setTabs(0)}
-										className={
-											tabs === 0
-												? "py-2 mb:py-4 bg-white sm:px-4 lg:px-8 bg-transparent font-medium text-primary border-t-2 border-primary text-lg"
-												: "py-2 mb:py-4 sm:px-4 lg:px-8 bg-transparent font-medium text-gray-600 text-lg"
-										}
-									>
+									<button onClick={() => setTabs(0)} className={tabs === 0 ? "py-2 mb:py-4 bg-white sm:px-4 lg:px-8 bg-transparent font-medium text-primary border-t-2 border-primary text-lg" : "py-2 mb:py-4 sm:px-4 lg:px-8 bg-transparent font-medium text-gray-600 text-lg"}>
 										Free
 									</button>
-									<button
-										onClick={() => setTabs(1)}
-										className={
-											tabs === 1
-												? "py-2 mb:py-4 bg-white sm:px-4 lg:px-8 bg-transparent font-medium text-primary border-t-2 border-primary text-lg"
-												: "py-2 mb:py-4 sm:px-4 lg:px-8 bg-transparent font-medium text-gray-600 text-lg"
-										}
-									>
+									<button onClick={() => setTabs(1)} className={tabs === 1 ? "py-2 mb:py-4 bg-white sm:px-4 lg:px-8 bg-transparent font-medium text-primary border-t-2 border-primary text-lg" : "py-2 mb:py-4 sm:px-4 lg:px-8 bg-transparent font-medium text-gray-600 text-lg"}>
 										Paid
 									</button>
-									<button
-										onClick={() => setTabs(2)}
-										className={
-											tabs === 2
-												? "py-2 mb:py-4 bg-white sm:px-4 lg:px-8 bg-transparent font-medium text-primary border-t-2 border-primary text-lg"
-												: "py-2 mb:py-4 sm:px-4 lg:px-8 bg-transparent font-medium text-gray-600 text-lg"
-										}
-									>
+									<button onClick={() => setTabs(2)} className={tabs === 2 ? "py-2 mb:py-4 bg-white sm:px-4 lg:px-8 bg-transparent font-medium text-primary border-t-2 border-primary text-lg" : "py-2 mb:py-4 sm:px-4 lg:px-8 bg-transparent font-medium text-gray-600 text-lg"}>
 										Preseason
 									</button>
 								</div>
