@@ -38,8 +38,8 @@ const navLinks = [
     items: [],
   },
   {
-    name: "User Management",
-    link: "#",
+    name: "Admin Management",
+    link: "/admin",
     icon: faUserCircle,
     items: [],
   },
