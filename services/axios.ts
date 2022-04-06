@@ -8,7 +8,8 @@ import axios from "axios";
 // });
 
 const instance = axios.create({
-  baseURL: "https://testapi.femaleandmore.org/api/v2",
+//   baseURL: "https://testapi.femaleandmore.org/api/v2",
+  baseURL: "http://localhost:8080/",
   headers: {
     "Content-Type": "application/json",
   },

@@ -2,7 +2,15 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Getting Started
 
-First, run the development server:
+1. Create a mock-api folder outside this project.
+
+2. Create an index.js file.
+
+3. Copy the contents of project_ystar_fam2.0-admin/mock-api/index.js into the new index.js.
+
+4. Run 'npm install', then 'npm run dev'.
+
+5. Run the development server of this project: project_ystar_fam2.0-admin.
 
 ```bash
 npm run dev
