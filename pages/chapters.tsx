@@ -34,7 +34,7 @@ function Chapters() {
       setChapters((prev) => ({
         loading: false,
         data: prev.data.filter(
-          (chapter) => chapter._id === activeDeleteChapter
+          (chapter: any) => chapter._id === activeDeleteChapter
         ),
       }));
     } catch (error: any) {
