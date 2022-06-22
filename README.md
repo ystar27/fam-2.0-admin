@@ -1,4 +1,4 @@
-# FAM 2.0 Web Frontend
+# FAM 2.0 Admin Frontend
 This is the web frontend application for the Admin section i.e. [admin.femaleandmore.org](https://admin.femaleandmore.org) application. This frontend sends requests to and processes responses from a REST API backend. [Todo: Link backend source]
 
 # Technology Stack

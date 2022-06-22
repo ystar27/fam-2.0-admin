@@ -1,15 +1,9 @@
 import axios from "axios";
 
-// const instance = axios.create({
-// 	baseURL: "http://localhost:4000/api/v2",
-// 	headers: {
-// 		"Content-Type": "application/json",
-// 	},
-// });
+const BASE_URL = process.env.NODE_ENV === "development" ? process.env.DEV_BASE_URL : process.env.PRD_BASE_URL ;
 
 const instance = axios.create({
-//   baseURL: "https://testapi.femaleandmore.org/api/v2",
-  baseURL: "http://localhost:8080/",
+  baseURL: BASE_URL,
   headers: {
     "Content-Type": "application/json",
   },
