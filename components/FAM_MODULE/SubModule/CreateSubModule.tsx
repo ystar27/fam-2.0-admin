@@ -61,7 +61,7 @@ export default function CreateSubModule({
           date: date,
         })
         .then((res) => {
-          setMessage("Module created successfully");
+          setMessage("Sub Module created successfully");
           setCreateSubModule(false);
           setSuccessAlert(true);
           subModules.length > 0
@@ -127,15 +127,6 @@ export default function CreateSubModule({
                   onChange={(e) => setDescription(e.target.value)}
                 ></textarea>
               </div>
-              {/* <div className={"mb-6"}>
-                <input
-                  type={"number"}
-                  value={duration}
-                  onChange={(e) => setDuration(e.target.value)}
-                  className="pb-4 pt-2 w-full text-gray-700 border-b focus:border-b focus:outline-none text-lg focus:border-purple-500"
-                  placeholder={"15 - days"}
-                />
-              </div> */}
               <div className={"grid grid-cols-2 gap-5"}>
                 <div className={"mb-6"}>
                   <label
