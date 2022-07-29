@@ -1,8 +1,9 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useContext } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import Field from "./Field";
 import axios from "../../services/axios";
+import { notificationsContext } from "../../pages/_app";
 
 export default function CreateModule({
   module,
@@ -16,23 +17,38 @@ export default function CreateModule({
   const [description, setDescription] = useState("");
   const [isValidated, setValidated] = useState(false);
   const slideRef = useRef();
+  const notification = useContext(notificationsContext);
+  const [date, setSubModuleDate] = useState({
+    start: "",
+    end: "",
+  });
 
   const onChange = (idx, e) => {
     setFields(fields.map((value, id) => (idx === id ? e.target.value : value)));
   };
 
   const CreateModule = () => {
-    if (fields.every((value) => !!value)) {
-      axios
-        .post("/module", { name: moduleName, field: fields, description })
-        .then((res) => {
-          setMessage("Module created successfully");
-          setCreateModule(false);
-          setSuccessAlert(true);
-          setModule([res.data.data, ...module]);
-        });
+
+    if (!moduleName || !fields || !description || !date.start || !date.end) {
+
+      notification.warn({
+        message: "Module Creation Error",
+        description: "Please fill all fields!",
+      });
+
     } else {
-      setValidated(true);
+      if (fields.every((value) => !!value)) {
+        axios
+          .post("/module", { name: moduleName, field: fields, description, date: date })
+          .then((res) => {
+            setMessage("Module created successfully");
+            setCreateModule(false);
+            setSuccessAlert(true);
+            setModule([res.data.data, ...module]);
+          });
+      } else {
+        setValidated(true);
+      }
     }
   };
 
@@ -84,6 +100,40 @@ export default function CreateModule({
                   value={description}
                   onChange={(e) => setDescription(e.target.value)}
                 ></textarea>
+              </div>
+              <div className={"grid grid-cols-2 gap-5"}>
+                <div className={"mb-6"}>
+                  <label
+                    htmlFor={"start"}
+                    className={"text-xs font-mono text-gray-700"}
+                  >
+                    Start date
+                  </label>
+                  <input
+                    name={"start"}
+                    type={"date"}
+                    onChange={(e) =>
+                      setSubModuleDate({ ...date, start: e.target.value })
+                    }
+                    className="pb-4 pt-2 w-full font-mono text-gray-500 border-b focus:border-b focus:outline-none text-lg focus:border-purple-500"
+                    placeholder={"15 - days"}
+                  />
+                </div>
+                <div className={"mb-6"}>
+                  <label htmlFor={"end"} className={"text-xs text-gray-700"}>
+                    End date
+                  </label>
+                  <input
+                    name={"end"}
+                    type={"date"}
+                    value={date.end}
+                    onChange={(e) =>
+                      setSubModuleDate({ ...date, end: e.target.value })
+                    }
+                    className="pb-4 pt-2 w-full font-mono text-gray-500 border-b focus:border-b focus:outline-none text-lg focus:border-purple-500"
+                    placeholder={"15 - days"}
+                  />
+                </div>
               </div>
               <div className={"flex flex-col last:mb-14 relative"}>
                 {fields.map((e, idx) => (
