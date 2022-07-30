@@ -44,7 +44,7 @@ export default function CreateSubModule({
 
   useEffect(() => {
     if (date.start && date.end) {
-      console.log(moduleId)
+
       let startDate = new Date(date.start);
       let endDate = new Date(date.end);
 
