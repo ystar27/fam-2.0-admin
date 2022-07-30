@@ -37,7 +37,18 @@ export default function CreateModule({
       });
 
     } else {
-      if (fields.every((value) => !!value)) {
+
+      let today = new Date();
+      let month = today.getMonth() < 9 ? `0${today.getMonth()+1}` : `${today.getMonth()+1}`;
+      let todayDate = `${today.getFullYear()}-${month}-${today.getDate()}`;
+  
+      if (date.start < todayDate || date.end < todayDate || date.end < date.start) {
+        notification.warn({
+          message: "Module Creation Error",
+          description: "Selected Date range is not valid",
+        });
+      }
+      else {
         axios
           .post("/module", { name: moduleName, field: fields, description, date: date })
           .then((res) => {
@@ -46,8 +57,6 @@ export default function CreateModule({
             setSuccessAlert(true);
             setModule([res.data.data, ...module]);
           });
-      } else {
-        setValidated(true);
       }
     }
   };
