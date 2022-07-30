@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { notificationsContext } from "../../../pages/_app";
 import axios from "../../../services/axios";
-import { getSubModuleDetails } from "../../../helpers/index"
+import { getSubModuleDetails, getModule } from "../../../helpers/index"
 
 function convertDate(date) {
   var yyyy = date.getFullYear().toString();
@@ -67,31 +67,48 @@ export default function CreateSubModule({
 
       } else {
         if (subModuleName && date.start && date.end) {
-          axios
-            .post(`/module/submodule/${moduleId}`, {
-              name: subModuleName,
-              duration: Number(duration) + 1,
-              description: description || "",
-              date: date,
-            })
-            .then((res) => {
-              setMessage("Sub Module created successfully");
-              setCreateSubModule(false);
-              setSuccessAlert(true);
-              subModules.length > 0
-                ? setSubModules([res.data.data, ...subModules])
-                : setSubModules([res.data.data]);
-            })
-            .catch((error) => {
-              setCreateSubModule(false);
-              notification.warn({
-                message: "Sub Module Error",
-                description: "Unable to create sub-module",
+
+          getModule(moduleId)
+          .then(data => {
+  
+            let moduleDate = data.data.date;
+  
+            if (date.start < moduleDate.start || date.start > moduleDate.end || date.end < moduleDate.start || date.end > moduleDate.end) {
+              notification.error({
+                message: "Sub Module Creation Error",
+                description: `Date range must be within ${data.data.name} date: start=> ${moduleDate.start} and end=> ${moduleDate.end}`,
               });
-            });
+              return;
+            }
+            else {
+              axios
+              .post(`/module/submodule/${moduleId}`, {
+                name: subModuleName,
+                duration: Number(duration) + 1,
+                description: description || "",
+                date: date,
+              })
+              .then((res) => {
+                setMessage("Sub Module created successfully");
+                setCreateSubModule(false);
+                setSuccessAlert(true);
+                subModules.length > 0
+                  ? setSubModules([res.data.data, ...subModules])
+                  : setSubModules([res.data.data]);
+              })
+              .catch((error) => {
+                setCreateSubModule(false);
+                notification.warn({
+                  message: "Sub Module Error",
+                  description: "Unable to create sub-module",
+                });
+              });
+            }
+          })
         } else {
           setValidated(true);
         }
+
       }
     })
   };
@@ -105,7 +122,6 @@ export default function CreateSubModule({
         ref={slideRef}
         className={`max-w-lg slide-in min-w-min w-full duration-500 right-0 md:right-10 absolute top-40 bg-white flex flex-col`}
       >
-        {multipleSubModule?
         <div className={"p-5 flex items-center justify-between bg-gray-50"}>
         <h2 className={"text-lg font-semibold"} style={{ color: "#B569D4" }}>
           Create Sub Module
@@ -117,8 +133,6 @@ export default function CreateSubModule({
           <FontAwesomeIcon className={"h-5 w-5"} icon={faTimes} />
         </button>
       </div>
-      :null
-        }
         <div className={"p-5 py-10 bg-white"}>
           <form
             onSubmit={(e) => {
