@@ -43,9 +43,6 @@ function RegisteredUsers({ data }: any) {
 	const handleChange = async (e: any) => {
 		let registeredUsers = await getRegisteredUsersByModule(e.target.value);
 		let res = await formatRes({ data: registeredUsers.data.data });
-		// console.log(registeredUsers.data.data.createdAt);
-		// let date = new Date(registeredUsers.data.data.createdAt);
-		// console.log(date.toString().slice(0,25));
 
 		setRegisteredUsers(res);
 	}
