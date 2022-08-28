@@ -6,16 +6,6 @@ export const columns = [
     field: "user",
     width: 150,
   },
-  // {
-  //   label: "Phone",
-  //   field: "phone",
-  //   width: 150,
-  // },
-  // {
-  //   label: "Email",
-  //   field: "email",
-  //   width: 120,
-  // },
   {
     label: "Time Registered",
     field: "createdAt",

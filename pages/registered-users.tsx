@@ -10,8 +10,6 @@ const formatRes =  ({ data }: any) => {
 	return data.map((e: any, i: number) => {
 		return {
 			user: e?.userDetails?.Name || "No Data",
-			// email: e?.userDetails?.email || "No Data",
-			// phone: e?.userDetails?.phoneNumber || e?.user?.personalInfo?.phoneNumber || "No Data",
 			createdAt: new Date (e?.createdAt).toString().slice(0,25),
 			moduleName: e.moduleName
 		};
