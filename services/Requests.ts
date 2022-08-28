@@ -40,3 +40,15 @@ export function getAdmins() {
 export function removeAdmin(id: string) {
 	return axios.delete(`/auth/${id}/admin`);
 }
+
+export function getRegisteredUsers() {
+	return axios.get("/get-registered-users");
+}
+
+export function getRegisteredUsersByModule(moduleId) {
+	return axios.get(`/get-registered-users-by-module/${moduleId}`);
+}
+
+export function getUser(id) {
+	return axios.get(`/get-user/${id}`);
+}
