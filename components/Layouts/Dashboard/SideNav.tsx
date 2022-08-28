@@ -14,6 +14,7 @@ import {
 	faTrophy,
 	faListUl,
 	faDownload,
+	faChartPie
 } from "@fortawesome/free-solid-svg-icons";
 import { faUserCircle, faComments, faAddressBook, faChartBar } from "@fortawesome/free-regular-svg-icons";
 import { useRouter } from "next/router";
@@ -96,6 +97,14 @@ const navLinks = [
 		items: [
 			{ name: "General Ranking", link: "#" },
 			{ name: "Referral Ranking", link: "/referral" },
+		],
+	},
+	{
+		name: "Reports",
+		link: "#",
+		icon: faChartPie,
+		items: [
+			{ name: "Registered Users", link: "/registered-users" },
 		],
 	},
 	{
