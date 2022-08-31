@@ -12,11 +12,6 @@ const formatRes = ({ data }: any) => {
 	return data.map((e: any, i: number) => {
 		return {
 			user: `${e.user?.firstName.toUpperCase()} ${e.user?.lastName.toUpperCase()}`,
-			facebook: e.people.filter((peps: any) => peps.channelUsed == "Facebook").length,
-			twitter: e.people.filter((peps: any) => peps.channelUsed == "Twitter").length,
-			whatsapp: e.people.filter((peps: any) => peps.channelUsed == "WhatsApp").length,
-			telegram: e.people.filter((peps: any) => peps.channelUsed == "Telegram").length,
-			instagram: e.people.filter((peps: any) => peps.channelUsed == "Instagram").length,
 			total: e.people.length,
 			email: e?.user?.email || "email",
 			phone: e?.user?.phoneNumber || e?.user?.personalInfo?.phoneNumber || "phone",
