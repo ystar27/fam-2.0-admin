@@ -2,15 +2,15 @@ import React, { useState, useEffect } from "react";
 import { MDBDataTable } from "mdbreact";
 import { columns } from "./data";
 
-export default function Table({ registeredUsers }: any) {
+export default function Table({ userPointStories }: any) {
   const [datatable, setDatatable] = useState({
-    rows: registeredUsers,
+    rows: userPointStories,
     columns,
   });
 
   useEffect(() => {
-    setDatatable({ ...datatable, rows: registeredUsers });
-  }, [registeredUsers]);
+    setDatatable({ ...datatable, rows: userPointStories });
+  }, [userPointStories]);
 
   return (
     <div

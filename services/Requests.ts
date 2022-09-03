@@ -45,10 +45,18 @@ export function getRegisteredUsers() {
 	return axios.get("/get-registered-users");
 }
 
-export function getRegisteredUsersByModule(moduleId) {
+export function getRegisteredUsersByModule(moduleId: any) {
 	return axios.get(`/get-registered-users-by-module/${moduleId}`);
 }
 
-export function getUser(id) {
+export function getUser(id: any) {
 	return axios.get(`/get-user/${id}`);
+}
+
+export function getAllUsersModuleCurrentScore() {
+	return axios.get("/get-all-users-module-score");
+}
+
+export function getAllUsersModuleCurrentScoreByModule(moduleId: any) {
+	return axios.get(`/get-all-users-module-score-by-module/${moduleId}`);
 }

@@ -4,16 +4,27 @@ export const columns = [
   {
     label: "Name",
     field: "user",
+    width: 300,
+  },
+  {
+    label: "Email",
+    field: "email",
+    width: 250,
+  },
+  {
+    label: "Points",
+    field: "points",
     width: 150,
   },
   {
-    label: "Time Registered",
-    field: "createdAt",
+    label: "Questions",
+    field: "questionsAnswered",
     width: 100,
   },
+  
   {
     label: "Module Name",
     field: "moduleName",
-    width: 100,
+    width: 200,
   },
 ];
