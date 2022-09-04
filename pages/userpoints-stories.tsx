@@ -10,11 +10,11 @@ const formatRes =  ({ data }: any) => {
 	return data.map((e: any, i: number) => {
 		return {
 			user: `${e?.user?.firstName?.toUpperCase() || 'First Name'} ${e?.user?.lastName?.toUpperCase() || 'Last Name'}`,
-			email: e?.user?.email,
-			points: e?.totalPoints,
-			questionsAnswered: e?.questions.length,
-			updatedAt: new Date (e?.updatedAt).toString().slice(0,25),
-			moduleName: e?.moduleId?.name
+			email: e?.user?.email || "email",
+			points: e?.totalPoints || 0,
+			questionsAnswered: e?.questions?.length || 0,
+			updatedAt: new Date (e?.updatedAt)?.toString().slice(0,25) || "Last Date updated",
+			moduleName: e?.moduleId?.name || "Module name"
 		};
 	});
 };

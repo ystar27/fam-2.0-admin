@@ -11,8 +11,8 @@ import { notificationsContext } from "./_app";
 const formatRes = ({ data }: any) => {
 	return data.map((e: any, i: number) => {
 		return {
-			user: `${e.user?.firstName.toUpperCase()} ${e.user?.lastName.toUpperCase()}`,
-			total: e.people.length,
+			user: `${e.user?.firstName?.toUpperCase() || 'First Name'} ${e.user?.lastName?.toUpperCase() || 'Last Name'}`,
+			total: e?.people?.length || 0,
 			email: e?.user?.email || "email",
 			phone: e?.user?.phoneNumber || e?.user?.personalInfo?.phoneNumber || "phone",
 		};
