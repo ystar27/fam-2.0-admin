@@ -39,14 +39,18 @@ export default function CreateModule({
     } else {
 
       let today = new Date();
+			let unixToday = today.getTime();
+      let unixModuleStartDate = new Date(date.start).getTime();
+			let unixModuleEndDate = new Date(date.end).getTime();
       let month = today.getMonth() < 9 ? `0${today.getMonth()+1}` : `${today.getMonth()+1}`;
       let todayDate = `${today.getFullYear()}-${month}-${today.getDate()}`;
-  
-      if (date.start < todayDate || date.end < todayDate || date.end < date.start) {
+
+
+      if (unixModuleStartDate < unixToday || unixModuleEndDate < unixToday || unixModuleEndDate < unixModuleStartDate) {
         notification.warn({
           message: "Module Creation Error",
           description: "Selected Date range is not valid",
-        });
+        });     
       }
       else {
         axios
