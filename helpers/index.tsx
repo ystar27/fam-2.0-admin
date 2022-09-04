@@ -143,7 +143,7 @@ const getRecoveryMail = async (email: string) => {
     const response = await axios.post("/users/forgot-password", { email });
     return response?.data;
   } catch (error) {
-    throw error;
+    console.log(error);
   }
 };
 
@@ -152,7 +152,7 @@ const resetPassword = async (data: any) => {
     const response = await axios.patch("/users/reset-password", data);
     return response?.data;
   } catch (error) {
-    throw new error();
+    console.log(error);
   }
 };
 
@@ -166,7 +166,7 @@ const updateRecords = async <T>(data: T) => {
     });
     return response?.data;
   } catch (error) {
-    throw new error();
+    console.log(error);
   }
 };
 
@@ -186,7 +186,7 @@ const updateDetails = async (data) => {
     const json = await response.json();
     return json;
   } catch (error) {
-    throw error();
+    console.log(error);
   }
 };
 
@@ -195,7 +195,7 @@ const getAllIssues = async () => {
     const response = await axios.get("/users/get-personal-issues");
     return response.data;
   } catch (error) {
-    throw new Error(error);
+    console.log(error);
   }
 };
 
@@ -204,7 +204,7 @@ const chooseIssue = async (issue: any) => {
     const response = await axios.post("/users/add-personal-issue", { issue });
     return response.data;
   } catch (error) {
-    throw new Error(error);
+    console.log(error);
   }
 };
 
@@ -217,7 +217,7 @@ const registerForModule = async (moduleData: {
     const response = await axios.post("/users/register-module", { moduleData });
     return response.data;
   } catch (error) {
-    throw new Error(error);
+    console.log(error);
   }
 };
 
@@ -226,7 +226,7 @@ const getUserModules = async (moduleId: string) => {
     const response = await axios.get(`/users/get-user-module/${moduleId}`);
     return response.data;
   } catch (error) {
-    throw new Error(error);
+    console.log(error);
   }
 };
 
@@ -241,7 +241,7 @@ const getModule = async (moduleId) => {
         return response.data;
     }
   } catch (error) {
-    throw new Error(error);
+    console.log(error);
   }
 };
 
@@ -250,7 +250,7 @@ const sendScores = async (results) => {
     const response = await axios.post("/users/add-scores", { results });
     return response.data;
   } catch (error) {
-    throw new Error(error);
+    console.log(error);
   }
 };
 
@@ -259,7 +259,7 @@ const checkIfQuestionWasAnswered = async (data) => {
     const response = await axios.post("/users/question-verify", data);
     return response.data;
   } catch (error) {
-    throw new Error(error);
+    console.log(error);
   }
 };
 
@@ -268,7 +268,7 @@ const getCurrentScore = async () => {
     const response = await axios.get("/users/question-points");
     return response.data;
   } catch (error) {
-    throw new Error(error);
+    console.log(error);
   }
 };
 
@@ -277,7 +277,7 @@ const hasRegisteredForModule = async (id) => {
     const response = await axios.get(`/users/registered-for-module/${id}`);
     return response.data;
   } catch (error) {
-    throw new Error(error);
+    console.log(error);
   }
 };
 
@@ -286,7 +286,7 @@ const addProjectIdea = async (idea) => {
     const response = await axios.post("/users/add-project-idea", idea);
     return response.data;
   } catch (error) {
-    throw new Error(error);
+    console.log(error);
   }
 };
 
@@ -295,7 +295,7 @@ const getProjectIdeas = async () => {
     const response = await axios.get("/users/get-project-ideas");
     return response.data;
   } catch (error) {
-    throw new Error(error);
+    console.log(error);
   }
 };
 
@@ -304,7 +304,7 @@ const updateProjectIdea = async (data) => {
     const response = await axios.put("/users/update-project-idea", data);
     return response.data;
   } catch (error) {
-    throw new Error(error);
+    console.log(error);
   }
 };
 
@@ -314,7 +314,7 @@ const addProjectPictures = async (data) => {
       headers: {},
     });
   } catch (error) {
-    throw new Error(error);
+    console.log(error);
   }
 };
 
@@ -323,7 +323,7 @@ const addProjectReport = async (data) => {
     const response = await axios.post("/users/add-project-report", data);
     return response.data;
   } catch (error) {
-    throw new Error(error);
+    console.log(error);
   }
 };
 
@@ -332,7 +332,7 @@ const getProjectReports = async () => {
     const response = await axios.get("/users/get-project-reports");
     return response.data;
   } catch (error) {
-    throw new Error(error);
+    console.log(error);
   }
 };
 
@@ -341,7 +341,7 @@ const getUserAllModules = async () => {
     const response = await axios.get("/users/get-all-user-modules");
     return response.data;
   } catch (error) {
-    throw new Error(error);
+    console.log(error);
   }
 };
 
@@ -350,7 +350,7 @@ const getUserAllSubModules = async (id) => {
     const response = await axios.get(`/users/get-all-user-submodules/${id}`);
     return response.data;
   } catch (error) {
-    throw new Error(error);
+    console.log(error);
   }
 };
 
@@ -364,7 +364,7 @@ const getCerts = async (moduleId) => {
     if (response.data.data.length === 0) {
       return response.data;
     }
-    throw new error(error);
+    console.log(error);
   }
 };
 
@@ -373,7 +373,7 @@ const getModuleCerts = async (id) => {
     const response = await axios.get(`/users/certificates/${id}`);
     return response.data;
   } catch (error) {
-    throw new error(error);
+    console.log(error);
   }
 };
 
@@ -382,7 +382,7 @@ const getModules = async () => {
     const response = await axios.get("/users/modules");
     return response.data;
   } catch (error) {
-    throw new Error(error);
+    console.log(error);
   }
 };
 
@@ -391,7 +391,7 @@ const addShowcaseItem = async (item) => {
     const response = await axios.post("/users/showcase", item);
     return response.data;
   } catch (error) {
-    throw new Error(error);
+    console.log(error);
   }
 };
 
@@ -400,7 +400,7 @@ const getShowcaseItems = async () => {
     const response = await axios.get("/users/showcase");
     return response.data;
   } catch (error) {
-    throw new Error(error);
+    console.log(error);
   }
 };
 
@@ -409,7 +409,7 @@ const addStory = async (data) => {
     const response = await axios.post("/users/fam-story", data);
     return response.data;
   } catch (error) {
-    throw new Error(error);
+    console.log(error);
   }
 };
 
@@ -418,7 +418,7 @@ const getStories = async () => {
     const response = await axios.get("/users/fam-story");
     return response.data;
   } catch (error) {
-    throw new Error(error);
+    console.log(error);
   }
 };
 
@@ -427,7 +427,7 @@ const addComment = async (comment) => {
     const response = await axios.patch("/users/fam-story", comment);
     return response.data;
   } catch (error) {
-    throw new Error(error);
+    console.log(error);
   }
 };
 
@@ -436,7 +436,7 @@ const getCommentById = async (id) => {
     const response = await axios.get(`/users/fam-story-comments/${id}`);
     return response.data;
   } catch (error) {
-    throw new error(error);
+    console.log(error);
   }
 };
 
@@ -445,7 +445,7 @@ const getUserTrueScore = async (userId, moduleId) => {
     const response = await axios.get(`users/user-true-score/${userId}/${moduleId}`);
     return response.data;
   } catch (error) {
-    throw new error(error);
+    console.log(error);
   }
 };
 
@@ -454,7 +454,7 @@ const getSubModuleDetails = async (moduleId) => {
     const response = await axios.get(`module/submodule/${moduleId}/module/`);
     return response.data;
   } catch (error) {
-    throw new error(error);
+    console.log(error);
   }
 };
 
@@ -463,7 +463,7 @@ const getUserRegisteredModules = async () => {
     const response = await axios.get(`/users/get-registered-modules/`);
     return response.data;
   } catch (error) {
-    throw new Error(error);
+    console.log(error);
   }
 };
 
@@ -472,7 +472,7 @@ const getModuleCurrentScore = async (moduleId) => {
     const response = await axios.get(`/users/get-module-score/${moduleId}`);
     return response.data;
   } catch (error) {
-    throw new Error(error);
+    console.log(error);
   }
 };
 
@@ -481,7 +481,7 @@ const getUserReferralInfo = async () => {
     const response = await axios.get(`/users/get-referral-info/`);
     return response.data;
   } catch (error) {
-    throw new Error(error);
+    console.log(error);
   }
 };
 
@@ -490,7 +490,7 @@ const getAllDailyContents = async () => {
     const response = await axios.get(`/daily-content/get-all`);
     return response.data;
   } catch (error) {
-    throw new Error(error);
+    console.log(error);
   }
 };
 

@@ -21,10 +21,14 @@ export const columns = [
     field: "questionsAnswered",
     width: 100,
   },
-  
+  {
+    label: "Last Submission",
+    field: "updatedAt",
+    width: 300,
+  },
   {
     label: "Module Name",
     field: "moduleName",
-    width: 200,
+    width: 300,
   },
 ];

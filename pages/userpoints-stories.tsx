@@ -13,6 +13,7 @@ const formatRes =  ({ data }: any) => {
 			email: e?.user?.email,
 			points: e?.totalPoints,
 			questionsAnswered: e?.questions.length,
+			updatedAt: new Date (e?.updatedAt).toString().slice(0,25),
 			moduleName: e?.moduleId?.name
 		};
 	});
