@@ -9,7 +9,7 @@ import axios from "../services/axios";
 const formatRes =  ({ data }: any) => {
 	return data.map((e: any, i: number) => {
 		return {
-			user: `${e?.user?.firstName.toUpperCase() || 'First Name'} ${e?.user?.lastName.toUpperCase() || 'Last Name'}`,
+			user: `${e?.user?.firstName?.toUpperCase() || 'First Name'} ${e?.user?.lastName?.toUpperCase() || 'Last Name'}`,
 			email: e?.user?.email || 'email',
 			createdAt: new Date (e?.createdAt).toString().slice(0,25),
 			moduleName: e.moduleName
