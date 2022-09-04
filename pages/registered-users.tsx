@@ -12,7 +12,7 @@ const formatRes =  ({ data }: any) => {
 			user: `${e?.user?.firstName?.toUpperCase() || 'First Name'} ${e?.user?.lastName?.toUpperCase() || 'Last Name'}`,
 			email: e?.user?.email || "email",
 			createdAt: new Date (e?.createdAt)?.toString().slice(0,25) || "Date created",
-			moduleName: e.moduleName || "Module name"
+			moduleName: e?.moduleName || "Module name"
 		};
 	});
 };
