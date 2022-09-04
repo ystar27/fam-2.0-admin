@@ -1,24 +1,26 @@
 import React, { useEffect, useState } from "react";
-import Table from "../components/RegisteredUsers/Table";
+import Table from "../components/UserpointStories/Table";
 import Dashboard from "../components/Layouts/Dashboard/Dashboard";
 import Head from "../components/Layouts/Header/Head";
 import Navbar from "../components/Layouts/Header/Navbar";
-import { getRegisteredUsers, getRegisteredUsersByModule } from "../services/Requests";
+import { getAllUsersModuleCurrentScoreByModule, getAllUsersModuleCurrentScore } from "../services/Requests";
 import axios from "../services/axios";
 
 const formatRes =  ({ data }: any) => {
 	return data.map((e: any, i: number) => {
 		return {
-			user: `${e?.user?.firstName.toUpperCase() || 'First Name'} ${e?.user?.lastName.toUpperCase() || 'Last Name'}`,
-			email: e?.user?.email || 'email',
-			createdAt: new Date (e?.createdAt).toString().slice(0,25),
-			moduleName: e.moduleName
+			user: `${e?.user?.firstName.toUpperCase()} ${e?.user?.lastName.toUpperCase()}`,
+			email: e?.user?.email,
+			points: e?.totalPoints,
+			questionsAnswered: e?.questions.length,
+			updatedAt: new Date (e?.updatedAt).toString().slice(0,25),
+			moduleName: e?.moduleId?.name
 		};
 	});
 };
 
-function RegisteredUsers({ data }: any) {
-	const [registeredUsers, setRegisteredUsers] = useState([]);
+function UserPointStories({ data }: any) {
+	const [userPoints, setUserPoints] = useState([]);
 	const [modules, setModules] = useState([]);
 
 	useEffect(() => {
@@ -36,16 +38,16 @@ function RegisteredUsers({ data }: any) {
 	}, []);
 
 	const loadInitialCOntent = async () => {
-		const registeredUsers = await getRegisteredUsers();
-		const res = await formatRes({ data: registeredUsers.data.data });
-		setRegisteredUsers(res);
+		const userpoints = await getAllUsersModuleCurrentScore();
+		const userpointRes = await formatRes({ data: userpoints.data.data });
+		setUserPoints(userpointRes);
 	};
 
 	const handleChange = async (e: any) => {
-		let registeredUsers = await getRegisteredUsersByModule(e.target.value);
-		let res = await formatRes({ data: registeredUsers.data.data });
+		let userpoints = await getAllUsersModuleCurrentScoreByModule(e.target.value);
+		let userpointRes = await formatRes({ data: userpoints.data.data });
 
-		setRegisteredUsers(res);
+		setUserPoints(userpointRes);
 	}
 
 	return (
@@ -57,7 +59,7 @@ function RegisteredUsers({ data }: any) {
 					<div className={"my-16"}>
 						<h1 className={"text-2xl mb-1"}>Welcome Admin!</h1>
 						<div style={{ color: "#B569D4" }} className={"flex items-center"}>
-							<h5 className={"mr-2"}>Dashboard</h5> &gt; <h5 className={"ml-2"}> Registered Users</h5>
+							<h5 className={"mr-2"}>Dashboard</h5> &gt; <h5 className={"ml-2"}> Userpoint Stories</h5>
 						</div>
 					</div>
 					<div style={{ color: "#B569D4", width: "200px" }} className={"flex items-center mb-3"}>	
@@ -69,7 +71,7 @@ function RegisteredUsers({ data }: any) {
 						</form>
 					</div>
 					<div className={"mb-32"}>
-						<Table registeredUsers={registeredUsers} />
+						<Table userPointStories={userPoints} />
 					</div>
 				</div>
 			</Dashboard>
@@ -79,9 +81,9 @@ function RegisteredUsers({ data }: any) {
 
 export async function getServerSideProps() {
 	try {
-		const registeredUsers = await getRegisteredUsers();
+		const userPoints = await getAllUsersModuleCurrentScore();
 
-		const res = await formatRes({ data: registeredUsers.data.data });
+		const res = await formatRes({ data: userPoints.data.data });
 
 		return {
 			props: {
@@ -91,10 +93,10 @@ export async function getServerSideProps() {
 	} catch (error) {
 		return {
 			props: {
-				registeredUsers: [],
+				userPoints: [],
 			},
 		};
 	}
 }
 
-export default RegisteredUsers;
+export default UserPointStories;

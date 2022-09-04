@@ -105,6 +105,7 @@ const navLinks = [
 		icon: faChartPie,
 		items: [
 			{ name: "Registered Users", link: "/registered-users" },
+			{ name: "Userpoint Stories", link: "/userpoints-stories" },
 		],
 	},
 	{
