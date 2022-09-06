@@ -70,7 +70,7 @@ const navLinks = [
 	},
 	{
 		name: "Certificates",
-		link: "#",
+		link: "/certificate",
 		icon: faCertificate,
 		items: [],
 	},
