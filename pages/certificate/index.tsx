@@ -15,9 +15,21 @@ function Certificate({ modules }: any) {
 	const [module, setModule] = useState(modules);
 	const [subModules, setSubModules] = useState([]);
 	const [subModule, setSubModule] = useState("");
+	const [selectedModule, setSelectedModule] = useState("");
 	const [uploadFile, setUploadFile] = useState({ name: "", type: "" });
 	const [certificates, setCertificates] = useState({ original: "", white: "", preseason: "" });
 	const notification = useContext(notificationsContext);
+
+	useEffect(()=> {
+		axios.get("/module").then((data) => {
+			let moduleData = data.data.data.map((item: any) => {
+				return (
+					<option key={item._id} value={item._id}>{item.name}</option>
+				)
+			});
+			setModule(moduleData);
+		})
+	},[]);
 
 	const selectModule = (e: any) => {
 		if (e.target.value) {
@@ -26,8 +38,8 @@ function Certificate({ modules }: any) {
 		}
 	};
 
-	const selectSubModule = (e: any) => {
-		setSubModule(e.target.value);
+	const handleChange = (e: any) => {
+		setSelectedModule(e.target.value);
 		setTabDisplay(true);
 		checkCertificate(e.target.value);
 	};
@@ -52,7 +64,7 @@ function Certificate({ modules }: any) {
 				let formData = new FormData();
 				formData.append("image", uploadFile);
 				setUploadLoad(true);
-				const res = await axios.post(`/certificate/${subModule}/original`, formData, {
+				const res = await axios.post(`/certificate/${selectedModule}/original`, formData, {
 					headers: {
 						"Content-Type": "multipart/form-data",
 					},
@@ -73,7 +85,7 @@ function Certificate({ modules }: any) {
 				let formData = new FormData();
 				formData.append("image", uploadFile);
 				setUploadLoad(true);
-				const res = await axios.post(`/certificate/${subModule}/preseason`, formData, {
+				const res = await axios.post(`/certificate/${selectedModule}/preseason`, formData, {
 					headers: {
 						"Content-Type": "multipart/form-data",
 					},
@@ -95,11 +107,12 @@ function Certificate({ modules }: any) {
 				formData.append("image", uploadFile);
 
 				setUploadLoad(true);
-				const res = await axios.post(`/certificate/${subModule}/white`, formData, {
+				const res = await axios.post(`/certificate/${selectedModule}/white`, formData, {
 					headers: {
 						"Content-Type": "multipart/form-data",
 					},
 				});
+				// console.log(res);
 				setCertificates({ ...certificates, preseason: res.data?.data?.image?.preSeason || "" });
 				setUploadLoad(false);
 				notification.success({
@@ -169,7 +182,7 @@ function Certificate({ modules }: any) {
 								boxShadow: "0px 4px 45px rgba(0, 0, 0, 0.04)",
 							}}
 						>
-							<div className={"grid grid-cols-2 md:grid-cols-3 gap-5 md:gap-10 justify-between"}>
+							{/* <div className={"grid grid-cols-2 md:grid-cols-3 gap-5 md:gap-10 justify-between"}>
 								<div className={"mb-4"}>
 									<select
 										name={"subModule"}
@@ -202,6 +215,14 @@ function Certificate({ modules }: any) {
 										))}
 									</select>
 								</div>
+							</div> */}
+							<div style={{ color: "#B569D4", width: "200px" }} className={"flex items-center mb-3"}>	
+								<form action="" method="post">
+									<select name="Module" id="module" onChange={handleChange}>
+										<option value="#">Select a Module</option>
+										{module}
+									</select>
+								</form>
 							</div>
 						</div>
 
