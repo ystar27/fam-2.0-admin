@@ -6,7 +6,7 @@
     "build:css": "postcss styles/globals.css -o styles/globals.generated.css",
     "watch:css": "postcss styles/globals.css -o styles/globals.generated.css -w",
     "dev:next": "run-p watch:css dev",
-    "dev": "next dev",
+    "dev": "next dev -p 3001",
     "build": "next build",
     "start": "next start -p 4444",
     "lint": "next lint"
