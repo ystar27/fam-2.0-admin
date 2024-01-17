@@ -10,7 +10,7 @@ import axios from "axios";
 
 const instance = axios.create({
   // baseURL: "http://localhost:4000/api/v2",
-  baseURL: "http://api.femaleandmore.org/api/v2",
+  baseURL: "https://api.femaleandmore.org/api/v2",
 
   headers: {
     "Content-Type": "application/json",
