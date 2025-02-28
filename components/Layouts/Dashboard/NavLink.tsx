@@ -13,14 +13,14 @@ export default function NavLink({
   const isActive = href == pathname;
 
   return (
-    <Link href={href} passHref>
-      <a
-        style={isActive ? activeStyle : {}}
-        className={`block w-full ${className} ${isActive && activeClassName}`}
-        {...props}
-      >
-        {children}
-      </a>
+    <Link
+      style={isActive ? activeStyle : {}}
+      className={`block w-full ${className} ${isActive && activeClassName}`}
+      {...props}
+      href={href}
+      passHref
+    >
+      <a className={className}>{children}</a>
     </Link>
   );
 }

@@ -33,7 +33,7 @@ function NavLinkItem({ data, index }: any): ReactElement {
             <h3 className={"text-lg font-bold text-gray-400"}>&gt;</h3>
           </div>
           {data?.items.map((e, i) => (
-            <Link key={i} href={e.link} passHref>
+            <Link legacyBehavior key={i} href={e.link} passHref>
               <a
                 className={
                   dChildren.active && dChildren.index == index

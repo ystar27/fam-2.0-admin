@@ -14,7 +14,7 @@ import {
   faTrophy,
   faListUl,
   faDownload,
-  faBookReader
+  faBookReader,
 } from "@fortawesome/free-solid-svg-icons";
 import {
   faUserCircle,

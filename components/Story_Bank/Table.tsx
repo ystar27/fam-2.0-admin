@@ -129,7 +129,7 @@ export default function Table({ setAction, iDelete, setIDelete }: any) {
               value={input}
             />
           </div>
-          {/* <Link href={"/storybank/new"} passHref> */}
+          {/* <Link legacyBehavior href={"/storybank/new"} passHref> */}
           <a
             href={"/storybank/new"}
             style={{ backgroundColor: "#B569D4" }}

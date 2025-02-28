@@ -16,7 +16,7 @@ const NavListChild = ({
   const isActive = href == pathname;
 
   return (
-    <Link href={href} passHref>
+    <Link legacyBehavior href={href} passHref>
       <a
         style={isActive ? activeStyle : {}}
         className={`${className}`}
